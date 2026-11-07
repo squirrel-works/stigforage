@@ -1,0 +1,542 @@
+{
+  "title": "Asset_aaaaaaaaaa-RHEL_9_TRUNCATED-V1R1",
+  "id": "7e41c2d0-8244-11ee-8b44-13c1c13d16bb",
+  "active": false,
+  "mode": 1,
+  "has_path": true,
+  "target_data": {
+    "target_type": "Non-Computing",
+    "host_name": "Asset_aaaaaaaaaa",
+    "ip_address": "",
+    "mac_address": "",
+    "fqdn": "",
+    "comments": "",
+    "role": "None",
+    "is_web_database": false,
+    "technology_area": "",
+    "web_db_site": "",
+    "web_db_instance": ""
+  },
+  "stigs": [
+    {
+      "stig_name": "Red Hat Enterprise Linux 9 TRUNCATED",
+      "display_name": "Red Hat Enterprise Linux 9 TRUNCATED",
+      "stig_id": "RHEL_9_TRUNCATED",
+      "version": 1,
+      "release_info": "Release: 1 Benchmark Date: 22 Sep 2023",
+      "uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+      "reference_identifier": "0000",
+      "size": 10,
+      "rules": [
+        {
+          "uuid": "7e432260-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257777",
+          "rule_id": "SV-257777r925318",
+          "rule_id_src": "SV-257777r925318_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "RHEL-09-211010",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "RHEL 9 must be a vendor-supported release.",
+          "fix_text": "Upgrade to a supported version of RHEL 9.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "An operating system release is considered \"supported\" if the vendor continues to provide security patches for the product. With an unsupported release, it will not be possible to resolve security issues discovered in the system software.\n\nRed Hat offers the Extended Update Support (EUS) add-on to a Red Hat Enterprise Linux subscription, for a fee, for those customers who wish to standardize on a specific minor release for an extended period.",
+          "check_content": "Verify that the version or RHEL 9 is vendor supported with the following command:\n\n$ cat /etc/redhat-release \n\nRed Hat Enterprise Linux release 9.2 (Plow)\n\nIf the installed version of RHEL 9 is not supported, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257777",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "7e432261-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257778",
+          "rule_id": "SV-257778r925321",
+          "rule_id_src": "SV-257778r925321_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211015",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "RHEL 9 vendor packaged system security patches and updates must be installed and up to date.",
+          "fix_text": "Install RHEL 9 security patches and updates at the organizationally defined frequency. If system updates are installed via a centralized repository that is configured on the system, all updates can be installed with the following command:\n\n$ sudo dnf update",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Installing software updates is a fundamental mitigation against the exploitation of publicly known vulnerabilities. If the most recent security patches and updates are not installed, unauthorized users may take advantage of weaknesses in the unpatched software. The lack of prompt attention to patching could result in a system compromise.",
+          "check_content": "Verify RHEL 9 security patches and updates are installed and up to date. Updates are required to be applied with a frequency determined by organizational policy.\n\nObtain the list of available package security updates from Red Hat. The URL for updates is https://access.redhat.com/errata-search/. It is important to note that updates provided by Red Hat may not be present on the system if the underlying packages are not installed.\n\nCheck that the available package security updates have been installed on the system with the following command:\n\n$ dnf history list | more\n\n    ID | Command line | Date and time | Action(s) | Altered    \n-------------------------------------------------------------------------------    \n   70 | install aide | 2023-03-05 10:58 | Install | 1    \n   69 | update -y | 2023-03-04 14:34 | Update | 18 EE    \n   68 | install vlc | 2023-02-21 17:12 | Install | 21   \n   67 | update -y | 2023-02-21 17:04 | Update | 7 EE \n\nTypical update frequency may be overridden by Information Assurance Vulnerability Alert (IAVA) notifications from CYBERCOM.\n\nIf the system is in noncompliance with the organizational patching policy, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257778",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "7e432262-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257779",
+          "rule_id": "SV-257779r925324",
+          "rule_id_src": "SV-257779r925324_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211020",
+          "group_title": "SRG-OS-000023-GPOS-00006",
+          "rule_title": "RHEL 9 must display the Standard Mandatory DOD Notice and Consent Banner before granting local or remote access to the system via a command line user logon.",
+          "fix_text": "Configure RHEL 9 to display the Standard Mandatory DOD Notice and Consent Banner before granting access to the system via command line logon.\n\nEdit the \"/etc/issue\" file to replace the default text with the Standard Mandatory DOD Notice and Consent Banner. The DOD-required text is:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests -- not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via login interfaces with human users and are not required when such human interfaces do not exist.\n\nSatisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000228-GPOS-00088",
+          "check_content": "Verify RHEL 9 displays the Standard Mandatory DOD Notice and Consent Banner before granting access to the operating system via a command line user logon.\n\nCheck that a banner is displayed at the command line login screen with the following command:\n\n$ sudo cat /etc/issue\n\nIf the banner is set correctly it will return the following text:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nIf the banner text does not match the Standard Mandatory DOD Notice and Consent Banner exactly, or the line is commented out, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257779",
+              "title": "SRG-OS-000023-GPOS-00006",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000048",
+            "CCI-001384",
+            "CCI-001385",
+            "CCI-001386",
+            "CCI-001387",
+            "CCI-001388"
+          ]
+        },
+        {
+          "uuid": "7e432263-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257780",
+          "rule_id": "SV-257780r925327",
+          "rule_id_src": "SV-257780r925327_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211025",
+          "group_title": "SRG-OS-000191-GPOS-00080",
+          "rule_title": "RHEL 9 must implement the Endpoint Security for Linux Threat Prevention tool.",
+          "fix_text": "Install and enable the latest McAfee ENSLTP package.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Without the use of automated mechanisms to scan for security flaws on a continuous and/or periodic basis, the operating system or other system components may remain vulnerable to the exploits presented by undetected software flaws.\n\nTo support this requirement, the operating system may have an integrated solution incorporating continuous scanning using ESS and periodic scanning using other tools, as specified in the requirement.",
+          "check_content": "Verify that RHEL 9 has implemented the Endpoint Security for Linux Threat Prevention tool.\n\nCheck that the following package has been installed:\n\n$ sudo rpm -qa | grep -i mcafeetp\n\nIf the \"mcafeetp\" package is not installed, this is a finding.\n\nVerify that the daemon is running:\n\n$ sudo ps -ef | grep -i mfetpd\n\nIf the daemon is not running, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257780",
+              "title": "SRG-OS-000191-GPOS-00080",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-001233"
+          ]
+        },
+        {
+          "uuid": "7e432264-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257781",
+          "rule_id": "SV-257781r925330",
+          "rule_id_src": "SV-257781r925330_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211030",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "The graphical display manager must not be the default target on RHEL 9 unless approved.",
+          "fix_text": "Document the requirement for a graphical user interface with the ISSO or set the default target to multi-user with the following command:\n\n$ sudo systemctl set-default multi-user.target",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Unnecessary service packages must not be installed to decrease the attack surface of the system. Graphical display managers have a long history of security vulnerabilities and must not be used, unless approved and documented.",
+          "check_content": "Verify that RHEL 9 is configured to boot to the command line:\n\n$ systemctl get-default\n\nmulti-user.target\n\nIf the system default target is not set to \"multi-user.target\" and the information system security officer (ISSO) lacks a documented requirement for a graphical user interface, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257781",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "7e432265-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257782",
+          "rule_id": "SV-257782r925333",
+          "rule_id_src": "SV-257782r925333_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "low",
+          "rule_version": "RHEL-09-211035",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "RHEL 9 must enable the hardware random number generator entropy gatherer service.",
+          "fix_text": "Install the rng-tools package with the following command:\n\n$ sudo dnf install rng-tools\n\nThen enable the rngd service run the following command:\n\n$ sudo systemctl enable --now rngd",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "The most important characteristic of a random number generator is its randomness, namely its ability to deliver random numbers that are impossible to predict. Entropy in computer security is associated with the unpredictability of a source of randomness. The random source with high entropy tends to achieve a uniform distribution of random values. Random number generators are one of the most important building blocks of cryptosystems.  \n\nThe rngd service feeds random data from hardware device to kernel random device. Quality (nonpredictable) random number generation is important for several security functions (i.e., ciphers).",
+          "check_content": "Verify that RHEL 9 has enabled the hardware random number generator entropy gatherer service with the following command:\n\n$ systemctl is-active rngd\n\nactive\n\nIf the \"rngd\" service is not active, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257782",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "7e432266-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257783",
+          "rule_id": "SV-257783r925336",
+          "rule_id_src": "SV-257783r925336_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211040",
+          "group_title": "SRG-OS-000269-GPOS-00103",
+          "rule_title": "RHEL 9 systemd-journald service must be enabled.",
+          "fix_text": "To enable the systemd-journald service, run the following command:\n\n$ sudo systemctl enable --now systemd-journald",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "In the event of a system failure, RHEL 9 must preserve any information necessary to determine cause of failure and any information necessary to return to operations with least disruption to system processes.",
+          "check_content": "Verify that \"systemd-journald\" is active with the following command:\n\n$ systemctl is-active systemd-journald\n\nactive\n\nIf the systemd-journald service is not active, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257783",
+              "title": "SRG-OS-000269-GPOS-00103",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-001665"
+          ]
+        },
+        {
+          "uuid": "7e432267-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257784",
+          "rule_id": "SV-257784r925339",
+          "rule_id_src": "SV-257784r925339_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "RHEL-09-211045",
+          "group_title": "SRG-OS-000324-GPOS-00125",
+          "rule_title": "The systemd Ctrl-Alt-Delete burst key sequence in RHEL 9 must be disabled.",
+          "fix_text": "Configure the system to disable the CtrlAltDelBurstAction by added or modifying the following line in the \"/etc/systemd/system.conf\" configuration file:\n\nCtrlAltDelBurstAction=none\n\nReload the daemon for this change to take effect.\n\n$ sudo systemctl daemon-reload",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "A locally logged-on user who presses Ctrl-Alt-Delete when at the console can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In a graphical user environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.\n\nSatisfies: SRG-OS-000324-GPOS-00125, SRG-OS-000480-GPOS-00227",
+          "check_content": "Verify RHEL 9 is configured to not reboot the system when Ctrl-Alt-Delete is pressed seven times within two seconds with the following command:\n\n$ grep -i ctrl /etc/systemd/system.conf\n\nCtrlAltDelBurstAction=none\n\nIf the \"CtrlAltDelBurstAction\" is not set to \"none\", commented out, or is missing, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257784",
+              "title": "SRG-OS-000324-GPOS-00125",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366",
+            "CCI-002235"
+          ]
+        },
+        {
+          "uuid": "7e432268-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257785",
+          "rule_id": "SV-257785r925342",
+          "rule_id_src": "SV-257785r925342_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "RHEL-09-211050",
+          "group_title": "SRG-OS-000324-GPOS-00125",
+          "rule_title": "The x86 Ctrl-Alt-Delete key sequence must be disabled on RHEL 9.",
+          "fix_text": "Configure RHEL 9 to disable the ctrl-alt-del.target with the following command:\n\n$ sudo systemctl disable --now ctrl-alt-del.target\n$ sudo systemctl mask --now ctrl-alt-del.target",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "A locally logged-on user who presses Ctrl-Alt-Delete when at the console can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In a graphical user environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.\n\nSatisfies: SRG-OS-000324-GPOS-00125, SRG-OS-000480-GPOS-00227",
+          "check_content": "Verify RHEL 9 is not configured to reboot the system when Ctrl-Alt-Delete is pressed with the following command:\n\n$ sudo systemctl status ctrl-alt-del.target\n\nctrl-alt-del.target\nLoaded: masked (Reason: Unit ctrl-alt-del.target is masked.)\nActive: inactive (dead)\n\nIf the \"ctrl-alt-del.target\" is loaded and not masked, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257785",
+              "title": "SRG-OS-000324-GPOS-00125",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366",
+            "CCI-002235"
+          ]
+        },
+        {
+          "uuid": "7e432269-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257786",
+          "rule_id": "SV-257786r925345",
+          "rule_id_src": "SV-257786r925345_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211055",
+          "group_title": "SRG-OS-000324-GPOS-00125",
+          "rule_title": "RHEL 9 debug-shell systemd service must be disabled.",
+          "fix_text": "Configure RHEL 9 to mask the debug-shell systemd service with the following command:\n\n$ sudo systemctl disable --now debug-shell.target\n$ sudo systemctl mask --now debug-shell.target",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "The debug-shell requires no authentication and provides root privileges to anyone who has physical access to the machine. While this feature is disabled by default, masking it adds an additional layer of assurance that it will not be enabled via a dependency in systemd. This also prevents attackers with physical access from trivially bypassing security on the machine through valid troubleshooting configurations and gaining root access when the system is rebooted.\n\nSatisfies: SRG-OS-000324-GPOS-00125, SRG-OS-000480-GPOS-00227",
+          "check_content": "Verify RHEL 9 is configured to mask the debug-shell systemd service with the following command:\n\n$ sudo systemctl status debug-shell.service\n\ndebug-shell.service\nLoaded: masked (Reason: Unit debug-shell.service is masked.)\nActive: inactive (dead)\n\nIf the \"debug-shell.service\" is loaded and not masked, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257786",
+              "title": "SRG-OS-000324-GPOS-00125",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "7e428620-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366",
+            "CCI-002235"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -44,7 +44,12 @@ select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "PTH", "C4", "PL"]
 ignore = ["PLR2004"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["PLR0913"]
+# Embedded XML literals in tests are clearer unwrapped.
+"tests/*" = ["E501"]
+
+[tool.ruff.lint.pylint]
+# Keyword-only builders (make_rule/make_stig) legitimately take many named arguments.
+max-args = 12
 
 [tool.mypy]
 strict = true

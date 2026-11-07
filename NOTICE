@@ -7,4 +7,8 @@ https://github.com/NUWCDIVNPT/stig-manager-client-modules (test-files/parsers), 
 Copyright (c) 2020-2026 U.S. Federal Government (in countries where recognized).
 See tests/fixtures/LICENSE-stig-manager-client-modules.md.
 
+tests/fixtures/schema/SV3_CKLB_1_0_JSON_SCHEMA.json is the DISA CKLB JSON schema, supplied by the
+maintainer. Its redistribution terms have not been verified; it is used only by tests and the
+`--schema` option and can be removed without affecting the library.
+
 This project is not affiliated with or endorsed by DISA or the U.S. Department of Defense.

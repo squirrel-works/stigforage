@@ -9,7 +9,7 @@ from typing import Any
 
 import pytest
 
-from stigforage import cklb
+from stigforage import cklb, fsio
 from stigforage.model import Checklist, ChecklistError, Rule, Status, Stig, validate
 
 FIXTURES = Path(__file__).parent / "fixtures" / "cklb"
@@ -88,9 +88,9 @@ def test_absent_optional_rule_keys_are_normalised_on_write() -> None:
 # --- failure paths --------------------------------------------------------------------------
 
 
-def test_missing_stigs_array_fixture_fails_loudly() -> None:
-    with pytest.raises(ChecklistError, match=r"missing required key 'stigs'"):
-        cklb.load(FIXTURES / "NoStigsArray.cklb")
+def test_missing_stigs_array_loads_as_empty() -> None:
+    """`stigs` is optional in the DISA schema (only title and id are required)."""
+    assert cklb.load(FIXTURES / "NoStigsArray.cklb").stigs == []
 
 
 @pytest.mark.parametrize(
@@ -163,7 +163,7 @@ def test_non_utf8_file(tmp_path: Path) -> None:
 
 
 def test_oversize_file_is_rejected(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setattr(cklb, "MAX_BYTES", 10)
+    monkeypatch.setattr(fsio, "MAX_BYTES", 10)
     big = tmp_path / "big.cklb"
     big.write_text('{"stigs": []}   ', encoding="utf-8")
     with pytest.raises(ChecklistError, match="over the 10 byte limit"):
@@ -248,7 +248,7 @@ def test_validate_flags_bad_severity_duplicates_and_cci() -> None:
         _checklist_with([_rule(severity="critical", ccis=["CCI-12"]), _rule(group_id="V-1")])
     )
     messages = [(i.level, i.message) for i in issues]
-    assert ("error", "severity 'critical' is not high/medium/low") in messages
+    assert ("error", "severity 'critical' is not unknown/low/medium/high") in messages
     assert any(lvl == "warning" and "duplicate group_id 'V-1'" in m for lvl, m in messages)
     assert ("warning", "malformed CCI identifier 'CCI-12'") in messages
 

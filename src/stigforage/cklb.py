@@ -9,20 +9,15 @@ written back with their default value. Keys this module does not model are prese
 
 from __future__ import annotations
 
-import contextlib
 import json
-import os
-import tempfile
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any, NoReturn, cast
 
+from stigforage.fsio import atomic_write_text, read_limited
 from stigforage.model import Checklist, ChecklistError, Rule, Status, Stig
 
-__all__ = ["MAX_BYTES", "dump", "dumps", "load", "loads", "to_dict"]
-
-# Real checklists are a few MB. The cap stops a hostile or corrupt file from exhausting memory.
-MAX_BYTES = 128 * 1024 * 1024
+__all__ = ["dump", "dumps", "load", "load_raw", "loads", "loads_raw", "to_dict"]
 
 _RULE_KEYS = frozenset(
     {
@@ -135,7 +130,7 @@ def _rule_from_dict(d: dict[str, Any], path: str) -> Rule:
 
 
 def _stig_from_dict(d: dict[str, Any], path: str) -> Stig:
-    rules_raw = _list(d.get("rules"), f"{path}.rules")
+    rules_raw = _list(d.get("rules", []), f"{path}.rules")
     rules = [
         _rule_from_dict(_dict(r, f"{path}.rules[{i}]"), f"{path}.rules[{i}]")
         for i, r in enumerate(rules_raw)
@@ -147,15 +142,15 @@ def _stig_from_dict(d: dict[str, Any], path: str) -> Stig:
         release_info=_opt_str(d, "release_info", path),
         rules=rules,
         version=_opt_version(d, "version", path),
+        write_version="version" in d,
         uuid=_opt_str(d, "uuid", path),
         extra={k: v for k, v in d.items() if k not in _STIG_KEYS},
     )
 
 
 def _checklist_from_dict(d: dict[str, Any]) -> Checklist:
-    if "stigs" not in d:
-        _fail("$", "missing required key 'stigs'")
-    stigs_raw = _list(d["stigs"], "$.stigs")
+    # The DISA schema makes `stigs` optional, so absence means "no STIGs" rather than an error.
+    stigs_raw = _list(d.get("stigs", []), "$.stigs")
     return Checklist(
         title=_opt_str(d, "title", "$"),
         id=_opt_str(d, "id", "$"),
@@ -173,25 +168,39 @@ def _reject_constant(name: str) -> NoReturn:
     raise ChecklistError(f"$: invalid JSON constant {name!r}")
 
 
-def loads(text: str) -> Checklist:
-    """Parse CKLB JSON text into a `Checklist`."""
+def loads_raw(text: str) -> dict[str, Any]:
+    """Parse CKLB JSON text to a plain dict without interpreting it (for schema validation)."""
     try:
         data = json.loads(text, parse_constant=_reject_constant)
     except json.JSONDecodeError as exc:
         raise ChecklistError(
             f"$: invalid JSON at line {exc.lineno} column {exc.colno}: {exc.msg}"
         ) from exc
-    return _checklist_from_dict(_dict(data, "$"))
+    return _dict(data, "$")
+
+
+def loads(text: str) -> Checklist:
+    """Parse CKLB JSON text into a `Checklist`."""
+    return _checklist_from_dict(loads_raw(text))
+
+
+def load_raw(path: Path) -> dict[str, Any]:
+    """Read a `.cklb` file to a plain dict. Raises ChecklistError, OSError."""
+    data = read_limited(path)
+    try:
+        return loads_raw(data.decode("utf-8-sig"))
+    except UnicodeDecodeError as exc:
+        raise ChecklistError(f"{path}: not valid UTF-8: {exc.reason}") from exc
+    except ChecklistError as exc:
+        raise ChecklistError(f"{path}: {exc}") from exc
 
 
 def load(path: Path) -> Checklist:
     """Read and parse a `.cklb` file. Raises `ChecklistError`, `OSError`."""
-    size = path.stat().st_size
-    if size > MAX_BYTES:
-        raise ChecklistError(f"{path}: file is {size} bytes, over the {MAX_BYTES} byte limit")
+    data = read_limited(path)
     try:
         # utf-8-sig: tolerate a BOM, which some Windows tooling writes.
-        text = path.read_text(encoding="utf-8-sig")
+        text = data.decode("utf-8-sig")
     except UnicodeDecodeError as exc:
         raise ChecklistError(f"{path}: not valid UTF-8: {exc.reason}") from exc
     try:
@@ -231,7 +240,7 @@ def _stig_to_dict(stig: Stig) -> dict[str, Any]:
         "rules": [_rule_to_dict(r) for r in stig.rules],
         **stig.extra,
     }
-    if stig.version is not None:
+    if stig.version is not None and stig.write_version:
         out["version"] = stig.version
     return out
 
@@ -252,24 +261,5 @@ def dumps(checklist: Checklist, *, indent: int | None = 2) -> str:
 
 
 def dump(checklist: Checklist, path: Path, *, force: bool = False) -> None:
-    """Atomically write `checklist` to `path`.
-
-    Refuses to overwrite an existing file unless `force` is set. The write goes to a temp file in
-    the destination directory and is renamed into place, so a crash never leaves a half-written
-    checklist. The exists-check is not race-free; that is accepted for a single-user CLI.
-    """
-    if path.exists() and not force:
-        raise FileExistsError(f"{path} already exists (use --force to overwrite)")
-    payload = dumps(checklist)
-    fd, tmp_name = tempfile.mkstemp(dir=path.parent, prefix=f".{path.name}.", suffix=".tmp")
-    tmp = Path(tmp_name)
-    try:
-        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as fh:
-            fh.write(payload)
-            fh.flush()
-            os.fsync(fh.fileno())
-        tmp.replace(path)
-    except BaseException:
-        with contextlib.suppress(OSError):
-            tmp.unlink()
-        raise
+    """Atomically write `checklist` to `path`. See `fsio.atomic_write_text` for the guarantees."""
+    atomic_write_text(path, dumps(checklist), force=force)
