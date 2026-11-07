@@ -1,0 +1,1570 @@
+{
+  "title": "",
+  "id": "4f05ef00-8244-11ee-8b44-13c1c13d16bb",
+  "active": false,
+  "mode": 1,
+  "has_path": true,
+  "target_data": {
+    "target_type": "Non-Computing",
+    "host_name": "Asset_aaaaaaaaaa",
+    "ip_address": "",
+    "mac_address": "",
+    "fqdn": "",
+    "comments": "",
+    "role": "None",
+    "is_web_database": false,
+    "technology_area": "",
+    "web_db_site": "",
+    "web_db_instance": ""
+  },
+  "stigs": [
+    {
+      "stig_name": "Red Hat Enterprise Linux 8 TRUNCATED",
+      "display_name": "Red Hat Enterprise Linux 8 TRUNCATED",
+      "stig_id": "RHEL_8_TRUNCATED",
+      "version": 1,
+      "release_info": "Release: 12 Benchmark Date: 25 Oct 2023",
+      "uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+      "reference_identifier": "0000",
+      "size": 10,
+      "rules": [
+        {
+          "uuid": "4f074e90-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230221",
+          "rule_id": "SV-230221r858734",
+          "rule_id_src": "SV-230221r858734_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "RHEL-08-010000",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "RHEL 8 must be a vendor-supported release.",
+          "fix_text": "Upgrade to a supported version of RHEL 8.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "An operating system release is considered \"supported\" if the vendor continues to provide security patches for the product. With an unsupported release, it will not be possible to resolve security issues discovered in the system software.\n\nRed Hat offers the Extended Update Support (EUS) add-on to a Red Hat Enterprise Linux subscription, for a fee, for those customers who wish to standardize on a specific minor release for an extended period. The RHEL 8 minor releases eligible for EUS are 8.1, 8.2, 8.4, 8.6, and 8.8. Each RHEL 8 EUS stream is available for 24 months from the availability of the minor release. RHEL 8.10 will be the final minor release overall. For more details on the Red Hat Enterprise Linux Life Cycle  visit https://access.redhat.com/support/policy/updates/errata/.\nNote: The life-cycle time spans and dates are subject to adjustment.",
+          "check_content": "Verify the version of the operating system is vendor supported.\n\nNote: The lifecycle time spans and dates are subject to adjustment.\n\nCheck the version of the operating system with the following command:\n\n$ sudo cat /etc/redhat-release\n\nRed Hat Enterprise Linux Server release 8.6 (Ootpa)\n\nCurrent End of Extended Update Support for RHEL 8.1 is 30 November 2021.\n\nCurrent End of Extended Update Support for RHEL 8.2 is 30 April 2022.\n\nCurrent End of Extended Update Support for RHEL 8.4 is 31 May 2023.\n\nCurrent End of Maintenance Support for RHEL 8.5 is 31 May 2022.\n\nCurrent End of Extended Update Support for RHEL 8.6 is 31 May 2024.\n\nCurrent End of Maintenance Support for RHEL 8.7 is 31 May 2023.\n\nCurrent End of Extended Update Support for RHEL 8.8 is 31 May 2025.\n\nCurrent End of Maintenance Support for RHEL 8.9 is 31 May 2024.\n\nCurrent End of Maintenance Support for RHEL 8.10 is 31 May 2029.\n\nIf the release is not supported by the vendor, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230221",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "4f074e91-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230222",
+          "rule_id": "SV-230222r627750",
+          "rule_id_src": "SV-230222r627750_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-08-010010",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "RHEL 8 vendor packaged system security patches and updates must be installed and up to date.",
+          "fix_text": "Install the operating system patches or updated packages available from Red Hat within 30 days or sooner as local policy dictates.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Timely patching is critical for maintaining the operational availability, confidentiality, and integrity of information technology (IT) systems. However, failure to keep operating system and application software patched is a common mistake made by IT professionals. New patches are released daily, and it is often difficult for even experienced System Administrators to keep abreast of all the new patches. When new weaknesses in an operating system exist, patches are usually made available by the vendor to resolve the problems. If the most recent security patches and updates are not installed, unauthorized users may take advantage of weaknesses in the unpatched software. The lack of prompt attention to patching could result in a system compromise.",
+          "check_content": "Verify the operating system security patches and updates are installed and up to date. Updates are required to be applied with a frequency determined by the site or Program Management Office (PMO).\n\nObtain the list of available package security updates from Red Hat. The URL for updates is https://rhn.redhat.com/errata/. It is important to note that updates provided by Red Hat may not be present on the system if the underlying packages are not installed.\n\nCheck that the available package security updates have been installed on the system with the following command:\n\n$ sudo yum history list | more\n\nLoaded plugins: langpacks, product-id, subscription-manager\nID | Command line | Date and time | Action(s) | Altered\n-------------------------------------------------------------------------------\n70 | install aide | 2020-03-05 10:58 | Install | 1 \n69 | update -y | 2020-03-04 14:34 | Update | 18 EE\n68 | install vlc | 2020-02-21 17:12 | Install | 21 \n67 | update -y | 2020-02-21 17:04 | Update | 7 EE\n\nIf package updates have not been performed on the system within the timeframe the site/program documentation requires, this is a finding.\n\nTypical update frequency may be overridden by Information Assurance Vulnerability Alert (IAVA) notifications from CYBERCOM.\n\nIf the operating system is in non-compliance with the Information Assurance Vulnerability Management (IAVM) process, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230222",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "4f074e92-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230223",
+          "rule_id": "SV-230223r928585",
+          "rule_id_src": "SV-230223r928585_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "RHEL-08-010020",
+          "group_title": "SRG-OS-000033-GPOS-00014",
+          "rule_title": "RHEL 8 must implement NIST FIPS-validated cryptography for the following: To provision digital signatures, to generate cryptographic hashes, and to protect data requiring data-at-rest protections in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.",
+          "fix_text": "Configure the operating system to implement DOD-approved encryption by following the steps below:\n\nTo enable strict FIPS compliance, the fips=1 kernel option needs to be added to the kernel boot parameters during system installation so key generation is done with FIPS-approved algorithms and continuous monitoring tests in place.\n\nEnable FIPS mode after installation (not strict FIPS-compliant) with the following command:\n\n     $ sudo fips-mode-setup --enable\n\nReboot the system for the changes to take effect.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Use of weak or untested encryption algorithms undermines the purposes of using encryption to protect data. The operating system must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated.\n\nRHEL 8 utilizes GRUB 2 as the default bootloader. Note that GRUB 2 command-line parameters are defined in the \"kernelopts\" variable of the /boot/grub2/grubenv file for all kernel boot entries. The command \"fips-mode-setup\" modifies the \"kernelopts\" variable, which in turn updates all kernel boot entries. \n\nThe fips=1 kernel option needs to be added to the kernel command line during system installation so that key generation is done with FIPS-approved algorithms and continuous monitoring tests in place. Users must also ensure the system has plenty of entropy during the installation process by moving the mouse around, or if no mouse is available, ensuring that many keystrokes are typed. The recommended amount of keystrokes is 256 and more. Less than 256 keystrokes may generate a nonunique key.\n\nSatisfies: SRG-OS-000033-GPOS-00014, SRG-OS-000125-GPOS-00065, SRG-OS-000396-GPOS-00176, SRG-OS-000423-GPOS-00187, SRG-OS-000478-GPOS-00223",
+          "check_content": "Verify the operating system implements DOD-approved encryption to protect the confidentiality of remote access sessions.\n\nCheck to see if FIPS mode is enabled with the following command:\n\n     $ fips-mode-setup --check\n     FIPS mode is enabled\n\nIf FIPS mode is \"enabled\", check to see if the kernel boot parameter is configured for FIPS mode with the following command:\n\n     $ sudo grub2-editenv list | grep fips\n     kernelopts=root=/dev/mapper/rhel-root ro crashkernel=auto resume=/dev/mapper/rhel-swap rd.lvm.lv=rhel/root rd.lvm.lv=rhel/swap rhgb quiet fips=1 boot=UUID=8d171156-cd61-421c-ba41-1c021ac29e82\n\nIf the kernel boot parameter is configured to use FIPS mode, check to see if the system is in FIPS mode with the following command:\n\n     $ sudo cat /proc/sys/crypto/fips_enabled\n     1\n\nIf FIPS mode is not \"on\", the kernel boot parameter is not configured for FIPS mode, or the system does not have a value of \"1\" for \"fips_enabled\" in \"/proc/sys/crypto\", this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230223",
+              "title": "SRG-OS-000033-GPOS-00014",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000068"
+          ]
+        },
+        {
+          "uuid": "4f074e93-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230224",
+          "rule_id": "SV-230224r917864",
+          "rule_id_src": "SV-230224r917864_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-08-010030",
+          "group_title": "SRG-OS-000185-GPOS-00079",
+          "rule_title": "All RHEL 8 local disk partitions must implement cryptographic mechanisms to prevent unauthorized disclosure or modification of all information that requires at rest protection.",
+          "fix_text": "Configure RHEL 8 to prevent unauthorized modification of all information at rest by using disk encryption. \n\nEncrypting a partition in an already installed system is more difficult, because existing partitions will need to be resized and changed. To encrypt an entire partition, dedicate a partition for encryption in the partition layout.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "RHEL 8 systems handling data requiring \"data at rest\" protections must employ cryptographic mechanisms to prevent unauthorized disclosure and modification of the information at rest.\n\nSelection of a cryptographic mechanism is based on the need to protect the integrity of organizational information. The strength of the mechanism is commensurate with the security category and/or classification of the information. Organizations have the flexibility to either encrypt all information on storage devices (i.e., full disk encryption) or encrypt specific data structures (e.g., files, records, or fields).\n\nSatisfies: SRG-OS-000185-GPOS-00079, SRG-OS-000404-GPOS-00183, SRG-OS-000405-GPOS-00184",
+          "check_content": "Verify RHEL 8 prevents unauthorized disclosure or modification of all information requiring at-rest protection by using disk encryption. \n\nIf there is a documented and approved reason for not having data-at-rest encryption at the operating system level, such as encryption provided by a hypervisor or a disk storage array in a virtualized environment, this requirement is not applicable.\n\nVerify all system partitions are encrypted with the following command:\n\n     $ sudo blkid\n\n     /dev/mapper/rhel-root:  UUID=\"67b7d7fe-de60-6fd0-befb-e6748cf97743\" TYPE=\"crypto_LUKS\"\n\nEvery persistent disk partition present must be of type \"crypto_LUKS\". If any partitions other than the boot partition or pseudo file systems (such as /proc or /sys) are not type \"crypto_LUKS\", ask the administrator to indicate how the partitions are encrypted. \n\nIf there is no evidence that these partitions are encrypted, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230224",
+              "title": "SRG-OS-000185-GPOS-00079",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-001199"
+          ]
+        },
+        {
+          "uuid": "4f074e94-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230225",
+          "rule_id": "SV-230225r858694",
+          "rule_id_src": "SV-230225r858694_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-08-010040",
+          "group_title": "SRG-OS-000023-GPOS-00006",
+          "rule_title": "RHEL 8 must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via a ssh logon.",
+          "fix_text": "Configure the operating system to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system via the ssh.\n\nEdit the \"/etc/ssh/sshd_config\" file to uncomment the banner keyword and configure it to point to a file that will contain the logon banner (this file may be named differently or be in a different location if using a version of SSH that is provided by a third-party vendor). An example configuration line is:\n\nbanner /etc/issue\n\nEither create the file containing the banner or replace the text in the file with the Standard Mandatory DoD Notice and Consent Banner. The DoD-required text is:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nThe SSH service must be restarted for changes to take effect.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.\n\nThe banner must be formatted in accordance with applicable DoD policy. Use the following verbiage for operating systems that can accommodate banners of 1300 characters:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nUse the following verbiage for operating systems that have severe limitations on the number of characters that can be displayed in the banner:\n\n\"I've read & consent to terms in IS user agreem't.\"\n\nSatisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000228-GPOS-00088",
+          "check_content": "Verify any publicly accessible connection to the operating system displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the system.\n\nCheck for the location of the banner file being used with the following command:\n\n$ sudo grep -ir banner /etc/ssh/sshd_config*\n\nbanner /etc/issue\n\nThis command will return the banner keyword and the name of the file that contains the ssh banner (in this case \"/etc/issue\").\n\nIf the line is commented out, this is a finding.\nIf conflicting results are returned, this is a finding.\n\nView the file specified by the banner keyword to check that it matches the text of the Standard Mandatory DoD Notice and Consent Banner:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nIf the system does not display a graphical logon banner or the banner does not match the Standard Mandatory DoD Notice and Consent Banner, this is a finding.\n\nIf the text in the file does not match the Standard Mandatory DoD Notice and Consent Banner, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230225",
+              "title": "SRG-OS-000023-GPOS-00006",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000048"
+          ]
+        },
+        {
+          "uuid": "4f074e95-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230226",
+          "rule_id": "SV-230226r743916",
+          "rule_id_src": "SV-230226r743916_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-08-010050",
+          "group_title": "SRG-OS-000023-GPOS-00006",
+          "rule_title": "RHEL 8 must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via a graphical user logon.",
+          "fix_text": "Configure the operating system to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system.\n\nNote: If the system does not have a graphical user interface installed, this requirement is Not Applicable.\n\nAdd the following lines to the [org/gnome/login-screen] section of the \"/etc/dconf/db/local.d/01-banner-message\":\n\nbanner-message-text='You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\\n-At any time, the USG may inspect and seize data stored on this IS.\\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details. '\n\nNote: The \"\\n \" characters are for formatting only. They will not be displayed on the graphical interface.\n\nRun the following command to update the database:\n\n$ sudo dconf update",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.\n\nThe banner must be formatted in accordance with applicable DoD policy. Use the following verbiage for operating systems that can accommodate banners of 1300 characters:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nSatisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000228-GPOS-00088",
+          "check_content": "Verify RHEL 8 displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the operating system via a graphical user logon.\n\nNote: This requirement assumes the use of the RHEL 8 default graphical user interface, Gnome Shell. If the system does not have any graphical user interface installed, this requirement is Not Applicable. \n\nCheck that the operating system displays the exact Standard Mandatory DoD Notice and Consent Banner text with the command:\n\n$ sudo grep banner-message-text /etc/dconf/db/local.d/*\n\nbanner-message-text=\n'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\\n-At any time, the USG may inspect and seize data stored on this IS.\\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details. '\n\nNote: The \"\\n \" characters are for formatting only. They will not be displayed on the graphical interface.\n\nIf the banner does not match the Standard Mandatory DoD Notice and Consent Banner exactly, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230226",
+              "title": "SRG-OS-000023-GPOS-00006",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000048"
+          ]
+        },
+        {
+          "uuid": "4f074e96-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230227",
+          "rule_id": "SV-230227r627750",
+          "rule_id_src": "SV-230227r627750_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-08-010060",
+          "group_title": "SRG-OS-000023-GPOS-00006",
+          "rule_title": "RHEL 8 must display the Standard Mandatory DoD Notice and Consent Banner before granting local or remote access to the system via a command line user logon.",
+          "fix_text": "Configure RHEL 8 to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system via command line logon.\n\nEdit the \"/etc/issue\" file to replace the default text with the Standard Mandatory DoD Notice and Consent Banner. The DoD-required text is:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests -- not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist.\n\nThe banner must be formatted in accordance with applicable DoD policy. Use the following verbiage for operating systems that can accommodate banners of 1300 characters:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nSatisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000228-GPOS-00088",
+          "check_content": "Verify RHEL 8 displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the operating system via a command line user logon.\n\nCheck that RHEL 8 displays a banner at the command line login screen with the following command:\n\n$ sudo cat /etc/issue\n\nIf the banner is set correctly it will return the following text:\n\n“You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.”\n\nIf the banner text does not match the Standard Mandatory DoD Notice and Consent Banner exactly, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230227",
+              "title": "SRG-OS-000023-GPOS-00006",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000048"
+          ]
+        },
+        {
+          "uuid": "4f074e97-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230228",
+          "rule_id": "SV-230228r627750",
+          "rule_id_src": "SV-230228r627750_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-08-010070",
+          "group_title": "SRG-OS-000032-GPOS-00013",
+          "rule_title": "All RHEL 8 remote access methods must be monitored.",
+          "fix_text": "Configure RHEL 8 to monitor all remote access methods by installing rsyslog with the following command:\n\n$ sudo yum install rsyslog\n\nThen add or update the following lines to the \"/etc/rsyslog.conf\" file:\n\nauth.*;authpriv.*;daemon.* /var/log/secure\n\nThe \"rsyslog\" service must be restarted for the changes to take effect. To restart the \"rsyslog\" service, run the following command:\n\n$ sudo systemctl restart rsyslog.service",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Remote access services, such as those providing remote access to network devices and information systems, which lack automated monitoring capabilities, increase risk and make remote user access management difficult at best.\n\nRemote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.\n\nAutomated monitoring of remote access sessions allows organizations to detect cyber attacks and ensure ongoing compliance with remote access policies by auditing connection activities of remote access capabilities, such as Remote Desktop Protocol (RDP), on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets).",
+          "check_content": "Verify that RHEL 8 monitors all remote access methods.\n\nCheck that remote access methods are being logged by running the following command:\n\n$ sudo grep -E '(auth.*|authpriv.*|daemon.*)' /etc/rsyslog.conf\n\nauth.*;authpriv.*;daemon.* /var/log/secure\n\nIf \"auth.*\", \"authpriv.*\" or \"daemon.*\" are not configured to be logged, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230228",
+              "title": "SRG-OS-000032-GPOS-00013",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000067"
+          ]
+        },
+        {
+          "uuid": "4f074e98-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230229",
+          "rule_id": "SV-230229r858739",
+          "rule_id_src": "SV-230229r858739_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-08-010090",
+          "group_title": "SRG-OS-000066-GPOS-00034",
+          "rule_title": "RHEL 8, for PKI-based authentication, must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.",
+          "fix_text": "Configure RHEL 8, for PKI-based authentication, to validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.\n\nObtain a valid copy of the DoD root CA file from the PKI CA certificate bundle at cyber.mil and copy into the following file:\n\n/etc/sssd/pki/sssd_auth_ca_db.pem",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Without path validation, an informed trust decision by the relying party cannot be made when presented with any certificate not already explicitly trusted.\n\nA trust anchor is an authoritative entity represented via a public key and associated data. It is used in the context of public key infrastructures, X.509 digital certificates, and DNSSEC.\n\nWhen there is a chain of trust, usually the top entity to be trusted becomes the trust anchor; it can be, for example, a Certification Authority (CA). A certification path starts with the subject certificate and proceeds through a number of intermediate certificates up to a trusted root certificate, typically issued by a trusted CA.\n\nThis requirement verifies that a certification path to an accepted trust anchor is used for certificate validation and that the path includes status information. Path validation is necessary for a relying party to make an informed trust decision when presented with any certificate not already explicitly trusted. Status information for certification paths includes certificate revocation lists or online certificate status protocol responses. Validation of the certificate status information is out of scope for this requirement.\n\nSatisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000384-GPOS-00167",
+          "check_content": "Verify RHEL 8 for PKI-based authentication has valid certificates by constructing a certification path (which includes status information) to an accepted trust anchor.\n\nNote: If the System Administrator demonstrates the use of an approved alternate multifactor authentication method, this requirement is not applicable.\n\nCheck that the system has a valid DoD root CA installed with the following command:\n\n$ sudo openssl x509 -text -in /etc/sssd/pki/sssd_auth_ca_db.pem\n\nCertificate:\n   Data:\n      Version: 3 (0x2)\n      Serial Number: 1 (0x1)\n      Signature Algorithm: sha256WithRSAEncryption\n      Issuer: C = US, O = U.S. Government, OU = DoD, OU = PKI, CN = DoD Root CA 3\n      Validity\n         Not Before: Mar 20 18:46:41 2012 GMT\n         Not After   : Dec 30 18:46:41 2029 GMT\n      Subject: C = US, O = U.S. Government, OU = DoD, OU = PKI, CN = DoD Root CA 3\n      Subject Public Key Info:\n         Public Key Algorithm: rsaEncryption\n\nIf the root ca file is not a DoD-issued certificate with a valid date and installed in the /etc/sssd/pki/sssd_auth_ca_db.pem location, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230229",
+              "title": "SRG-OS-000066-GPOS-00034",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000185"
+          ]
+        },
+        {
+          "uuid": "4f074e99-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-230230",
+          "rule_id": "SV-230230r627750",
+          "rule_id_src": "SV-230230r627750_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-08-010100",
+          "group_title": "SRG-OS-000067-GPOS-00035",
+          "rule_title": "RHEL 8, for certificate-based authentication, must enforce authorized access to the corresponding private key.",
+          "fix_text": "Create a new private and public key pair that utilizes a passcode with the following command:\n\n$ sudo ssh-keygen -n [passphrase]",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "If an unauthorized user obtains access to a private key without a passcode, that user would have unauthorized access to any system where the associated public key has been installed.",
+          "check_content": "Verify the SSH private key files have a passcode.\n\nFor each private key stored on the system, use the following command:\n\n$ sudo ssh-keygen -y -f /path/to/file\n\nIf the contents of the key are displayed, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-230230",
+              "title": "SRG-OS-000067-GPOS-00035",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f06b250-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000186"
+          ]
+        }
+      ]
+    },
+    {
+      "stig_name": "Red Hat Enterprise Linux 9 TRUNCATED",
+      "display_name": "Red Hat Enterprise Linux 9 TRUNCATED",
+      "stig_id": "RHEL_9_TRUNCATED",
+      "version": 1,
+      "release_info": "Release: 1 Benchmark Date: 22 Sep 2023",
+      "uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+      "reference_identifier": "0000",
+      "size": 10,
+      "rules": [
+        {
+          "uuid": "4f0838f0-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257777",
+          "rule_id": "SV-257777r925318",
+          "rule_id_src": "SV-257777r925318_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "RHEL-09-211010",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "RHEL 9 must be a vendor-supported release.",
+          "fix_text": "Upgrade to a supported version of RHEL 9.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "An operating system release is considered \"supported\" if the vendor continues to provide security patches for the product. With an unsupported release, it will not be possible to resolve security issues discovered in the system software.\n\nRed Hat offers the Extended Update Support (EUS) add-on to a Red Hat Enterprise Linux subscription, for a fee, for those customers who wish to standardize on a specific minor release for an extended period.",
+          "check_content": "Verify that the version or RHEL 9 is vendor supported with the following command:\n\n$ cat /etc/redhat-release \n\nRed Hat Enterprise Linux release 9.2 (Plow)\n\nIf the installed version of RHEL 9 is not supported, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257777",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "4f0838f1-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257778",
+          "rule_id": "SV-257778r925321",
+          "rule_id_src": "SV-257778r925321_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211015",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "RHEL 9 vendor packaged system security patches and updates must be installed and up to date.",
+          "fix_text": "Install RHEL 9 security patches and updates at the organizationally defined frequency. If system updates are installed via a centralized repository that is configured on the system, all updates can be installed with the following command:\n\n$ sudo dnf update",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Installing software updates is a fundamental mitigation against the exploitation of publicly known vulnerabilities. If the most recent security patches and updates are not installed, unauthorized users may take advantage of weaknesses in the unpatched software. The lack of prompt attention to patching could result in a system compromise.",
+          "check_content": "Verify RHEL 9 security patches and updates are installed and up to date. Updates are required to be applied with a frequency determined by organizational policy.\n\nObtain the list of available package security updates from Red Hat. The URL for updates is https://access.redhat.com/errata-search/. It is important to note that updates provided by Red Hat may not be present on the system if the underlying packages are not installed.\n\nCheck that the available package security updates have been installed on the system with the following command:\n\n$ dnf history list | more\n\n    ID | Command line | Date and time | Action(s) | Altered    \n-------------------------------------------------------------------------------    \n   70 | install aide | 2023-03-05 10:58 | Install | 1    \n   69 | update -y | 2023-03-04 14:34 | Update | 18 EE    \n   68 | install vlc | 2023-02-21 17:12 | Install | 21   \n   67 | update -y | 2023-02-21 17:04 | Update | 7 EE \n\nTypical update frequency may be overridden by Information Assurance Vulnerability Alert (IAVA) notifications from CYBERCOM.\n\nIf the system is in noncompliance with the organizational patching policy, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257778",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "4f0838f2-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257779",
+          "rule_id": "SV-257779r925324",
+          "rule_id_src": "SV-257779r925324_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211020",
+          "group_title": "SRG-OS-000023-GPOS-00006",
+          "rule_title": "RHEL 9 must display the Standard Mandatory DOD Notice and Consent Banner before granting local or remote access to the system via a command line user logon.",
+          "fix_text": "Configure RHEL 9 to display the Standard Mandatory DOD Notice and Consent Banner before granting access to the system via command line logon.\n\nEdit the \"/etc/issue\" file to replace the default text with the Standard Mandatory DOD Notice and Consent Banner. The DOD-required text is:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests -- not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Display of a standardized and approved use notification before granting access to the operating system ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via login interfaces with human users and are not required when such human interfaces do not exist.\n\nSatisfies: SRG-OS-000023-GPOS-00006, SRG-OS-000228-GPOS-00088",
+          "check_content": "Verify RHEL 9 displays the Standard Mandatory DOD Notice and Consent Banner before granting access to the operating system via a command line user logon.\n\nCheck that a banner is displayed at the command line login screen with the following command:\n\n$ sudo cat /etc/issue\n\nIf the banner is set correctly it will return the following text:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nIf the banner text does not match the Standard Mandatory DOD Notice and Consent Banner exactly, or the line is commented out, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257779",
+              "title": "SRG-OS-000023-GPOS-00006",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000048",
+            "CCI-001384",
+            "CCI-001385",
+            "CCI-001386",
+            "CCI-001387",
+            "CCI-001388"
+          ]
+        },
+        {
+          "uuid": "4f0838f3-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257780",
+          "rule_id": "SV-257780r925327",
+          "rule_id_src": "SV-257780r925327_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211025",
+          "group_title": "SRG-OS-000191-GPOS-00080",
+          "rule_title": "RHEL 9 must implement the Endpoint Security for Linux Threat Prevention tool.",
+          "fix_text": "Install and enable the latest McAfee ENSLTP package.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Without the use of automated mechanisms to scan for security flaws on a continuous and/or periodic basis, the operating system or other system components may remain vulnerable to the exploits presented by undetected software flaws.\n\nTo support this requirement, the operating system may have an integrated solution incorporating continuous scanning using ESS and periodic scanning using other tools, as specified in the requirement.",
+          "check_content": "Verify that RHEL 9 has implemented the Endpoint Security for Linux Threat Prevention tool.\n\nCheck that the following package has been installed:\n\n$ sudo rpm -qa | grep -i mcafeetp\n\nIf the \"mcafeetp\" package is not installed, this is a finding.\n\nVerify that the daemon is running:\n\n$ sudo ps -ef | grep -i mfetpd\n\nIf the daemon is not running, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257780",
+              "title": "SRG-OS-000191-GPOS-00080",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-001233"
+          ]
+        },
+        {
+          "uuid": "4f0838f4-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257781",
+          "rule_id": "SV-257781r925330",
+          "rule_id_src": "SV-257781r925330_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211030",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "The graphical display manager must not be the default target on RHEL 9 unless approved.",
+          "fix_text": "Document the requirement for a graphical user interface with the ISSO or set the default target to multi-user with the following command:\n\n$ sudo systemctl set-default multi-user.target",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Unnecessary service packages must not be installed to decrease the attack surface of the system. Graphical display managers have a long history of security vulnerabilities and must not be used, unless approved and documented.",
+          "check_content": "Verify that RHEL 9 is configured to boot to the command line:\n\n$ systemctl get-default\n\nmulti-user.target\n\nIf the system default target is not set to \"multi-user.target\" and the information system security officer (ISSO) lacks a documented requirement for a graphical user interface, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257781",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "4f0838f5-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257782",
+          "rule_id": "SV-257782r925333",
+          "rule_id_src": "SV-257782r925333_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "low",
+          "rule_version": "RHEL-09-211035",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "rule_title": "RHEL 9 must enable the hardware random number generator entropy gatherer service.",
+          "fix_text": "Install the rng-tools package with the following command:\n\n$ sudo dnf install rng-tools\n\nThen enable the rngd service run the following command:\n\n$ sudo systemctl enable --now rngd",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "The most important characteristic of a random number generator is its randomness, namely its ability to deliver random numbers that are impossible to predict. Entropy in computer security is associated with the unpredictability of a source of randomness. The random source with high entropy tends to achieve a uniform distribution of random values. Random number generators are one of the most important building blocks of cryptosystems.  \n\nThe rngd service feeds random data from hardware device to kernel random device. Quality (nonpredictable) random number generation is important for several security functions (i.e., ciphers).",
+          "check_content": "Verify that RHEL 9 has enabled the hardware random number generator entropy gatherer service with the following command:\n\n$ systemctl is-active rngd\n\nactive\n\nIf the \"rngd\" service is not active, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257782",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366"
+          ]
+        },
+        {
+          "uuid": "4f0838f6-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257783",
+          "rule_id": "SV-257783r925336",
+          "rule_id_src": "SV-257783r925336_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211040",
+          "group_title": "SRG-OS-000269-GPOS-00103",
+          "rule_title": "RHEL 9 systemd-journald service must be enabled.",
+          "fix_text": "To enable the systemd-journald service, run the following command:\n\n$ sudo systemctl enable --now systemd-journald",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "In the event of a system failure, RHEL 9 must preserve any information necessary to determine cause of failure and any information necessary to return to operations with least disruption to system processes.",
+          "check_content": "Verify that \"systemd-journald\" is active with the following command:\n\n$ systemctl is-active systemd-journald\n\nactive\n\nIf the systemd-journald service is not active, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257783",
+              "title": "SRG-OS-000269-GPOS-00103",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-001665"
+          ]
+        },
+        {
+          "uuid": "4f0838f7-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257784",
+          "rule_id": "SV-257784r925339",
+          "rule_id_src": "SV-257784r925339_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "RHEL-09-211045",
+          "group_title": "SRG-OS-000324-GPOS-00125",
+          "rule_title": "The systemd Ctrl-Alt-Delete burst key sequence in RHEL 9 must be disabled.",
+          "fix_text": "Configure the system to disable the CtrlAltDelBurstAction by added or modifying the following line in the \"/etc/systemd/system.conf\" configuration file:\n\nCtrlAltDelBurstAction=none\n\nReload the daemon for this change to take effect.\n\n$ sudo systemctl daemon-reload",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "A locally logged-on user who presses Ctrl-Alt-Delete when at the console can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In a graphical user environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.\n\nSatisfies: SRG-OS-000324-GPOS-00125, SRG-OS-000480-GPOS-00227",
+          "check_content": "Verify RHEL 9 is configured to not reboot the system when Ctrl-Alt-Delete is pressed seven times within two seconds with the following command:\n\n$ grep -i ctrl /etc/systemd/system.conf\n\nCtrlAltDelBurstAction=none\n\nIf the \"CtrlAltDelBurstAction\" is not set to \"none\", commented out, or is missing, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257784",
+              "title": "SRG-OS-000324-GPOS-00125",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366",
+            "CCI-002235"
+          ]
+        },
+        {
+          "uuid": "4f0838f8-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257785",
+          "rule_id": "SV-257785r925342",
+          "rule_id_src": "SV-257785r925342_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "RHEL-09-211050",
+          "group_title": "SRG-OS-000324-GPOS-00125",
+          "rule_title": "The x86 Ctrl-Alt-Delete key sequence must be disabled on RHEL 9.",
+          "fix_text": "Configure RHEL 9 to disable the ctrl-alt-del.target with the following command:\n\n$ sudo systemctl disable --now ctrl-alt-del.target\n$ sudo systemctl mask --now ctrl-alt-del.target",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "A locally logged-on user who presses Ctrl-Alt-Delete when at the console can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In a graphical user environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.\n\nSatisfies: SRG-OS-000324-GPOS-00125, SRG-OS-000480-GPOS-00227",
+          "check_content": "Verify RHEL 9 is not configured to reboot the system when Ctrl-Alt-Delete is pressed with the following command:\n\n$ sudo systemctl status ctrl-alt-del.target\n\nctrl-alt-del.target\nLoaded: masked (Reason: Unit ctrl-alt-del.target is masked.)\nActive: inactive (dead)\n\nIf the \"ctrl-alt-del.target\" is loaded and not masked, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257785",
+              "title": "SRG-OS-000324-GPOS-00125",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366",
+            "CCI-002235"
+          ]
+        },
+        {
+          "uuid": "4f0838f9-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-257786",
+          "rule_id": "SV-257786r925345",
+          "rule_id_src": "SV-257786r925345_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "RHEL-09-211055",
+          "group_title": "SRG-OS-000324-GPOS-00125",
+          "rule_title": "RHEL 9 debug-shell systemd service must be disabled.",
+          "fix_text": "Configure RHEL 9 to mask the debug-shell systemd service with the following command:\n\n$ sudo systemctl disable --now debug-shell.target\n$ sudo systemctl mask --now debug-shell.target",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "The debug-shell requires no authentication and provides root privileges to anyone who has physical access to the machine. While this feature is disabled by default, masking it adds an additional layer of assurance that it will not be enabled via a dependency in systemd. This also prevents attackers with physical access from trivially bypassing security on the machine through valid troubleshooting configurations and gaining root access when the system is rebooted.\n\nSatisfies: SRG-OS-000324-GPOS-00125, SRG-OS-000480-GPOS-00227",
+          "check_content": "Verify RHEL 9 is configured to mask the debug-shell systemd service with the following command:\n\n$ sudo systemctl status debug-shell.service\n\ndebug-shell.service\nLoaded: masked (Reason: Unit debug-shell.service is masked.)\nActive: inactive (dead)\n\nIf the \"debug-shell.service\" is loaded and not masked, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257786",
+              "title": "SRG-OS-000324-GPOS-00125",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f079cb0-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000366",
+            "CCI-002235"
+          ]
+        }
+      ]
+    },
+    {
+      "stig_name": "Virtual Private Network (VPN) TRUNCATED",
+      "display_name": "Virtual Private Network (VPN) TRUNCATED",
+      "stig_id": "VPN_TRUNCATED",
+      "version": "2",
+      "release_info": "Release: 5 Benchmark Date: 07 Jun 2023",
+      "uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+      "reference_identifier": "0000",
+      "size": 10,
+      "rules": [
+        {
+          "uuid": "4f097170-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207184",
+          "rule_id": "SV-207184r695317",
+          "rule_id_src": "SV-207184r695317_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000019-VPN-000040",
+          "group_title": "SRG-NET-000019",
+          "rule_title": "The VPN Gateway must ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies.",
+          "fix_text": "Configure the VPN Gateway to ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies (e.g., IPsec policy configuration). Also, configure the VPN gateway to forward encapsulated or encrypted traffic received from other enclaves with different security policies to the perimeter firewall and IDPS before traffic is passed to the private network.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Unrestricted traffic may contain malicious traffic which poses a threat to an enclave or to other connected networks. Additionally, unrestricted traffic may transit a network, which uses bandwidth and other resources.\n\nVPN traffic received from another enclave with different security policy or level of trust must not bypass be inspected by the firewall before being forwarded to the private network.",
+          "check_content": "Verify the VPN Gateway has an inbound and outbound traffic security policy which is in compliance with information flow control policies (e.g., IPsec policy configuration).\n\nReview network device configurations and topology diagrams. Verify encapsulated or encrypted traffic received from other enclaves with different security policies terminate at the perimeter for filtering and content inspection by a firewall and IDPS before gaining access to the private network.\n\nIf the IPsec VPN Gateway does not use Encapsulating Security Payload (ESP) in tunnel mode for establishing secured paths to transport traffic between the organizations sites or between a gateway and remote end-stations, this is a finding,",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207184",
+              "title": "SRG-NET-000019",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:36:35.000Z",
+          "updatedAt": "2023-11-13T16:36:35.000Z",
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_a_finding",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-001414"
+          ]
+        },
+        {
+          "uuid": "4f097171-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207185",
+          "rule_id": "SV-207185r608988",
+          "rule_id_src": "SV-207185r608988_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000041-VPN-000110",
+          "group_title": "SRG-NET-000041",
+          "rule_title": "The Remote Access VPN Gateway and/or client must display the Standard Mandatory DoD Notice and Consent Banner before granting remote access to the network.",
+          "fix_text": "Configure the Remote Access VPN to display the Standard Mandatory DoD Notice and Consent Banner in accordance with DoD policy before granting access to the device. Use the following verbiage for applications that can accommodate banners of 1300 characters:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n-At any time, the USG may inspect and seize data stored on this IS.\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nUse the following verbiage for operating systems that have severe limitations on the number of characters that can be displayed in the banner:\n\"I've read & consent to terms in IS user agreem't.\"",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Display of a standardized and approved use notification before granting access to the network ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nIn most VPN implementations, the banner is configured in the management backplane (NDM SRG) and serves as the presentation for the VPN client connection as well as for administrator logon to the device management tool/backplane.\n\nSystem use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist. This requirement applies to VPN gateways that have the concept of a user account and have the logon function residing on the VPN gateway.\n\nThe banner must be formatted in accordance with applicable DoD policy. Use the following verbiage for VPN gateways that can accommodate banners of 1300 characters:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n \nUse the following verbiage for operating systems that have severe limitations on the number of characters that can be displayed in the banner:\n\n\"I've read & consent to terms in IS user agreem't.\"",
+          "check_content": "If the user/remote client connection banner is the same as the banner configured as part of the NDM SRG, then this is not applicable.\n\nDetermine if the network device is configured to present a DoD-approved banner that is formatted in accordance with DoD policy. \n\nIf the Remote Access VPN Gateway or VPN client does not display the Standard Mandatory DoD Notice and Consent Banner before granting remote access to the network, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207185",
+              "title": "SRG-NET-000041",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:36:35.000Z",
+          "updatedAt": "2023-11-13T16:36:35.000Z",
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "open",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-000048"
+          ]
+        },
+        {
+          "uuid": "4f097172-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207186",
+          "rule_id": "SV-207186r608988",
+          "rule_id_src": "SV-207186r608988_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000042-VPN-000120",
+          "group_title": "SRG-NET-000042",
+          "rule_title": "The Remote Access VPN Gateway and/or client must enforce a policy to retain the Standard Mandatory DoD Notice and Consent Banner on the screen until users acknowledge the usage conditions and take explicit actions to log on for further access.",
+          "fix_text": "Configure the Remote Access VPN Gateway and/or client to retain the Standard Mandatory DoD-approved Notice and Consent Banner on the screen until users acknowledge the usage conditions and take explicit actions to log on for further access.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "The banner must be acknowledged by the user prior to allowing the user access to the network. This provides assurance that the user has seen the message and accepted the conditions for access. If the consent banner is not acknowledged by the user, DoD will not be in compliance with system use notifications required by law. \n\nThe banner is usually configured in NDM for client presentation as well as local logon.\n\nTo establish acceptance of the application usage policy, a click-through banner at application logon is required. The VPN gateway must prevent further activity until the user executes a positive action to manifest agreement by clicking on a box indicating \"OK\". \n\nThis applies to gateways that have the concept of a user account and have the login function residing on the gateway or the gateway acts as a user intermediary.",
+          "check_content": "If the user/remote client connection banner is the same as the banner configured as part of the NDM SRG, then this is not applicable.\n\nVerify the ALG retains the Standard Mandatory DoD-approved Notice and Consent Banner on the screen until users acknowledge the usage conditions and takes explicit actions to log on for further access.\n\nIf the Remote Access VPN Gateway and/or client does not retain the Standard Mandatory DoD-approved Notice and Consent Banner on the screen until users acknowledge the usage conditions and take explicit actions to log on for further access, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207186",
+              "title": "SRG-NET-000042",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:36:35.000Z",
+          "updatedAt": "2023-11-13T16:36:35.000Z",
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_applicable",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-000050"
+          ]
+        },
+        {
+          "uuid": "4f097173-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207187",
+          "rule_id": "SV-207187r608988",
+          "rule_id_src": "SV-207187r608988_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000043-VPN-000130",
+          "group_title": "SRG-NET-000043",
+          "rule_title": "The publicly accessible VPN Gateway must display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system.",
+          "fix_text": "Configure the publicly accessible VPN Gateway to display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Display of a standardized and approved use notification before granting access to the publicly accessible VPN gateway ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via logon interfaces with human users and are not required when such human interfaces do not exist. This requirement applies to VPN gateways that have the concept of a user account and have the logon function residing on the VPN gateway.\n\nThe banner must be formatted in accordance with DTM-08-060. Use the following verbiage for VPN gateways that can accommodate banners of 1300 characters:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nUse the following verbiage for operating systems that have severe limitations on the number of characters that can be displayed in the banner:\n\n\"I've read & consent to terms in IS user agreem't.\"",
+          "check_content": "Verify the publicly accessible VPN Gateway displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the system.  The banner must be formatted in accordance with DTM-08-060. Use the following verbiage for network elements that can accommodate banners of 1300 characters:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routicednely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nUse the following verbiage for operating systems that have severe limitations on the number of characters that can be displayed in the banner:\n\n\"I've read & consent to terms in IS user agreem't.\"\n\nIf the publicly accessible VPN Gateway does not display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207187",
+              "title": "SRG-NET-000043",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:36:35.000Z",
+          "updatedAt": "2023-11-13T16:36:35.000Z",
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-001384",
+            "CCI-001385",
+            "CCI-001386",
+            "CCI-001387",
+            "CCI-001388"
+          ]
+        },
+        {
+          "uuid": "4f097174-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207188",
+          "rule_id": "SV-207188r608988",
+          "rule_id_src": "SV-207188r608988_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "low",
+          "rule_version": "SRG-NET-000049-VPN-000150",
+          "group_title": "SRG-NET-000049",
+          "rule_title": "The VPN Gateway must notify the user, upon successful logon (access), of the number of unsuccessful logon (access) attempts since the last successful logon (access).",
+          "fix_text": "Configure the VPN Gateway to notify the user, upon successful logon (access), of the number of unsuccessful logon (access) attempts since the last successful logon (access).",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Users need to be aware of activity that occurs regarding their account. Providing users with information regarding the number of unsuccessful attempts that were made to login to their account allows the user to determine if any unauthorized activity has occurred and gives them an opportunity to notify administrators.\n\nThis applies to gateways that have the concept of a user account and have the login function residing on the gateway or the gateway acts as a user intermediary.",
+          "check_content": "Determine if the VPN Gateway is either configured to notify the administrator of the number of unsuccessful login attempts since the last successful login or configured to use an authentication server which would perform this function. If the administrator is not notified of the number of unsuccessful login attempts since the last successful login, this is a finding.\n\nIf the VPN Gateway does not notify the user, upon successful logon (access), of the number of unsuccessful logon (access) attempts since the last successful logon (access), this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207188",
+              "title": "SRG-NET-000049",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:36:35.000Z",
+          "updatedAt": "2023-11-13T16:36:35.000Z",
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_a_finding",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-000053"
+          ]
+        },
+        {
+          "uuid": "4f099880-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207189",
+          "rule_id": "SV-207189r608988",
+          "rule_id_src": "SV-207189r608988_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000053-VPN-000170",
+          "group_title": "SRG-NET-000053",
+          "rule_title": "The VPN Gateway must limit the number of concurrent sessions for user accounts to 1 or to an organization-defined number.",
+          "fix_text": "Configure the VPN Gateway to limit the number of concurrent sessions for user accounts to 1 or to an organization-defined number, as documented in the SSP.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "VPN gateway management includes the ability to control the number of users and user sessions that utilize a VPN gateway. Limiting the number of allowed users and sessions per user is helpful in limiting risks related to DoS attacks.\n\nThis requirement addresses concurrent sessions for information system accounts and does not address concurrent sessions by single users via multiple system accounts. The maximum number of concurrent sessions should be defined based upon mission needs and the operational environment for each system.\n\nThe intent of this policy is to ensure the number of concurrent sessions is deliberately set to a number based on the site's mission and not left unlimited.",
+          "check_content": "Inspect the VPN Gateway configuration. Verify the number of concurrent sessions for user accounts to 1 or to an organization-defined number (defined in the SSP).\n\nIf the VPN Gateway does not limit the number of concurrent sessions for user accounts to 1 or to an organization-defined number, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207189",
+              "title": "SRG-NET-000053",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:36:35.000Z",
+          "updatedAt": "2023-11-13T16:36:35.000Z",
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-000054"
+          ]
+        },
+        {
+          "uuid": "4f099881-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207190",
+          "rule_id": "SV-207190r803417",
+          "rule_id_src": "SV-207190r803417_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "SRG-NET-000062-VPN-000200",
+          "group_title": "SRG-NET-000062",
+          "rule_title": "The TLS VPN Gateway must use TLS 1.2, at a minimum, to protect the confidentiality of sensitive data during transmission for remote access connections.",
+          "fix_text": "Configure the TLS VPN Gateway to use TLS 1.2, at a minimum, to protect the confidentiality of sensitive data for transmission.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Using older unauthorized versions or incorrectly configuring protocol negotiation makes the gateway vulnerable to known and unknown attacks that exploit vulnerabilities in this protocol.\n\nNIST SP 800-52 Rev2 provides guidance for client negotiation on either DoD-only or public-facing servers.",
+          "check_content": "Verify the TLS VPN Gateway is configured to use  TLS 1.2 or higher to protect the confidentiality of sensitive data during transmission.\n\nIf the TLS VPN Gateway does not use TLS 1.2, at a minimum, to protect the confidentiality of sensitive data during transmission, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207190",
+              "title": "SRG-NET-000062",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:36:35.000Z",
+          "updatedAt": "2023-11-13T16:36:35.000Z",
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_a_finding",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-000068"
+          ]
+        },
+        {
+          "uuid": "4f099882-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207191",
+          "rule_id": "SV-207191r803418",
+          "rule_id_src": "SV-207191r803418_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000063-VPN-000210",
+          "group_title": "SRG-NET-000063",
+          "rule_title": "The remote access VPN Gateway must use a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of TLS remote access sessions.",
+          "fix_text": "Configure the remote access VPN Gateway to use a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of remote access sessions.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Without integrity protection, unauthorized changes may be made to the log files and reliable forensic analysis and discovery of the source of malicious system activity may be degraded.\n\nRemote access (e.g., RDP) is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include broadband and wireless.\n\nIntegrity checks include cryptographic checksums, digital signatures, or hash functions. Federal Information Processing Standard (FIPS) 186-4, Digital Signature Standard (DSS), specifies three NIST-approved algorithms: DSA, RSA, and ECDSA. All three are used to generate and verify digital signatures in conjunction with an approved hash function.",
+          "check_content": "Verify the remote access VPN Gateway uses a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of remote access sessions.\n\nIf the remote access VPN Gateway does not use a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of remote access sessions, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207191",
+              "title": "SRG-NET-000063",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": "2023-11-13T16:36:35.000Z",
+          "updatedAt": "2023-11-13T16:36:35.000Z",
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "open",
+          "overrides": {},
+          "comments": "xyz",
+          "finding_details": "xyz",
+          "ccis": [
+            "CCI-001453"
+          ]
+        },
+        {
+          "uuid": "4f099883-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207192",
+          "rule_id": "SV-207192r916146",
+          "rule_id_src": "SV-207192r916146_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "medium",
+          "rule_version": "SRG-NET-000063-VPN-000220",
+          "group_title": "SRG-NET-000063",
+          "rule_title": "The VPN Gateway must be configured to use IPsec with SHA-2 at 384 bits or greater for hashing to protect the integrity of remote access sessions.",
+          "fix_text": "Configure the VPN Gateway to use IPsec with SHA-2 at 384 bits or greater for hashing to protect the integrity of remote access sessions.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Without strong cryptographic integrity protections, information can be altered by unauthorized users without detection.\n\nSHA-1 is considered a compromised hashing standard and is being phased out of use by industry and government standards. DOD systems must not be configured to use SHA-1 for integrity of remote access sessions. \n\nThe remote access VPN provides access to DOD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network.",
+          "check_content": "Verify the VPN Gateway uses IPsec with SHA-2 at 384 bits or greater for hashing to protect the integrity of remote access sessions.\n\nIf the VPN Gateway does not use IPsec with SHA-2 at 384 bits or greater for hashing to protect the integrity of remote access sessions, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207192",
+              "title": "SRG-NET-000063",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-001453"
+          ]
+        },
+        {
+          "uuid": "4f099884-8244-11ee-8b44-13c1c13d16bb",
+          "stig_uuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "target_key": null,
+          "stig_ref": null,
+          "group_id": "V-207193",
+          "rule_id": "SV-207193r916149",
+          "rule_id_src": "SV-207193r916149_rule",
+          "weight": "10.0",
+          "classification": "NONE",
+          "severity": "high",
+          "rule_version": "SRG-NET-000074-VPN-000250",
+          "group_title": "SRG-NET-000074",
+          "rule_title": "The IPSec VPN must be configured to use a Diffie-Hellman (DH) Group of 16 or greater for Internet Key Exchange (IKE) Phase 1.",
+          "fix_text": "Configure the IPsec VPN to use the DH Group of 16 or greater for IKE Phase 1.",
+          "false_positives": null,
+          "false_negatives": null,
+          "discussion": "Use of an approved DH algorithm ensures the IKE (Phase 1) proposal uses FIPS-validated key management techniques and processes in the production, storage, and control of private/secret cryptographic keys. The security of the DH key exchange is based on the difficulty of solving the discrete logarithm from which the key was derived. Hence, the larger the modulus, the more secure the generated key is considered to be.",
+          "check_content": "Verify all IKE proposals are set to use DH Group of 16 or greater for IKE Phase 1.\n\nView the IKE options dh-group option.\n\nIf the IKE option is not set to use DH Group of 16 or greater for IKE Phase 1, this is a finding.",
+          "documentable": "false",
+          "mitigations": null,
+          "potential_impacts": null,
+          "third_party_tools": null,
+          "mitigation_control": null,
+          "responsibility": null,
+          "security_override_guidance": null,
+          "ia_controls": null,
+          "check_content_ref": {
+            "href": "",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-207193",
+              "title": "SRG-NET-000074",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "createdAt": null,
+          "updatedAt": null,
+          "STIGUuid": "4f08ae20-8244-11ee-8b44-13c1c13d16bb",
+          "status": "not_reviewed",
+          "overrides": {},
+          "comments": "",
+          "finding_details": "",
+          "ccis": [
+            "CCI-000068"
+          ]
+        }
+      ]
+    }
+  ]
+}
