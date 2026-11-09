@@ -2,7 +2,9 @@
 
 Free, offline STIG checklist toolkit. Working name. Donationware: free to use, no feature gating, no nag screens, no network access.
 
-**Status: pre-release (V0.1.1, in progress).** Not yet usable as a replacement for anything. The roadmap below shows what exists and what does not.
+**Status: pre-release (V0.1.1 accepted; V0.2.2 in progress).** Not yet usable as a replacement for anything. The roadmap below shows what exists and what does not.
+
+> CKLB output is checked against the DISA schema, not against STIG Viewer 3 itself (which has no macOS build, so it has not been possible to test there).
 
 ## What works today
 
@@ -11,6 +13,7 @@ Free, offline STIG checklist toolkit. Working name. Donationware: free to use, n
 - Turn an XCCDF benchmark, a SCAP data stream, or a ZIP of either into a blank `.cklb` checklist.
 - `stigforage info FILE...` summarises hosts, STIGs, rule counts, severity and review status.
 - `stigforage validate FILE... [--strict]` checks structural problems.
+- `stigforage diff OLD NEW` compares two checklists or benchmarks rule by rule (read-only). Rules are matched by `rule_id_src`, then by unambiguous `group_id`; see `docs/adr/0002-matching-merge-upgrade-policy.md`.
 - `stigforage convert INPUT -o OUTPUT` converts between `.cklb`, `.ckl` and benchmarks. It is a dry run unless you pass `--apply`, never modifies INPUT, and refuses to overwrite OUTPUT without `--force`.
 
 Exit codes: 0 ok, 1 validation errors, 2 a file could not be read, parsed or written.

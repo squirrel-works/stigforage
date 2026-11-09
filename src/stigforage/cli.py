@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any, TextIO, cast
 
 from stigforage import __version__, ckl, cklb, xccdf
+from stigforage.diff import ChecklistDiff, RuleDiff, StigDiff, diff_checklists
 from stigforage.fsio import read_limited
 from stigforage.log import configure, get_logger
 from stigforage.model import Checklist, ChecklistError, ImportResult, Issue, Status, validate
@@ -66,6 +67,17 @@ def _build_parser() -> argparse.ArgumentParser:
     conv.add_argument("-o", "--output", required=True, type=Path, help="output .cklb or .ckl path")
     conv.add_argument("--apply", action="store_true", help="actually write the output file")
     conv.add_argument("--force", action="store_true", help="overwrite an existing output file")
+
+    dif = sub.add_parser(
+        "diff",
+        help="compare two checklists or benchmarks rule by rule",
+        description=(
+            "Compare OLD with NEW, STIG by STIG. Rules are matched by rule_id_src, then by "
+            "group_id when unambiguous. Read-only; exit 0 whether or not differences exist."
+        ),
+    )
+    dif.add_argument("old", type=Path, metavar="OLD", help=_INPUT_HELP)
+    dif.add_argument("new", type=Path, metavar="NEW", help=_INPUT_HELP)
     return parser
 
 
@@ -124,6 +136,78 @@ def _group_issues(issues: list[Issue]) -> list[tuple[Issue, int, str]]:
         key = (issue.level, _INDEX_RE.sub("[*]", issue.path), issue.message)
         groups.setdefault(key, []).append(issue)
     return [(members[0], len(members), key[1]) for key, members in groups.items()]
+
+
+_TEXT_FIELDS = frozenset({"check_content", "fix_text", "discussion", "comments", "finding_details"})
+
+
+def _show(name: str, value: Any) -> str:
+    """Short display form: long text is summarised by size, never dumped."""
+    if name in _TEXT_FIELDS:
+        return f"<{len(value)} chars>" if value else "<empty>"
+    return str(value) if value != "" else "<empty>"
+
+
+def _format_rule_diff(rd: RuleDiff, out: TextIO) -> None:
+    how = "" if rd.matched_by == "rule_id_src" else f"  [matched by group_id; was {rd.old.rule_id}]"
+    out.write(f"  ~ {rd.new.group_id} {rd.new.rule_id}{how}\n")
+    for change in rd.changes:
+        if change.name == "rule_id" and rd.matched_by == "group_id":
+            continue  # already shown in the header
+        out.write(f"      {change.name}: {_show(change.name, change.old)} -> ")
+        out.write(f"{_show(change.name, change.new)}\n")
+
+
+def _format_stig_diff(sd: StigDiff, out: TextIO) -> None:
+    m = sd.matching
+    out.write(f"{sd.stig_id}: {sd.old_release or '?'} -> {sd.new_release or '?'}\n")
+    out.write(
+        f"  matched={len(m.pairs)} unchanged={sd.unchanged} "
+        f"added={len(m.new_only)} removed={len(m.old_only)}\n"
+    )
+    for rule in m.new_only:
+        out.write(f"  + {rule.group_id} {rule.rule_id}  {rule.severity}  {rule.rule_title}\n")
+    for rule in m.old_only:
+        out.write(f"  - {rule.group_id} {rule.rule_id}  {rule.severity}  {rule.rule_title}\n")
+    for rd in sd.rules:
+        if rd.changes or rd.matched_by != "rule_id_src":
+            _format_rule_diff(rd, out)
+    for group_id in m.ambiguous:
+        out.write(f"  ? {group_id}: several rules share this group_id; not matched\n")
+
+
+def _format_diff(diff: ChecklistDiff, out: TextIO) -> None:
+    for sd in diff.stigs:
+        _format_stig_diff(sd, out)
+    for stig_id in diff.new_only_stigs:
+        out.write(f"+ STIG only in NEW: {stig_id}\n")
+    for stig_id in diff.old_only_stigs:
+        out.write(f"- STIG only in OLD: {stig_id}\n")
+
+
+def _run_diff(args: argparse.Namespace, out: TextIO) -> int:
+    log = get_logger()
+    loaded: list[Checklist] = []
+    for n, path in enumerate((args.old, args.new), start=1):
+        log.info("reading", step=f"{n}/2", file=str(path))
+        try:
+            result = _load_any(path)
+        except (ChecklistError, OSError) as exc:
+            log.error("cannot read checklist", file=str(path), error=str(exc))
+            return EXIT_UNREADABLE
+        for warning in result.warnings:
+            log.warning("import", detail=warning)
+        loaded.append(result.checklist)
+    log.info("comparing")
+    diff = diff_checklists(loaded[0], loaded[1])
+    _format_diff(diff, out)
+    log.info(
+        "done",
+        stigs=len(diff.stigs),
+        only_old=len(diff.old_only_stigs),
+        only_new=len(diff.new_only_stigs),
+    )
+    return EXIT_OK
 
 
 def _run_convert(args: argparse.Namespace, out: TextIO) -> int:
@@ -235,6 +319,8 @@ def run(argv: Sequence[str] | None = None, *, out: TextIO | None = None) -> int:
     get_logger().info("starting", command=args.command)
     if args.command == "convert":
         return _run_convert(args, out)
+    if args.command == "diff":
+        return _run_diff(args, out)
     return _run_inspect(args, out)
 
 
