@@ -1,9 +1,10 @@
-stigforage (working name)
+# stigforage
+
 Copyright 2026 Squirrelworks
 Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 Test fixtures under tests/fixtures/ are copied from
-https://github.com/NUWCDIVNPT/stig-manager-client-modules (test-files/parsers), MIT License,
+<https://github.com/NUWCDIVNPT/stig-manager-client-modules> (test-files/parsers), MIT License,
 Copyright (c) 2020-2026 U.S. Federal Government (in countries where recognized).
 See tests/fixtures/LICENSE-stig-manager-client-modules.md.
 

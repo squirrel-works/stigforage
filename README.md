@@ -18,7 +18,9 @@ Free, offline STIG checklist toolkit. Working name. Donationware: free to use, n
 
 Exit codes: 0 ok, 1 validation errors, 2 a file could not be read, parsed or written.
 
-```
+
+``` terminal
+
 python -m venv .venv && . .venv/bin/activate
 pip install -e ".[dev]"
 stigforage --help
