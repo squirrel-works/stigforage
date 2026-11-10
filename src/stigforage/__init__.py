@@ -19,6 +19,9 @@ Changelog
        Unit 2: `merge SOURCE TARGET -o OUTPUT` (merge.py) carries review units between
        checklists of the same release (ADR 0002 addendum). STIG pairing moved to
        diff.pair_stigs; convert and merge share the output checks and dry-run path.
+       Unit 3: `upgrade OLD NEW_BENCHMARK -o OUTPUT` (upgrade.py) carries reviews onto a new
+       release, downgrading to not_reviewed with a note where the check text changed
+       (--keep-status-on-change to skip). Reuses merge's review unit and release test.
 """
 
 __version__ = "0.1.1"

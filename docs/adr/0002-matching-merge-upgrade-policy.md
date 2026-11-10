@@ -24,6 +24,26 @@ Status: accepted by maintainer (all three proposals approved as written).
   `group_id`. The `group_id` step exists for that case; the ASD V6R5 ZIP is the only real release
   available so far, and no older release has been diffed against it.
 
+## Evidence from real releases (2026-11-10)
+
+Two consecutive DISA releases were downloaded from `dl.dod.cyber.mil` for a manual check. They
+stay outside the repository, which bundles no DISA content, so this is not part of the suite.
+
+- Files: `U_RHEL_9_V2R9_STIG.zip` (SHA-256 `1875de2543d0...286ca1ae`) and
+  `U_RHEL_9_V2R10_STIG.zip` (SHA-256 `a9a212444ac3...792945c3d111`), 445 rules each.
+- Matching: 237 rules matched on `rule_id_src` and 206 on `group_id`, with none ambiguous. Every
+  one of the 206 was a rule revision bump, and 153 of them changed nothing else that `diff`
+  compares. This answers the unit 1 question above: without the `group_id` step, almost half the
+  reviews would have been dropped.
+- Check text: `check_content` differed in 26 rules, but only 23 after collapsing whitespace. The
+  other 3 were reflowed only, so whitespace collapsing prevented 3 false downgrades.
+- `upgrade` of a fully reviewed V2R9 checklist to V2R10: 443 matched, 420 carried, 23
+  downgraded (exactly the 23 real check changes), 2 rules added, and 2 removed with their reviews
+  reported as lost. The output validates against the DISA CKLB schema. `--keep-status-on-change`
+  carried all 443, and upgrading to V2R9 itself reported "already at this release".
+- Not covered: this is one STIG and one release step. Severity did not change in this pair, so
+  that path is still tested on synthetic data only.
+
 ## Addendum (2026-11-09): decisions for units 2 and 3
 
 Accepted by maintainer before unit 2 began.
@@ -66,3 +86,20 @@ Accepted by maintainer before unit 2 began.
   no date, so output is reproducible.
 - In a checklist with several STIGs, only those present in the new benchmark are upgraded; the
   rest carry over unchanged.
+
+Added before unit 3 began (maintainer-approved, 2026-11-10):
+
+- A new benchmark that already holds a review (for example a reviewed `.cklb`) is refused, with a
+  pointer to `merge`: its reviews would otherwise be overwritten wherever OLD has one.
+- STIGs present only in the new benchmark are reported, not added, matching `merge`.
+- An OLD STIG already at the new benchmark's release is allowed. Nothing changed, so every
+  review carries over and the report says it is already at that release.
+
+Implementation details, consistent with the above:
+
+- OUTPUT takes its structure from the new benchmark and its asset data, title and checklist id
+  from OLD. The review unit is the one `merge` defines.
+- On a downgrade, finding details and overrides are kept; only the status changes and the note
+  is prepended. A rule whose status was already `not_reviewed` gets no note.
+- An OLD rule with no check text cannot be compared, so it is treated as changed (the safe
+  direction) and the note says why.

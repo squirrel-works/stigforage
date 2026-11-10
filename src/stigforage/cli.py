@@ -21,6 +21,7 @@ from stigforage.log import configure, get_logger
 from stigforage.merge import MergeResult, StigMerge, merge_checklists
 from stigforage.model import Checklist, ChecklistError, ImportResult, Issue, Status, validate
 from stigforage.schema import check_supported, validate_instance
+from stigforage.upgrade import StigUpgrade, UpgradeResult, upgrade_checklist
 
 EXIT_OK = 0
 EXIT_INVALID = 1
@@ -103,6 +104,34 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     mrg.add_argument("--apply", action="store_true", help="actually write the output file")
     mrg.add_argument("--force", action="store_true", help="overwrite an existing output file")
+
+    upg = sub.add_parser(
+        "upgrade",
+        help="carry reviews from a checklist onto a new STIG release",
+        description=(
+            "Build OUTPUT (.cklb or .ckl) from NEW_BENCHMARK's rules and OLD's asset data, "
+            "carrying OLD's reviews across. A rule whose check text changed is reset to "
+            "not_reviewed with a note in its comments, unless --keep-status-on-change. "
+            "STIGs missing from NEW_BENCHMARK carry over unchanged. "
+            "Dry-run by default: nothing is written unless --apply is given. "
+            "OLD and NEW_BENCHMARK are never modified."
+        ),
+    )
+    upg.add_argument("old", type=Path, metavar="OLD", help=_INPUT_HELP)
+    upg.add_argument(
+        "new",
+        type=Path,
+        metavar="NEW_BENCHMARK",
+        help=f"{_INPUT_HELP}; must not hold any reviews",
+    )
+    upg.add_argument("-o", "--output", required=True, type=Path, help="output .cklb or .ckl path")
+    upg.add_argument(
+        "--keep-status-on-change",
+        action="store_true",
+        help="keep a rule's status even when its check text changed",
+    )
+    upg.add_argument("--apply", action="store_true", help="actually write the output file")
+    upg.add_argument("--force", action="store_true", help="overwrite an existing output file")
     return parser
 
 
@@ -370,6 +399,70 @@ def _run_merge(args: argparse.Namespace, out: TextIO) -> int:
     return _write_output(result.checklist, dest, apply=args.apply, force=args.force, out=out)
 
 
+_CHECK_ACTION_TEXT = {
+    "downgraded": "{status} -> not_reviewed",
+    "kept": "{status} kept (--keep-status-on-change)",
+    "was_not_reviewed": "status was not_reviewed; notes carried",
+}
+
+
+def _format_stig_upgrade(su: StigUpgrade, out: TextIO) -> None:
+    release = "already at this release" if su.same_release else f"-> {su.new_release or '?'}"
+    out.write(
+        f"{su.stig_id}: {su.old_release or '?'} {release}\n"
+        f"  matched={su.matched} carried={su.carried} downgraded={su.downgraded} "
+        f"added={len(su.added)} removed={su.removed}"
+    )
+    if su.matched_by_group_id:
+        out.write(f" matched_by_group_id={su.matched_by_group_id}")
+    out.write("\n")
+    for c in su.check_changes:
+        what = _CHECK_ACTION_TEXT[c.action].format(status=c.old_status.value)
+        out.write(f"  v {c.group_id} {c.rule_id}: check text changed; {what}\n")
+    for s in su.severity_changes:
+        out.write(f"  ^ {s.group_id} {s.rule_id}: severity {s.old} -> {s.new} (status kept)\n")
+    for rule in su.added:
+        out.write(f"  + {rule.group_id} {rule.rule_id}  {rule.severity}  {rule.rule_title}\n")
+    for rule in su.lost:
+        out.write(
+            f"  - {rule.group_id} {rule.rule_id}: {rule.status.value} review lost "
+            "(rule removed in the new release)\n"
+        )
+    for group_id in su.ambiguous:
+        out.write(f"  ? {group_id}: several rules share this group_id; not matched\n")
+
+
+def _format_upgrade(result: UpgradeResult, out: TextIO) -> None:
+    for su in result.stigs:
+        _format_stig_upgrade(su, out)
+    for stig_id in result.unchanged_stigs:
+        out.write(f"= STIG not in NEW_BENCHMARK, carried over unchanged: {stig_id}\n")
+    for stig_id in result.new_only_stigs:
+        out.write(f"+ STIG only in NEW_BENCHMARK, not added: {stig_id}\n")
+
+
+def _run_upgrade(args: argparse.Namespace, out: TextIO) -> int:
+    log = get_logger()
+    dest: Path = args.output
+    if not _check_output_path(dest, (args.old, args.new)):
+        return EXIT_UNREADABLE
+    loaded = _load_all((args.old, args.new))
+    if loaded is None:
+        return EXIT_UNREADABLE
+    log.info("upgrading", keep_status_on_change=args.keep_status_on_change)
+    try:
+        result = upgrade_checklist(
+            loaded[0], loaded[1], keep_status_on_change=args.keep_status_on_change
+        )
+    except ChecklistError as exc:
+        log.error("cannot upgrade", error=str(exc))
+        return EXIT_UNREADABLE
+    _format_upgrade(result, out)
+    if args.apply:
+        log.info("writing", file=str(dest))
+    return _write_output(result.checklist, dest, apply=args.apply, force=args.force, out=out)
+
+
 def _run_inspect(args: argparse.Namespace, out: TextIO) -> int:
     log = get_logger()
     files: list[Path] = args.files
@@ -438,6 +531,8 @@ def run(argv: Sequence[str] | None = None, *, out: TextIO | None = None) -> int:
         return _run_diff(args, out)
     if args.command == "merge":
         return _run_merge(args, out)
+    if args.command == "upgrade":
+        return _run_upgrade(args, out)
     return _run_inspect(args, out)
 
 

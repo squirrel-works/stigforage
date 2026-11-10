@@ -25,6 +25,12 @@ for anything. The roadmap below shows what exists and what does not.
   overrides) from SOURCE into a copy of TARGET for the same STIG release. Rules with no review
   in TARGET receive SOURCE's; differing reviews are listed as conflicts and TARGET wins unless
   `--prefer source`. Dry run unless `--apply`, like `convert`.
+- `stigforage upgrade OLD NEW_BENCHMARK -o OUTPUT` carries OLD's reviews onto a new release of
+  its STIGs. A rule whose check text changed is reset to `not_reviewed` with a note in its
+  comments, unless `--keep-status-on-change`. The report lists added rules, removed rules whose
+  review is lost, and severity changes. Dry run unless `--apply`. The test suite uses synthetic
+  releases built from the public fixtures; one real release step (RHEL 9 V2R9 to V2R10) was
+  checked by hand, see ADR 0002.
 - `stigforage convert INPUT -o OUTPUT` converts between `.cklb`, `.ckl` and benchmarks. It is a
   dry run unless you pass `--apply`, never modifies INPUT, and refuses to overwrite OUTPUT without
   `--force`. A dry run reports the same refusals and export warnings as `--apply` would.
@@ -61,8 +67,8 @@ standard-library parser that rejects any DTD or entity declaration.
 ## Roadmap
 
 - **V0.1.1** (accepted): core model, CKLB I/O, CKL and XCCDF/SCAP import, `convert` CLI.
-- **V0.2.2** (in progress; `diff` and `merge` done): carry-forward merge, STIG upgrade wizard,
-  checklist diff.
+- **V0.2.2** (in progress; `diff`, `merge` and `upgrade` done, final review pending):
+  carry-forward merge, STIG upgrade wizard, checklist diff.
 - **V0.3.3** (planned): result importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit/npm
   audit/CVE JSON.
 - **V0.4.4** (planned): CSV, POA&M and evidence ZIP export; CCI to NIST 800-53 Rev 5 crosswalk;

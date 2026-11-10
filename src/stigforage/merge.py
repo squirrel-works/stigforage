@@ -22,7 +22,17 @@ from typing import Any, Literal
 from stigforage.diff import match_rules, pair_stigs
 from stigforage.model import Checklist, ChecklistError, Rule, Status, Stig
 
-__all__ = ["Conflict", "MergeResult", "Prefer", "StigMerge", "merge_checklists"]
+__all__ = [
+    "Conflict",
+    "MergeResult",
+    "Prefer",
+    "StigMerge",
+    "copy_review",
+    "is_empty_review",
+    "merge_checklists",
+    "review_unit",
+    "same_release",
+]
 
 Prefer = Literal["target", "source"]
 
@@ -63,7 +73,11 @@ class MergeResult:
     warnings: list[str] = field(default_factory=list)
 
 
-def _unit(rule: Rule) -> dict[str, Any]:
+def review_unit(rule: Rule) -> dict[str, Any]:
+    """The rule's review unit, normalised so that `None` and `""` compare equal.
+
+    Defined here once; `upgrade` reuses it so both commands agree on what a review is.
+    """
     return {
         "status": rule.status,
         "comments": rule.comments or "",
@@ -80,11 +94,12 @@ _EMPTY_UNIT = {
 }
 
 
-def _is_empty(rule: Rule) -> bool:
-    return _unit(rule) == _EMPTY_UNIT
+def is_empty_review(rule: Rule) -> bool:
+    return review_unit(rule) == _EMPTY_UNIT
 
 
-def _copy_review(source: Rule, target: Rule) -> None:
+def copy_review(source: Rule, target: Rule) -> None:
+    """Overwrite `target`'s review unit with a copy of `source`'s."""
     target.status = source.status
     # "" rather than None: the DISA schema requires these to be strings.
     target.comments = source.comments or ""
@@ -97,14 +112,23 @@ def _describe(stig: Stig) -> str:
     return f"{version}{stig.release_info.strip() or 'no release info'}"
 
 
+def same_release(a: Stig, b: Stig) -> bool:
+    """Same `release_info`, and the same `version` where both have one.
+
+    The single release test: `merge` refuses when it fails, `upgrade` reports "already at this
+    release" when it holds.
+    """
+    versions_differ = (
+        a.version is not None
+        and b.version is not None
+        and str(a.version) != str(b.version)  # "2" and 2 are the same version
+    )
+    return a.release_info.strip() == b.release_info.strip() and not versions_differ
+
+
 def _check_release(source: Stig, target: Stig, warnings: list[str]) -> None:
     """Raise unless both sides are the same release; warn when that cannot be verified."""
-    versions_differ = (
-        source.version is not None
-        and target.version is not None
-        and str(source.version) != str(target.version)  # "2" and 2 are the same version
-    )
-    if source.release_info.strip() != target.release_info.strip() or versions_differ:
+    if not same_release(source, target):
         raise ChecklistError(
             f"STIG {target.stig_id!r}: SOURCE is {_describe(source)} but TARGET is "
             f"{_describe(target)}; merge only combines reviews of the same release "
@@ -130,15 +154,15 @@ def _merge_stig(source: Stig, target: Stig, prefer: Prefer) -> StigMerge:
     result = StigMerge(target.stig_id, target.release_info)
     matching = match_rules(source.rules, target.rules)
     result.ambiguous = matching.ambiguous
-    result.not_carried = [r for r in matching.old_only if not _is_empty(r)]
+    result.not_carried = [r for r in matching.old_only if not is_empty_review(r)]
     for src, tgt, matched_by in matching.pairs:
         if matched_by == "group_id":
             result.matched_by_group_id += 1
-        src_unit, tgt_unit = _unit(src), _unit(tgt)
-        if _is_empty(src) or src_unit == tgt_unit:
+        src_unit, tgt_unit = review_unit(src), review_unit(tgt)
+        if is_empty_review(src) or src_unit == tgt_unit:
             result.unchanged += 1
-        elif _is_empty(tgt):
-            _copy_review(src, tgt)
+        elif is_empty_review(tgt):
+            copy_review(src, tgt)
             result.carried += 1
         else:
             differs = tuple(n for n in _UNIT_FIELDS if src_unit[n] != tgt_unit[n])
@@ -146,7 +170,7 @@ def _merge_stig(source: Stig, target: Stig, prefer: Prefer) -> StigMerge:
                 Conflict(tgt.group_id, tgt.rule_id, tgt.status, src.status, differs)
             )
             if prefer == "source":
-                _copy_review(src, tgt)
+                copy_review(src, tgt)
     return result
 
 
