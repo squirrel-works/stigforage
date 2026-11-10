@@ -16,7 +16,7 @@ from typing import Any, TextIO, cast
 
 from stigforage import __version__, ckl, cklb, xccdf
 from stigforage.diff import ChecklistDiff, RuleDiff, StigDiff, diff_checklists
-from stigforage.fsio import read_limited
+from stigforage.fsio import atomic_write_text, check_write_target, read_limited
 from stigforage.log import configure, get_logger
 from stigforage.model import Checklist, ChecklistError, ImportResult, Issue, Status, validate
 from stigforage.schema import check_supported, validate_instance
@@ -234,24 +234,32 @@ def _run_convert(args: argparse.Namespace, out: TextIO) -> int:
     rule_count = sum(len(s.rules) for s in checklist.stigs)
     log.info("step", n="2/3", action="parsed", stigs=len(checklist.stigs), rules=rule_count)
 
-    if not args.apply:
+    # A dry run goes through everything except the final write (serialising, export warnings,
+    # output checks), so it fails exactly where --apply would.
+    export_warnings: list[str] = []
+    if fmt == ".cklb":
+        text = cklb.dumps(checklist)
+    else:
+        text, export_warnings = ckl.dumps(checklist)
+    for warning in export_warnings:
+        log.warning("export", detail=warning)
+    try:
+        if args.apply:
+            log.info("step", n="3/3", action="writing", file=str(dest))
+            atomic_write_text(dest, text, force=args.force)  # runs check_write_target itself
+        else:
+            check_write_target(dest, force=args.force)
+    except OSError as exc:
+        log.error("cannot write output", file=str(dest), error=str(exc))
+        return EXIT_UNREADABLE
+
+    if args.apply:
+        out.write(f"wrote {len(checklist.stigs)} STIG(s), {rule_count} rule(s) to {dest}\n")
+    else:
         out.write(
             f"dry run: would write {len(checklist.stigs)} STIG(s), {rule_count} rule(s) "
             f"to {dest} ({fmt[1:]}); re-run with --apply to write\n"
         )
-        return EXIT_OK
-
-    log.info("step", n="3/3", action="writing", file=str(dest))
-    try:
-        if fmt == ".cklb":
-            cklb.dump(checklist, dest, force=args.force)
-        else:
-            for warning in ckl.dump(checklist, dest, force=args.force):
-                log.warning("export", detail=warning)
-    except (ChecklistError, OSError) as exc:
-        log.error("cannot write output", file=str(dest), error=str(exc))
-        return EXIT_UNREADABLE
-    out.write(f"wrote {len(checklist.stigs)} STIG(s), {rule_count} rule(s) to {dest}\n")
     return EXIT_OK
 
 

@@ -157,6 +157,68 @@ def test_convert_refuses_to_overwrite_without_force(tmp_path: Path) -> None:
     assert dest.read_text(encoding="utf-8") != "precious"
 
 
+# Regression tests for the V0.1.1 defect fixed in V0.2.2: the dry run reported "would write" and
+# exited 0 in cases where --apply then failed.
+
+
+def test_convert_dry_run_refuses_existing_output_like_apply(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    dest = tmp_path / "out.cklb"
+    dest.write_text("precious", encoding="utf-8")
+    code, out = _run("convert", str(XCCDF), "-o", str(dest))
+    assert code == EXIT_UNREADABLE
+    assert "would write" not in out
+    assert "already exists" in capsys.readouterr().err
+    code, out = _run("convert", str(XCCDF), "-o", str(dest), "--force")
+    assert code == EXIT_OK
+    assert "dry run: would write" in out
+    assert dest.read_text(encoding="utf-8") == "precious"
+
+
+@pytest.mark.parametrize("mode", [[], ["--apply"]], ids=["dry-run", "apply"])
+def test_convert_missing_output_directory_fails_in_both_modes(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str], mode: list[str]
+) -> None:
+    dest = tmp_path / "no-such-dir" / "out.cklb"
+    code, out = _run("convert", str(XCCDF), "-o", str(dest), *mode)
+    assert code == EXIT_UNREADABLE
+    assert out == ""
+    err = capsys.readouterr().err
+    assert "does not exist" in err
+    assert ".tmp" not in err  # names the user's path, not mkstemp's temp file
+    assert list(tmp_path.iterdir()) == []
+
+
+@pytest.mark.parametrize("mode", [[], ["--apply"]], ids=["dry-run", "apply"])
+def test_convert_output_that_is_a_directory_fails_even_with_force(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str], mode: list[str]
+) -> None:
+    dest = tmp_path / "out.cklb"
+    dest.mkdir()
+    code, out = _run("convert", str(XCCDF), "-o", str(dest), "--force", *mode)
+    assert code == EXIT_UNREADABLE
+    assert out == ""
+    assert "is a directory" in capsys.readouterr().err
+    assert dest.is_dir()
+    assert list(dest.iterdir()) == []
+
+
+def test_convert_dry_run_reports_export_warnings(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    data = json.loads(GOOD.read_text(encoding="utf-8-sig"))
+    data["stigs"][0]["rules"][0]["overrides"] = {"severity": {"severity": "high", "reason": "r"}}
+    src = tmp_path / "ovr.cklb"
+    src.write_text(json.dumps(data), encoding="utf-8")
+    dest = tmp_path / "out.ckl"
+    code, out = _run("convert", str(src), "-o", str(dest))
+    assert code == EXIT_OK
+    assert "dry run: would write" in out
+    assert "rule overrides not written" in capsys.readouterr().err
+    assert not dest.exists()
+
+
 def test_convert_refuses_output_equal_to_input(tmp_path: Path) -> None:
     src = tmp_path / "same.cklb"
     _run("convert", str(XCCDF), "-o", str(src), "--apply")

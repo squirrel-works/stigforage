@@ -1,0 +1,12 @@
+{
+  "config": {
+    // Matches the 100-column limit black and ruff use for the code (maintainer-approved).
+    "MD013": { "line_length": 100 }
+  },
+  // Skip .venv, caches and build output, so `markdownlint-cli2 "**/*.md"` lints only our files.
+  "gitignore": true,
+  "ignores": [
+    // Third-party license text, kept verbatim.
+    "tests/fixtures/LICENSE-stig-manager-client-modules.md"
+  ]
+}
