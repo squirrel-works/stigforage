@@ -1,7 +1,7 @@
 """Rule matching and checklist comparison.
 
 `match_rules` is the single place that decides which rule in one STIG corresponds to which rule
-in another. `merge` and `upgrade` (later in V0.2.2) reuse it, because a wrong match silently
+in another. `merge` and `upgrade` reuse it, because a wrong match silently
 carries a review status onto a different control, so there must be exactly one implementation.
 
 Matching policy (maintainer-approved, ADR 0002):

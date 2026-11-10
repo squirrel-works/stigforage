@@ -3,7 +3,7 @@
 Free, offline STIG checklist toolkit. Working name. Donationware: free to use, no feature gating,
 no nag screens, no network access.
 
-**Status: pre-release (V0.1.1 accepted; V0.2.2 in progress).** Not yet usable as a replacement
+**Status: pre-release (V0.2.2 complete, pending acceptance).** Not yet usable as a replacement
 for anything. The roadmap below shows what exists and what does not.
 
 > CKLB output is checked against the DISA schema, not against STIG Viewer 3 itself (which has no
@@ -35,7 +35,9 @@ for anything. The roadmap below shows what exists and what does not.
   dry run unless you pass `--apply`, never modifies INPUT, and refuses to overwrite OUTPUT without
   `--force`. A dry run reports the same refusals and export warnings as `--apply` would.
 
-Exit codes: 0 ok, 1 validation errors, 2 a file could not be read, parsed or written.
+Exit codes: 0 ok, 1 validation errors, 2 a file could not be read, parsed or written, or the
+operation was refused (for example OUTPUT would overwrite an input, or `merge` was given two
+different releases).
 
 ```sh
 python -m venv .venv && . .venv/bin/activate
@@ -67,8 +69,8 @@ standard-library parser that rejects any DTD or entity declaration.
 ## Roadmap
 
 - **V0.1.1** (accepted): core model, CKLB I/O, CKL and XCCDF/SCAP import, `convert` CLI.
-- **V0.2.2** (in progress; `diff`, `merge` and `upgrade` done, final review pending):
-  carry-forward merge, STIG upgrade wizard, checklist diff.
+- **V0.2.2** (complete, pending acceptance): carry-forward merge, STIG upgrade wizard, checklist
+  diff.
 - **V0.3.3** (planned): result importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit/npm
   audit/CVE JSON.
 - **V0.4.4** (planned): CSV, POA&M and evidence ZIP export; CCI to NIST 800-53 Rev 5 crosswalk;

@@ -1,6 +1,8 @@
 """Command line interface.
 
-Exit codes: 0 success, 1 validation errors found, 2 a file could not be read, parsed or written.
+Exit codes: 0 success, 1 validation errors found, 2 a file could not be read, parsed or written,
+or the operation was refused (output would overwrite an input, merge across releases, upgrade
+onto a reviewed benchmark).
 Progress and diagnostics go to stderr via structlog; results go to stdout.
 """
 
@@ -240,8 +242,10 @@ def _format_diff(diff: ChecklistDiff, out: TextIO) -> None:
 
 
 def _load_all(paths: Sequence[Path]) -> list[Checklist] | None:
-    """Load every input, logging import warnings. Returns None (error logged) on the first
-    file that cannot be read."""
+    """Load every input, logging import warnings.
+
+    Returns None, with the error logged, on the first file that cannot be read.
+    """
     log = get_logger()
     loaded: list[Checklist] = []
     for n, path in enumerate(paths, start=1):
