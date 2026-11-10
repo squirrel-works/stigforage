@@ -33,6 +33,7 @@ __all__ = [
     "diff_checklists",
     "diff_stigs",
     "match_rules",
+    "pair_stigs",
     "rule_field",
 ]
 
@@ -170,20 +171,30 @@ def diff_stigs(old: Stig, new: Stig) -> StigDiff:
     )
 
 
-def diff_checklists(old: Checklist, new: Checklist) -> ChecklistDiff:
-    """Compare two checklists STIG by STIG, pairing STIGs on `stig_id`.
+def pair_stigs(
+    old: list[Stig], new: list[Stig]
+) -> tuple[list[tuple[Stig, Stig]], list[str], list[str]]:
+    """Pair STIGs on `stig_id`. Returns (pairs, stig_ids only in old, stig_ids only in new).
 
-    A repeated `stig_id` within one checklist is paired in order of appearance.
+    A repeated `stig_id` within one checklist is paired in order of appearance. `diff` and
+    `merge` both use this, so they always agree on which STIGs correspond.
     """
-    result = ChecklistDiff()
     remaining: defaultdict[str, list[Stig]] = defaultdict(list)
-    for stig in new.stigs:
+    for stig in new:
         remaining[stig.stig_id].append(stig)
-    for stig in old.stigs:
+    pairs: list[tuple[Stig, Stig]] = []
+    old_only: list[str] = []
+    for stig in old:
         candidates = remaining.get(stig.stig_id)
         if candidates:
-            result.stigs.append(diff_stigs(stig, candidates.pop(0)))
+            pairs.append((stig, candidates.pop(0)))
         else:
-            result.old_only_stigs.append(stig.stig_id)
-    result.new_only_stigs = [s.stig_id for group in remaining.values() for s in group]
-    return result
+            old_only.append(stig.stig_id)
+    new_only = [s.stig_id for group in remaining.values() for s in group]
+    return pairs, old_only, new_only
+
+
+def diff_checklists(old: Checklist, new: Checklist) -> ChecklistDiff:
+    """Compare two checklists STIG by STIG (paired by `pair_stigs`)."""
+    pairs, old_only, new_only = pair_stigs(old.stigs, new.stigs)
+    return ChecklistDiff([diff_stigs(o, n) for o, n in pairs], old_only, new_only)

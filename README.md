@@ -21,6 +21,10 @@ for anything. The roadmap below shows what exists and what does not.
 - `stigforage diff OLD NEW` compares two checklists or benchmarks rule by rule (read-only). Rules
   are matched by `rule_id_src`, then by unambiguous `group_id`; see
   `docs/adr/0002-matching-merge-upgrade-policy.md`.
+- `stigforage merge SOURCE TARGET -o OUTPUT` carries reviews (status, comments, finding details,
+  overrides) from SOURCE into a copy of TARGET for the same STIG release. Rules with no review
+  in TARGET receive SOURCE's; differing reviews are listed as conflicts and TARGET wins unless
+  `--prefer source`. Dry run unless `--apply`, like `convert`.
 - `stigforage convert INPUT -o OUTPUT` converts between `.cklb`, `.ckl` and benchmarks. It is a
   dry run unless you pass `--apply`, never modifies INPUT, and refuses to overwrite OUTPUT without
   `--force`. A dry run reports the same refusals and export warnings as `--apply` would.
@@ -57,7 +61,7 @@ standard-library parser that rejects any DTD or entity declaration.
 ## Roadmap
 
 - **V0.1.1** (accepted): core model, CKLB I/O, CKL and XCCDF/SCAP import, `convert` CLI.
-- **V0.2.2** (in progress; unit 1, `diff`, done): carry-forward merge, STIG upgrade wizard,
+- **V0.2.2** (in progress; `diff` and `merge` done): carry-forward merge, STIG upgrade wizard,
   checklist diff.
 - **V0.3.3** (planned): result importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit/npm
   audit/CVE JSON.

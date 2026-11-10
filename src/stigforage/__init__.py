@@ -16,6 +16,9 @@ Changelog
        refuses what --apply refuses (OUTPUT exists without --force, OUTPUT is a directory,
        missing directory) with exit 2, and logs .ckl export warnings. fsio.check_write_target
        holds those checks for both paths.
+       Unit 2: `merge SOURCE TARGET -o OUTPUT` (merge.py) carries review units between
+       checklists of the same release (ADR 0002 addendum). STIG pairing moved to
+       diff.pair_stigs; convert and merge share the output checks and dry-run path.
 """
 
 __version__ = "0.1.1"

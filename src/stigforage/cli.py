@@ -18,6 +18,7 @@ from stigforage import __version__, ckl, cklb, xccdf
 from stigforage.diff import ChecklistDiff, RuleDiff, StigDiff, diff_checklists
 from stigforage.fsio import atomic_write_text, check_write_target, read_limited
 from stigforage.log import configure, get_logger
+from stigforage.merge import MergeResult, StigMerge, merge_checklists
 from stigforage.model import Checklist, ChecklistError, ImportResult, Issue, Status, validate
 from stigforage.schema import check_supported, validate_instance
 
@@ -78,6 +79,30 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     dif.add_argument("old", type=Path, metavar="OLD", help=_INPUT_HELP)
     dif.add_argument("new", type=Path, metavar="NEW", help=_INPUT_HELP)
+
+    mrg = sub.add_parser(
+        "merge",
+        help="carry reviews from SOURCE into a copy of TARGET (same STIG release)",
+        description=(
+            "Copy review state (status, comments, finding details, overrides) from SOURCE into "
+            "a copy of TARGET and write it to OUTPUT (.cklb or .ckl). Rules whose TARGET review "
+            "is empty receive SOURCE's; when both hold different reviews the conflict is listed "
+            "and TARGET wins unless --prefer source. Both must be the same STIG release. "
+            "Dry-run by default: nothing is written unless --apply is given. "
+            "SOURCE and TARGET are never modified."
+        ),
+    )
+    mrg.add_argument("source", type=Path, metavar="SOURCE", help=_INPUT_HELP)
+    mrg.add_argument("target", type=Path, metavar="TARGET", help=_INPUT_HELP)
+    mrg.add_argument("-o", "--output", required=True, type=Path, help="output .cklb or .ckl path")
+    mrg.add_argument(
+        "--prefer",
+        choices=("target", "source"),
+        default="target",
+        help="whose review wins a conflict (default: target)",
+    )
+    mrg.add_argument("--apply", action="store_true", help="actually write the output file")
+    mrg.add_argument("--force", action="store_true", help="overwrite an existing output file")
     return parser
 
 
@@ -185,19 +210,29 @@ def _format_diff(diff: ChecklistDiff, out: TextIO) -> None:
         out.write(f"- STIG only in OLD: {stig_id}\n")
 
 
-def _run_diff(args: argparse.Namespace, out: TextIO) -> int:
+def _load_all(paths: Sequence[Path]) -> list[Checklist] | None:
+    """Load every input, logging import warnings. Returns None (error logged) on the first
+    file that cannot be read."""
     log = get_logger()
     loaded: list[Checklist] = []
-    for n, path in enumerate((args.old, args.new), start=1):
-        log.info("reading", step=f"{n}/2", file=str(path))
+    for n, path in enumerate(paths, start=1):
+        log.info("reading", step=f"{n}/{len(paths)}", file=str(path))
         try:
             result = _load_any(path)
         except (ChecklistError, OSError) as exc:
             log.error("cannot read checklist", file=str(path), error=str(exc))
-            return EXIT_UNREADABLE
+            return None
         for warning in result.warnings:
             log.warning("import", detail=warning)
         loaded.append(result.checklist)
+    return loaded
+
+
+def _run_diff(args: argparse.Namespace, out: TextIO) -> int:
+    log = get_logger()
+    loaded = _load_all((args.old, args.new))
+    if loaded is None:
+        return EXIT_UNREADABLE
     log.info("comparing")
     diff = diff_checklists(loaded[0], loaded[1])
     _format_diff(diff, out)
@@ -210,16 +245,60 @@ def _run_diff(args: argparse.Namespace, out: TextIO) -> int:
     return EXIT_OK
 
 
+def _check_output_path(dest: Path, inputs: Sequence[Path]) -> bool:
+    """Log and return False when OUTPUT has an unsupported type or would overwrite an input."""
+    log = get_logger()
+    if dest.suffix.lower() not in (".cklb", ".ckl"):
+        log.error("unsupported output type", output=str(dest), expected=".cklb or .ckl")
+        return False
+    if any(dest.resolve() == src.resolve() for src in inputs):
+        log.error("output would overwrite an input", path=str(dest))
+        return False
+    return True
+
+
+def _write_output(
+    checklist: Checklist, dest: Path, *, apply: bool, force: bool, out: TextIO
+) -> int:
+    """Write `checklist` to `dest` in the format its extension names, or rehearse it.
+
+    A dry run goes through everything except the final write (serialising, export warnings,
+    output checks), so it fails exactly where --apply would.
+    """
+    log = get_logger()
+    fmt = dest.suffix.lower()
+    export_warnings: list[str] = []
+    if fmt == ".cklb":
+        text = cklb.dumps(checklist)
+    else:
+        text, export_warnings = ckl.dumps(checklist)
+    for warning in export_warnings:
+        log.warning("export", detail=warning)
+    try:
+        if apply:
+            atomic_write_text(dest, text, force=force)  # runs check_write_target itself
+        else:
+            check_write_target(dest, force=force)
+    except OSError as exc:
+        log.error("cannot write output", file=str(dest), error=str(exc))
+        return EXIT_UNREADABLE
+
+    rule_count = sum(len(s.rules) for s in checklist.stigs)
+    if apply:
+        out.write(f"wrote {len(checklist.stigs)} STIG(s), {rule_count} rule(s) to {dest}\n")
+    else:
+        out.write(
+            f"dry run: would write {len(checklist.stigs)} STIG(s), {rule_count} rule(s) "
+            f"to {dest} ({fmt[1:]}); re-run with --apply to write\n"
+        )
+    return EXIT_OK
+
+
 def _run_convert(args: argparse.Namespace, out: TextIO) -> int:
     log = get_logger()
     src: Path = args.input
     dest: Path = args.output
-    fmt = dest.suffix.lower()
-    if fmt not in (".cklb", ".ckl"):
-        log.error("unsupported output type", output=str(dest), expected=".cklb or .ckl")
-        return EXIT_UNREADABLE
-    if dest.resolve() == src.resolve():
-        log.error("output would overwrite the input", path=str(dest))
+    if not _check_output_path(dest, (src,)):
         return EXIT_UNREADABLE
 
     log.info("step", n="1/3", action="reading", file=str(src))
@@ -233,34 +312,62 @@ def _run_convert(args: argparse.Namespace, out: TextIO) -> int:
     checklist = result.checklist
     rule_count = sum(len(s.rules) for s in checklist.stigs)
     log.info("step", n="2/3", action="parsed", stigs=len(checklist.stigs), rules=rule_count)
-
-    # A dry run goes through everything except the final write (serialising, export warnings,
-    # output checks), so it fails exactly where --apply would.
-    export_warnings: list[str] = []
-    if fmt == ".cklb":
-        text = cklb.dumps(checklist)
-    else:
-        text, export_warnings = ckl.dumps(checklist)
-    for warning in export_warnings:
-        log.warning("export", detail=warning)
-    try:
-        if args.apply:
-            log.info("step", n="3/3", action="writing", file=str(dest))
-            atomic_write_text(dest, text, force=args.force)  # runs check_write_target itself
-        else:
-            check_write_target(dest, force=args.force)
-    except OSError as exc:
-        log.error("cannot write output", file=str(dest), error=str(exc))
-        return EXIT_UNREADABLE
-
     if args.apply:
-        out.write(f"wrote {len(checklist.stigs)} STIG(s), {rule_count} rule(s) to {dest}\n")
-    else:
+        log.info("step", n="3/3", action="writing", file=str(dest))
+    return _write_output(checklist, dest, apply=args.apply, force=args.force, out=out)
+
+
+def _format_stig_merge(sm: StigMerge, prefer: str, out: TextIO) -> None:
+    out.write(
+        f"{sm.stig_id} ({sm.release_info or 'no release info'}): carried={sm.carried} "
+        f"conflicts={len(sm.conflicts)} unchanged={sm.unchanged}"
+    )
+    if sm.matched_by_group_id:
+        out.write(f" matched_by_group_id={sm.matched_by_group_id}")
+    out.write("\n")
+    for c in sm.conflicts:
         out.write(
-            f"dry run: would write {len(checklist.stigs)} STIG(s), {rule_count} rule(s) "
-            f"to {dest} ({fmt[1:]}); re-run with --apply to write\n"
+            f"  ! {c.group_id} {c.rule_id}: target {c.target_status.value}, "
+            f"source {c.source_status.value} (differs: {', '.join(c.differs)}); kept {prefer}\n"
         )
-    return EXIT_OK
+    for rule in sm.not_carried:
+        out.write(
+            f"  - {rule.group_id} {rule.rule_id}: {rule.status.value} review in SOURCE has no "
+            "matching rule in TARGET; not carried\n"
+        )
+    for group_id in sm.ambiguous:
+        out.write(f"  ? {group_id}: several rules share this group_id; not matched\n")
+
+
+def _format_merge(result: MergeResult, out: TextIO) -> None:
+    for sm in result.stigs:
+        _format_stig_merge(sm, result.prefer, out)
+    for stig_id in result.source_only_stigs:
+        out.write(f"- STIG only in SOURCE, not merged: {stig_id}\n")
+    for stig_id in result.target_only_stigs:
+        out.write(f"= STIG only in TARGET, left as is: {stig_id}\n")
+
+
+def _run_merge(args: argparse.Namespace, out: TextIO) -> int:
+    log = get_logger()
+    dest: Path = args.output
+    if not _check_output_path(dest, (args.source, args.target)):
+        return EXIT_UNREADABLE
+    loaded = _load_all((args.source, args.target))
+    if loaded is None:
+        return EXIT_UNREADABLE
+    log.info("merging", prefer=args.prefer)
+    try:
+        result = merge_checklists(loaded[0], loaded[1], prefer=args.prefer)
+    except ChecklistError as exc:
+        log.error("cannot merge", error=str(exc))
+        return EXIT_UNREADABLE
+    for warning in result.warnings:
+        log.warning("merge", detail=warning)
+    _format_merge(result, out)
+    if args.apply:
+        log.info("writing", file=str(dest))
+    return _write_output(result.checklist, dest, apply=args.apply, force=args.force, out=out)
 
 
 def _run_inspect(args: argparse.Namespace, out: TextIO) -> int:
@@ -329,6 +436,8 @@ def run(argv: Sequence[str] | None = None, *, out: TextIO | None = None) -> int:
         return _run_convert(args, out)
     if args.command == "diff":
         return _run_diff(args, out)
+    if args.command == "merge":
+        return _run_merge(args, out)
     return _run_inspect(args, out)
 
 
