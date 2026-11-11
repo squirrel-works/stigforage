@@ -170,7 +170,7 @@ Details, made during implementation:
   V-number because it names no rule id, so the drift warning counts only matches where the scan
   gave a rule id that differs.
 
-## Unit 4: pip-audit and npm audit (details within decisions 8 and 9, pending maintainer review)
+## Unit 4: pip-audit and npm audit (within decisions 8 and 9, accepted at close-out, 2026-11-11)
 
 Evidence from real output generated for this project: pip-audit 2.10.1 on old requests,
 urllib3 and jinja2 plus a name not on PyPI, and npm 11.20.0 audit of old lodash, minimist and

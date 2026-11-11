@@ -2,7 +2,7 @@
 
 Exit codes: 0 success, 1 validation errors found, 2 a file could not be read, parsed or written,
 or the operation was refused (output would overwrite an input, merge across releases, upgrade
-onto a reviewed benchmark).
+onto a reviewed benchmark, import-results of another release or host).
 Progress and diagnostics go to stderr via structlog; results go to stdout.
 """
 
@@ -156,15 +156,16 @@ def _build_parser() -> argparse.ArgumentParser:
 
     imp = sub.add_parser(
         "import-results",
-        help="apply scan results (XCCDF or ARF from SCC, Evaluate-STIG, OpenSCAP; InSpec HDF)",
+        help="apply scan results (XCCDF/ARF, InSpec HDF, SARIF, pip-audit, npm audit)",
         description=(
             "Apply each RESULTS file to the CHECKLIST STIG it was scanned against and write "
-            "OUTPUT (.cklb or .ckl). pass, fail and notapplicable set the status and finding "
-            "details; other results are counted, not imported; comments are never touched. "
-            "The checklist wins a conflict unless --prefer results. A scan of another release "
-            "is refused, and so is a scan of another host unless --allow-host-mismatch. "
-            "Dry-run by default: nothing is written unless --apply is given. "
-            "Inputs are never modified."
+            "OUTPUT (.cklb or .ckl). Passing, failing and not-applicable results set the status "
+            "and finding details; other results are counted, not imported; comments are never "
+            "touched. SARIF and dependency audits name no STIG rule, so --rule names the rule "
+            "they are evidence for. The checklist wins a conflict unless --prefer results. A "
+            "scan of another release is refused, and so is a scan of another host unless "
+            "--allow-host-mismatch. Dry-run by default: nothing is written unless --apply is "
+            "given. Inputs are never modified."
         ),
     )
     imp.add_argument("checklist", type=Path, metavar="CHECKLIST", help=_INPUT_HELP)

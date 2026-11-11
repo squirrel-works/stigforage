@@ -3,7 +3,7 @@
 Free, offline STIG checklist toolkit. Working name. Donationware: free to use, no feature gating,
 no nag screens, no network access.
 
-**Status: pre-release (V0.2.2 accepted; V0.3.3 in progress).** Not yet usable as a replacement
+**Status: pre-release (V0.3.3 complete, pending acceptance).** Not yet usable as a replacement
 for anything. The roadmap below shows what exists and what does not.
 
 > CKLB output is checked against the DISA schema, not against STIG Viewer 3 itself (which has no
@@ -78,26 +78,37 @@ standard-library parser that rejects any DTD or entity declaration.
 - Defaults such as `active`/`mode`/`has_path` and `reference_identifier` come from public
   fixtures, not from DISA documentation.
 
+## Known gaps in V0.3.3
+
+- The only real ARF tested is OpenSCAP's. SCC's own ARF is untested: SCC needs a DoD login to
+  download.
+- No real HDF sample has waiver data, so waived controls (counted, never imported) are tested on
+  synthetic files only. HDF attestations are not read.
+- SARIF and dependency audits record no release or host, so neither can be checked; each import
+  says so in a warning. pip-audit reports no severity, so its findings are `unrated`.
+- Scans are imported, not judged: whether a passing scan is enough evidence for a rule is still
+  the assessor's call, and `import-results` never touches comments.
+
 ## Roadmap
 
 | Stage | Scope | State |
 | --- | --- | --- |
 | V0.1.1 | Core model, CKLB I/O, CKL and XCCDF/SCAP import, `convert` CLI | accepted |
 | V0.2.2 | Carry-forward merge, STIG upgrade wizard, checklist diff | accepted |
-| V0.3.3 | Result importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit, npm audit | in progress |
+| V0.3.3 | Importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit, npm audit | pending acceptance |
 | V0.4.4 | CSV/POA&M/evidence ZIP export, CCI to 800-53 Rev 5 crosswalk, dashboard data | planned |
 | V0.5.5 | Refactor and stabilization | planned |
 | V1.x | PySide6 desktop GUI, packaging for Windows, Linux, macOS | planned |
 
-V0.3.3 progress: all four units are built (XCCDF results and ARF, InSpec HDF, SARIF, pip-audit
-and npm audit JSON); the stage's final review is next. The SARIF importer also covers Trivy,
+V0.3.3 is complete and awaits the maintainer's acceptance. Its SARIF importer also covers Trivy,
 Grype and OSV-Scanner, which all write SARIF.
 
 ## Principles
 
 - Offline by default. No telemetry, no update checks, no CDN assets.
 - Never modifies input files. State-changing commands are dry-run unless `--apply` is given.
-- No DISA content is bundled. You import STIGs you downloaded from DoD Cyber Exchange.
+- No DISA content is bundled with the tool. You import STIGs you downloaded from DoD Cyber
+  Exchange. (The test fixtures hold truncated excerpts; see NOTICE.)
 
 ## Disclaimer
 
@@ -106,5 +117,6 @@ descriptively.
 
 ## License
 
-Apache License 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE). Test fixtures are MIT-licensed
-third-party material; see NOTICE.
+Apache License 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE). Test fixtures include
+third-party material under the MIT and Apache 2.0 licenses, advisory text under CC BY 4.0, and
+truncated DISA content; NOTICE lists each source.

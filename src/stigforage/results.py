@@ -1,15 +1,20 @@
 """Apply scan results to a checklist (`import-results`).
 
-Unit 1 reads XCCDF result files as written by SCC, Evaluate-STIG, OpenSCAP and STIG Manager: an
-XCCDF `Benchmark` holding a `TestResult`, or an ARF `asset-report-collection` wrapping either.
-Policy is ADR 0003:
-- Results map pass -> not_a_finding, fail -> open, notapplicable -> not_applicable. Every other
-  result is not imported and is counted.
+Two jobs. This module reads XCCDF result files as written by SCC, Evaluate-STIG, OpenSCAP and
+STIG Manager (an XCCDF `Benchmark` holding a `TestResult`, or an ARF `asset-report-collection`
+wrapping either). And `import_results` applies any `Scan`, whatever produced it: these, HDF
+(`hdf.py`), or SARIF and dependency audits gathered under one `--rule` (`findings.py`). Policy
+is ADR 0003:
+- Result values map pass -> not_a_finding, fail -> open, notapplicable -> not_applicable.
+  Every other value (XCCDF's notchecked, error and so on; HDF's error, waived, skipped;
+  findings' no_findings) is not imported and is counted.
 - A scan's review is its status and finding details; comments and overrides are never touched.
   The checklist wins a conflict unless `prefer="results"`.
-- A scan pairs with the checklist STIG of the same id (benchmark prefix dropped) and must be the
-  same release, compared as (version, release) numbers. Rules pair through `diff.match_rules`.
-- A scan of another host is refused unless `allow_host_mismatch`.
+- A scan naming its STIG (XCCDF) pairs with the checklist STIG of that id, benchmark prefix
+  dropped; one naming none (HDF, findings) pairs with the STIG holding its V-numbers. It must
+  be the same release, compared as (version, release) numbers; an unknown release warns, and
+  so do differing rule revisions under one. Rules pair through `diff.match_rules`.
+- A scan of another host is refused unless `allow_host_mismatch`; a scan naming no host warns.
 
 Trust boundary: result files are untrusted. XML goes through `xmlsafe`, and malformed content
 raises ChecklistError with a locator.
@@ -103,7 +108,7 @@ class ScanImport:
     matched_by_group_id: int = 0
     revision_differs: int = 0  # matched by V-number although the scan gave a rule id
     conflicts: list[ScanConflict] = field(default_factory=list)
-    not_imported: Counter[str] = field(default_factory=Counter)  # by XCCDF result value
+    not_imported: Counter[str] = field(default_factory=Counter)  # by result value, as written
     unmatched: list[RuleResult] = field(default_factory=list)  # no rule in the checklist
     ambiguous: list[str] = field(default_factory=list)
 

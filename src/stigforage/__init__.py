@@ -22,7 +22,7 @@ Changelog
        Unit 3: `upgrade OLD NEW_BENCHMARK -o OUTPUT` (upgrade.py) carries reviews onto a new
        release, downgrading to not_reviewed with a note where the check text changed
        (--keep-status-on-change to skip). Reuses merge's review unit and release test.
-0.3.3  (roadmap stage 3, in progress)
+0.3.3  (roadmap stage 3, completed-but-pending-acceptance until the maintainer accepts it)
        Unit 1: `import-results CHECKLIST RESULTS... -o OUTPUT` (results.py) applies XCCDF
        results and ARF (SCC, Evaluate-STIG, OpenSCAP, STIG Manager) per ADR 0003: pass, fail
        and notapplicable imported, others counted; checklist wins unless --prefer results;
@@ -40,4 +40,4 @@ Changelog
        results files are identified by content (HDF, SARIF, pip-audit, npm audit).
 """
 
-__version__ = "0.2.2"
+__version__ = "0.3.3"
