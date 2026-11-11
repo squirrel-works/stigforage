@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with OpenSCAP 1.3.14 scanning a Red Hat UBI 9 container against DISA's U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark (profile MAC-1_Classified). Truncated to 10 rules, OVAL content and reports removed, host details replaced with documentation values (RFC 5737, RFC 3849, RFC 7042). See NOTICE. -->
+<arf:asset-report-collection xmlns:ai="http://scap.nist.gov/schema/asset-identification/1.1" xmlns:arf="http://scap.nist.gov/schema/asset-reporting-format/1.1" xmlns:core="http://scap.nist.gov/schema/reporting-core/1.1" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns2="http://scap.nist.gov/schema/scap/source/1.2" xmlns:ns5="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <core:relationships>
+  <core:relationship type="arfvocab:createdFor" subject="xccdf1">
+   <core:ref>collection1</core:ref>
+  </core:relationship>
+  <core:relationship type="arfvocab:isAbout" subject="xccdf1">
+   <core:ref>asset0</core:ref>
+  </core:relationship>
+ </core:relationships>
+ <arf:report-requests>
+  <arf:report-request id="collection1">
+   <arf:content>
+    <ns2:data-stream-collection id="scap_mil.disa.stig_collection_U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark" schematron-version="1.3" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.2 http://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd http://cpe.mitre.org/dictionary/2.0 http://scap.nist.gov/schema/cpe/2.3/cpe-dictionary_2.3.xsd http://cpe.mitre.org/language/2.0 https://csrc.nist.gov/schema/cpe/2.3/cpe-language_2.3.xsd http://oval.mitre.org/XMLSchema/oval-common-5 https://raw.githubusercontent.com/OVALProject/Language/refs/tags/5.11.2/schemas/oval-common-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5 https://raw.githubusercontent.com/OVALProject/Language/refs/tags/5.11.2/schemas/oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#independent https://raw.githubusercontent.com/OVALProject/Language/refs/tags/5.11.2/schemas/independent-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#linux https://raw.githubusercontent.com/OVALProject/Language/refs/tags/5.11.2/schemas/linux-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#unix https://raw.githubusercontent.com/OVALProject/Language/refs/tags/5.11.2/schemas/unix-definitions-schema.xsd http://scap.nist.gov/schema/scap/source/1.2 http://scap.nist.gov/schema/scap/1.3/scap-source-data-stream_1.3.xsd">
+     <ns2:data-stream id="scap_mil.disa.stig_datastream_U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark" use-case="CONFIGURATION" scap-version="1.3" timestamp="2026-09-26T22:59:18.486-04:00">
+      <ns2:dictionaries>
+      </ns2:dictionaries>
+      <ns2:checklists>
+       <ns2:component-ref id="scap_mil.disa.stig_cref_U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-xccdf.xml" xlink:href="#scap_mil.disa.stig_comp_U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-xccdf.xml">
+        <ns5:catalog>
+         <ns5:uri name="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" uri="#scap_mil.disa.stig_cref_U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" />
+        </ns5:catalog>
+       </ns2:component-ref>
+      </ns2:checklists>
+      <ns2:checks>
+      </ns2:checks>
+     </ns2:data-stream>
+     <ns2:component id="scap_mil.disa.stig_comp_U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-xccdf.xml" timestamp="2026-09-26T22:59:18.492-04:00">
+      <xccdf:Benchmark id="xccdf_mil.disa.stig_benchmark_RHEL_9_STIG" style="SCAP_1.3" xml:lang="en">
+       <xccdf:status date="2026-08-24">accepted</xccdf:status>
+       <xccdf:title>Red Hat Enterprise Linux 9 STIG SCAP Benchmark</xccdf:title>
+       <xccdf:description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of War (DoW) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</xccdf:description>
+       <xccdf:notice id="terms-of-use" xml:lang="en" />
+       <xccdf:front-matter xml:lang="en" />
+       <xccdf:rear-matter xml:lang="en" />
+       <xccdf:reference href="https://cyber.mil">
+        <dc:publisher>DISA</dc:publisher>
+        <dc:source>STIG.DOD.MIL</dc:source>
+       </xccdf:reference>
+       <xccdf:plain-text id="release-info">Benchmark Date: 30 Sep 2026</xccdf:plain-text>
+       <xccdf:plain-text id="generator">3.5.2</xccdf:plain-text>
+       <xccdf:plain-text id="conventionsVersion">1.10.0</xccdf:plain-text>
+       <cpe:platform-specification>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxBIND">
+         <cpe:title>Linux with BIND installed</cpe:title>
+         <cpe:logical-test operator="AND" negate="false">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.defs:def:25824200" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxLibuser">
+         <cpe:title>Linux with Libuser installed</cpe:title>
+         <cpe:logical-test operator="AND" negate="false">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.defs:def:25811600" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxNFSMounts">
+         <cpe:title>Linux with NFS mounts configured</cpe:title>
+         <cpe:logical-test operator="AND" negate="false">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.defs:def:25785400" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxIPv6enabled">
+         <cpe:title>Linux IPv6 Enabled</cpe:title>
+         <cpe:logical-test operator="AND" negate="true">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.linux:def:100012" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxLibreswan">
+         <cpe:title>Linux with Libreswan installed</cpe:title>
+         <cpe:logical-test operator="AND" negate="false">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.defs:def:25823200" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxGnome">
+         <cpe:title>Gnome-shell Package</cpe:title>
+         <cpe:logical-test operator="AND" negate="false">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.linux:def:100005" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxNoNFSMounts">
+         <cpe:title>Linux with no NFS mounts configured</cpe:title>
+         <cpe:logical-test operator="AND" negate="true">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.defs:def:25785400" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxTFTP">
+         <cpe:title>Linux with TFTP installed</cpe:title>
+         <cpe:logical-test operator="AND" negate="false">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.defs:def:25795200" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxUEFI">
+         <cpe:title>Linux UEFI Boot</cpe:title>
+         <cpe:logical-test operator="AND" negate="false">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.linux:def:100006" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_RHEL_9_NotFIPS">
+         <cpe:title>RHEL9 and Not FIPS</cpe:title>
+         <cpe:logical-test operator="AND" negate="true">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.defs:def:258230" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxKernelDumps">
+         <cpe:title>Kernel dumps are enabled</cpe:title>
+         <cpe:logical-test operator="AND" negate="true">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.defs:def:230311" />
+         </cpe:logical-test>
+        </cpe:platform>
+        <cpe:platform id="xccdf_mil.disa.stig_platform_LinuxPostfix">
+         <cpe:title>Linux with postfix installed</cpe:title>
+         <cpe:logical-test operator="AND" negate="false">
+          <cpe:check-fact-ref system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" id-ref="oval:mil.disa.stig.defs:def:25795100" />
+         </cpe:logical-test>
+        </cpe:platform>
+       </cpe:platform-specification>
+       <xccdf:platform idref="cpe:/o:redhat:enterprise_linux:9.0" />
+       <xccdf:version>002.010</xccdf:version>
+       <xccdf:metadata>
+        <dc:creator>DISA</dc:creator>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:contributor>DISA</dc:contributor>
+        <dc:source>STIG.DOD.MIL</dc:source>
+       </xccdf:metadata>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_MAC-1_Classified">
+        <xccdf:title>I - Mission Critical Classified</xccdf:title>
+        <xccdf:description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_MAC-1_Public">
+        <xccdf:title>I - Mission Critical Public</xccdf:title>
+        <xccdf:description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_MAC-1_Sensitive">
+        <xccdf:title>I - Mission Critical Sensitive</xccdf:title>
+        <xccdf:description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_MAC-2_Classified">
+        <xccdf:title>II - Mission Support Classified</xccdf:title>
+        <xccdf:description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_MAC-2_Public">
+        <xccdf:title>II - Mission Support Public</xccdf:title>
+        <xccdf:description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_MAC-2_Sensitive">
+        <xccdf:title>II - Mission Support Sensitive</xccdf:title>
+        <xccdf:description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_MAC-3_Classified">
+        <xccdf:title>III - Administrative Classified</xccdf:title>
+        <xccdf:description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_MAC-3_Public">
+        <xccdf:title>III - Administrative Public</xccdf:title>
+        <xccdf:description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_MAC-3_Sensitive">
+        <xccdf:title>III - Administrative Sensitive</xccdf:title>
+        <xccdf:description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_Disable_Slow_Rules">
+        <xccdf:title>Disable Slow Rules</xccdf:title>
+        <xccdf:description>This profile disables rules known to have poor performance in some environments, such as systems with large numbers of user accounts.</xccdf:description>
+       </xccdf:Profile>
+       <xccdf:Profile id="xccdf_mil.disa.stig_profile_CAT_I_Only">
+        <xccdf:title>CAT I Only</xccdf:title>
+        <xccdf:description>This profile only includes rules that are Severity Category I.</xccdf:description>
+        <xccdf:select idref="xccdf_mil.disa.stig_rule_SV-257781r991589_rule" selected="false" />
+        <xccdf:select idref="xccdf_mil.disa.stig_rule_SV-257787r1262101_rule" selected="false" />
+        <xccdf:select idref="xccdf_mil.disa.stig_rule_SV-257788r1044838_rule" selected="false" />
+        <xccdf:select idref="xccdf_mil.disa.stig_rule_SV-257854r1044934_rule" selected="false" />
+        <xccdf:select idref="xccdf_mil.disa.stig_rule_SV-257797r1262133_rule" selected="false" />
+        <xccdf:select idref="xccdf_mil.disa.stig_rule_SV-257782r991589_rule" selected="false" />
+        <xccdf:select idref="xccdf_mil.disa.stig_rule_SV-257783r991562_rule" selected="false" />
+       </xccdf:Profile>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257777">
+        <xccdf:title>SRG-OS-000480-GPOS-00227</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257777r1155676_rule" severity="high" weight="10.0">
+         <xccdf:version>RHEL-09-211010</xccdf:version>
+         <xccdf:title>RHEL 9 must be a vendor-supported release.</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;An operating system release is considered "supported" if the vendor continues to provide security patches for the product. With an unsupported release, it will not be possible to resolve security issues discovered in the system software.
+
+End Of Life dates for Red Hat Linux 9 releases are as follows:
+Current end of Full Support for Red Hat Linux 9 is 31 May 2027.
+Current end of Maintenance Support for Red Hat Linux 9 is 31 May 3032.
+Current end of Extended Life Cycle Support (ELS) for Red Hat Linux 9 is 31 May 2035.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+         <xccdf:fixtext fixref="F-61442r925317_fix">Upgrade to a supported version of RHEL 9.</xccdf:fixtext>
+         <xccdf:fix id="F-61442r925317_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257777" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257781">
+        <xccdf:title>SRG-OS-000480-GPOS-00227</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257781r991589_rule" severity="medium" weight="10.0">
+         <xccdf:version>RHEL-09-211030</xccdf:version>
+         <xccdf:title>The graphical display manager must not be the default target on RHEL 9 unless approved.</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;Unnecessary service packages must not be installed to decrease the attack surface of the system. Graphical display managers have a long history of security vulnerabilities and must not be used, unless approved and documented.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+         <xccdf:fixtext fixref="F-61446r925329_fix">Document the requirement for a graphical user interface with the ISSO or set the default target to multi-user with the following command:
+
+$ sudo systemctl set-default multi-user.target</xccdf:fixtext>
+         <xccdf:fix id="F-61446r925329_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257781" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257782">
+        <xccdf:title>SRG-OS-000480-GPOS-00227</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257782r991589_rule" severity="low" weight="10.0">
+         <xccdf:version>RHEL-09-211035</xccdf:version>
+         <xccdf:title>RHEL 9 must enable the hardware random number generator entropy gatherer service.</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;The most important characteristic of a random number generator is its randomness, namely its ability to deliver random numbers that are impossible to predict. Entropy in computer security is associated with the unpredictability of a source of randomness. The random source with high entropy tends to achieve a uniform distribution of random values. Random number generators are one of the most important building blocks of cryptosystems.  
+
+The rngd service feeds random data from hardware device to kernel random device. Quality (nonpredictable) random number generation is important for several security functions (i.e., ciphers).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:platform idref="#xccdf_mil.disa.stig_platform_RHEL_9_NotFIPS" />
+         <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+         <xccdf:fixtext fixref="F-61447r925332_fix">Install the rng-tools package with the following command:
+
+$ sudo dnf install rng-tools
+
+Then enable the rngd service run the following command:
+
+$ sudo systemctl enable --now rngd</xccdf:fixtext>
+         <xccdf:fix id="F-61447r925332_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257782" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257783">
+        <xccdf:title>SRG-OS-000269-GPOS-00103</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257783r991562_rule" severity="medium" weight="10.0">
+         <xccdf:version>RHEL-09-211040</xccdf:version>
+         <xccdf:title>RHEL 9 systemd-journald service must be enabled.</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;In the event of a system failure, RHEL 9 must preserve any information necessary to determine cause of failure and any information necessary to return to operations with least disruption to system processes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:ident system="http://cyber.mil/cci">CCI-001665</xccdf:ident>
+         <xccdf:fixtext fixref="F-61448r925335_fix">To enable the systemd-journald service, run the following command:
+
+$ sudo systemctl enable --now systemd-journald</xccdf:fixtext>
+         <xccdf:fix id="F-61448r925335_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257783" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257784">
+        <xccdf:title>SRG-OS-000324-GPOS-00125</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257784r1262100_rule" severity="high" weight="10.0">
+         <xccdf:version>RHEL-09-211045</xccdf:version>
+         <xccdf:title>The systemd Ctrl-Alt-Delete burst key sequence in RHEL 9 must be disabled.</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;A locally logged-on user who presses Ctrl-Alt-Delete when at the console can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In a graphical user environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.
+
+Satisfies: SRG-OS-000324-GPOS-00125, SRG-OS-000480-GPOS-00227&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:ident system="http://cyber.mil/cci">CCI-002235</xccdf:ident>
+         <xccdf:fixtext fixref="F-61449r1261987_fix">Configure RHEL 9 to disable the CtrlAltDelBurstAction by adding it to a drop file in a "/etc/systemd/system.conf.d/" configuration file:
+
+If no drop file exists, create one with the following command:
+
+$ sudo mkdir -p /etc/systemd/system.conf.d &amp;&amp; sudo vi /etc/systemd/system.conf.d/55-CtrlAltDel-BurstAction.conf
+
+Edit the file to contain the setting by adding the following text:
+
+[Manager]
+CtrlAltDelBurstAction=none
+
+Reload the daemon for this change to take effect.
+
+$ sudo systemctl daemon-reload</xccdf:fixtext>
+         <xccdf:fix id="F-61449r1261987_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257784" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257787">
+        <xccdf:title>SRG-OS-000080-GPOS-00048</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257787r1262101_rule" severity="medium" weight="10.0">
+         <xccdf:version>RHEL-09-212010</xccdf:version>
+         <xccdf:title>RHEL 9 must require authentication upon booting into single-user and maintenance modes.</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;To mitigate the risk of unauthorized access to sensitive information by entities that have been issued certificates by DoW-approved PKIs, all DoW systems (e.g., web servers and web portals) must be properly configured to incorporate access control methods that do not rely solely on the possession of a certificate for access. Successful authentication must not automatically give an entity access to an asset or security boundary. Authorization procedures and controls must be implemented to ensure each authenticated entity also has a validated and current authorization. Authorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset. Information systems use access control policies and enforcement mechanisms to implement this requirement.
+
+Password protection on the boot loader configuration ensures users with physical access cannot trivially alter important bootloader settings. These include which kernel to use, and whether to enter single-user mode.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:ident system="http://cyber.mil/cci">CCI-000213</xccdf:ident>
+         <xccdf:fixtext fixref="F-61452r925347_fix">Configure RHEL 9 to require a grub bootloader password for the grub superuser account.
+
+Generate an encrypted grub2 password for the grub superuser account with the following command:
+
+$ sudo grub2-setpassword
+Enter password:
+Confirm password:</xccdf:fixtext>
+         <xccdf:fix id="F-61452r925347_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257787" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257788">
+        <xccdf:title>SRG-OS-000480-GPOS-00227</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257788r1044838_rule" severity="medium" weight="10.0">
+         <xccdf:version>RHEL-09-212015</xccdf:version>
+         <xccdf:title>RHEL 9 must disable the ability of systemd to spawn an interactive boot process.</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;Using interactive or recovery boot, the console user could disable auditing, firewalls, or other services, weakening system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+         <xccdf:fixtext fixref="F-61453r1044837_fix">Configure the current GRUB 2 configuration to disable the ability of systemd to spawn an interactive boot process with the following command:
+
+$ sudo grubby --update-kernel=ALL --remove-args="systemd.confirm_spawn"</xccdf:fixtext>
+         <xccdf:fix id="F-61453r1044837_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257788" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257797">
+        <xccdf:title>SRG-OS-000132-GPOS-00067</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257797r1262133_rule" severity="medium" weight="10.0">
+         <xccdf:version>RHEL-09-213010</xccdf:version>
+         <xccdf:title>RHEL 9 must restrict access to the kernel message buffer.</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;Preventing unauthorized information transfers mitigates the risk of information, including encrypted representations of information, produced by the actions of prior users/roles (or the actions of processes acting on behalf of prior users/roles) from being available to any current users/roles (or current processes) that obtain access to shared system resources (e.g., registers, main memory, hard disks) after those resources have been released back to information systems. The control of information in shared resources is also commonly referred to as object reuse and residual information protection.
+
+This requirement generally applies to the design of an information technology product, but it can also apply to the configuration of particular information system components that are, or use, such products. This can be verified by acceptance/validation processes in DoW or other government agencies.
+
+There may be shared resources with configurable protections (e.g., files in storage) that may be assessed on specific information system components.
+
+Restricting access to the kernel message buffer limits access to only root. This prevents attackers from gaining additional system information as a nonprivileged user.
+
+The sysctl --system command will load settings from all system configuration files. All configuration files are sorted by their filename in lexicographical order, regardless of the directories in which they reside. If multiple files specify the same option, the entry in the file with the lexicographically latest name will take precedence. Files are read from directories in the following list from top to bottom. Once a file of a given filename is loaded, any file of the same name in subsequent directories is ignored.
+
+/etc/sysctl.d/*.conf
+/run/sysctl.d/*.conf
+/usr/local/lib/sysctl.d/*.conf
+/usr/lib/sysctl.d/*.conf
+/lib/sysctl.d/*.conf
+/etc/sysctl.conf
+
+Satisfies: SRG-OS-000132-GPOS-00067, SRG-OS-000138-GPOS-00069&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:ident system="http://cyber.mil/cci">CCI-001082</xccdf:ident>
+         <xccdf:ident system="http://cyber.mil/cci">CCI-001090</xccdf:ident>
+         <xccdf:fixtext fixref="F-61462r1155690_fix">Configure RHEL 9 to restrict access to the kernel message buffer.
+
+Create a drop-in if it does not already exist:
+
+$ sudo vi /etc/sysctl.d/99-dmesg_restrict.conf
+
+Add the following to the file:
+kernel.dmesg_restrict = 1
+
+Reload settings from all system configuration files with the following command:
+
+$ sudo sysctl --system</xccdf:fixtext>
+         <xccdf:fix id="F-61462r1155690_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257797" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257835">
+        <xccdf:title>SRG-OS-000480-GPOS-00227</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257835r1155679_rule" severity="high" weight="10.0">
+         <xccdf:version>RHEL-09-215060</xccdf:version>
+         <xccdf:title>The Trivial File Transfer Protocol (TFTP) server must not be installed unless it is required, and if required, the RHEL 9 TFTP daemon must be configured to operate in secure mode.</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;Removing the "tftp-server" package decreases the risk of the accidental (or intentional) activation of tftp services.
+
+If TFTP is required for operational support (such as transmission of router configurations), its use must be documented with the information systems security manager (ISSM), restricted to only authorized personnel, and have access control rules established.
+
+Restricting TFTP to a specific directory prevents remote users from copying, transferring, or overwriting system files.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:platform idref="#xccdf_mil.disa.stig_platform_LinuxTFTP" />
+         <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+         <xccdf:fixtext fixref="F-61500r1155678_fix">Configure RHEL 9 so that TFTP operates in secure mode if installed.
+
+If TFTP server is not required, remove it with the following command:
+$ sudo dnf -y remove tftp-server
+
+Configure the TFTP daemon to operate in secure mode with the following command:
+$ sudo systemctl edit tftp.service
+
+In the editor, enter:
+[Service]
+ExecStart=/usr/sbin/in.tftpd -s /var/lib/tftpboot
+
+After making changes, reload the systemd daemon and restart the TFTP service as follows:
+
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart tftp.service
+
+If the "-s" option is not present in the "ExecStart" line or if the line is missing, this is a finding.</xccdf:fixtext>
+         <xccdf:fix id="F-61500r1155678_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257835" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+       <xccdf:Group id="xccdf_mil.disa.stig_group_V-257854">
+        <xccdf:title>SRG-OS-000480-GPOS-00227</xccdf:title>
+        <xccdf:description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</xccdf:description>
+        <xccdf:Rule id="xccdf_mil.disa.stig_rule_SV-257854r1044934_rule" severity="medium" weight="10.0">
+         <xccdf:version>RHEL-09-231065</xccdf:version>
+         <xccdf:title>RHEL 9 must prevent special devices on file systems that are imported via Network File System (NFS).</xccdf:title>
+         <xccdf:description>&lt;VulnDiscussion&gt;The "nodev" mount option causes the system to not interpret character or block special devices. Executing character or block special devices from untrusted file systems increases the opportunity for nonprivileged users to attain unauthorized administrative access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</xccdf:description>
+         <xccdf:reference>
+          <dc:title>DPMS Target Red Hat Enterprise Linux 9</dc:title>
+          <dc:publisher>DISA</dc:publisher>
+          <dc:type>DPMS Target</dc:type>
+          <dc:subject>Red Hat Enterprise Linux 9</dc:subject>
+          <dc:identifier>5551</dc:identifier>
+         </xccdf:reference>
+         <xccdf:platform idref="#xccdf_mil.disa.stig_platform_LinuxNFSMounts" />
+         <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+         <xccdf:fixtext fixref="F-61519r925548_fix">Update each NFS mounted file system to use the "nodev" option on file systems that are being imported via NFS.</xccdf:fixtext>
+         <xccdf:fix id="F-61519r925548_fix" />
+         <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+          <xccdf:check-content-ref href="U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-oval.xml" name="oval:mil.disa.stig.rhel9os:def:257854" />
+         </xccdf:check>
+        </xccdf:Rule>
+       </xccdf:Group>
+      </xccdf:Benchmark>
+     </ns2:component>
+    </ns2:data-stream-collection>
+   </arf:content>
+  </arf:report-request>
+ </arf:report-requests>
+ <arf:assets>
+  <arf:asset id="asset0">
+   <ai:computing-device>
+    <ai:connections>
+     <ai:connection>
+      <ai:ip-address>192.0.2.10<ai:ip-v4>192.0.2.10</ai:ip-v4>
+      </ai:ip-address>
+     </ai:connection>
+     <ai:connection>
+      <ai:ip-address>192.0.2.10<ai:ip-v4>192.0.2.10</ai:ip-v4>
+      </ai:ip-address>
+     </ai:connection>
+     <ai:connection>
+      <ai:ip-address>192.0.2.10<ai:ip-v6>2001:db8::10</ai:ip-v6>
+      </ai:ip-address>
+     </ai:connection>
+     <ai:connection>
+      <ai:mac-address>00:00:5E:00:53:01</ai:mac-address>
+     </ai:connection>
+     <ai:connection>
+      <ai:mac-address>00:00:5E:00:53:01</ai:mac-address>
+     </ai:connection>
+    </ai:connections>
+    <ai:fqdn>scanned-container</ai:fqdn>
+    <ai:hostname>scanned-container</ai:hostname>
+   </ai:computing-device>
+  </arf:asset>
+ </arf:assets>
+ <arf:reports>
+  <arf:report id="xccdf1">
+   <arf:content>
+    <xccdf:TestResult id="xccdf_org.open-scap_testresult_xccdf_mil.disa.stig_profile_MAC-1_Classified" start-time="2026-11-10T23:35:06+00:00" end-time="2026-11-10T23:35:07+00:00" version="002.010" test-system="cpe:/a:redhat:openscap:1.3.14">
+     <xccdf:benchmark href="#scap_mil.disa.stig_comp_U_RHEL_9_V2R10_STIG_SCAP_1-3_Benchmark-xccdf.xml" id="xccdf_mil.disa.stig_benchmark_RHEL_9_STIG" />
+     <xccdf:title>OSCAP Scan Result</xccdf:title>
+     <xccdf:identity authenticated="false" privileged="false">root</xccdf:identity>
+     <xccdf:profile idref="xccdf_mil.disa.stig_profile_MAC-1_Classified" />
+     <xccdf:target>scanned-container</xccdf:target>
+     <xccdf:target-address>192.0.2.10</xccdf:target-address>
+     <xccdf:target-address>192.0.2.10</xccdf:target-address>
+     <xccdf:target-address>2001:db8::10</xccdf:target-address>
+     <xccdf:target-facts>
+      <xccdf:fact name="urn:xccdf:fact:scanner:name" type="string">OpenSCAP</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:scanner:version" type="string">1.3.14</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:asset:identifier:fqdn" type="string">scanned-container</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:asset:identifier:host_name" type="string">scanned-container</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:ethernet:MAC" type="string">00:00:5E:00:53:01</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:asset:identifier:mac" type="string">00:00:5E:00:53:01</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:ethernet:MAC" type="string">00:00:5E:00:53:01</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:asset:identifier:mac" type="string">00:00:5E:00:53:01</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:asset:identifier:ipv4" type="string">192.0.2.10</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:asset:identifier:ipv4" type="string">192.0.2.10</xccdf:fact>
+      <xccdf:fact name="urn:xccdf:fact:asset:identifier:ipv6" type="string">2001:db8::10</xccdf:fact>
+     </xccdf:target-facts>
+     <xccdf:target-id-ref system="http://scap.nist.gov/schema/asset-identification/1.1" name="asset0" href="" />
+     <xccdf:platform idref="cpe:/o:redhat:enterprise_linux:9.0" />
+     <xccdf:platform idref="#xccdf_mil.disa.stig_platform_RHEL_9_NotFIPS" />
+     <xccdf:platform idref="#xccdf_mil.disa.stig_platform_LinuxKernelDumps" />
+     <xccdf:platform idref="#xccdf_mil.disa.stig_platform_LinuxIPv6enabled" />
+     <xccdf:platform idref="#xccdf_mil.disa.stig_platform_LinuxLibuser" />
+     <xccdf:platform idref="#xccdf_mil.disa.stig_platform_LinuxNoNFSMounts" />
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257777r1155676_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="high" version="RHEL-09-211010" weight="10.000000">
+      <xccdf:result>pass</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+      <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+       <xccdf:check-content-ref name="oval:mil.disa.stig.rhel9os:def:257777" href="#oval0" />
+      </xccdf:check>
+     </xccdf:rule-result>
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257781r991589_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="medium" version="RHEL-09-211030" weight="10.000000">
+      <xccdf:result>fail</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+      <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+       <xccdf:check-content-ref name="oval:mil.disa.stig.rhel9os:def:257781" href="#oval0" />
+      </xccdf:check>
+     </xccdf:rule-result>
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257782r991589_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="low" version="RHEL-09-211035" weight="10.000000">
+      <xccdf:result>error</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+      <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+       <xccdf:check-content-ref name="oval:mil.disa.stig.rhel9os:def:257782" href="#oval0" />
+      </xccdf:check>
+     </xccdf:rule-result>
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257783r991562_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="medium" version="RHEL-09-211040" weight="10.000000">
+      <xccdf:result>error</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-001665</xccdf:ident>
+      <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+       <xccdf:check-content-ref name="oval:mil.disa.stig.rhel9os:def:257783" href="#oval0" />
+      </xccdf:check>
+     </xccdf:rule-result>
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257784r1262100_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="high" version="RHEL-09-211045" weight="10.000000">
+      <xccdf:result>fail</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-002235</xccdf:ident>
+      <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+       <xccdf:check-content-ref name="oval:mil.disa.stig.rhel9os:def:257784" href="#oval0" />
+      </xccdf:check>
+     </xccdf:rule-result>
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257787r1262101_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="medium" version="RHEL-09-212010" weight="10.000000">
+      <xccdf:result>fail</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-000213</xccdf:ident>
+      <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+       <xccdf:check-content-ref name="oval:mil.disa.stig.rhel9os:def:257787" href="#oval0" />
+      </xccdf:check>
+     </xccdf:rule-result>
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257788r1044838_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="medium" version="RHEL-09-212015" weight="10.000000">
+      <xccdf:result>pass</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+      <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+       <xccdf:check-content-ref name="oval:mil.disa.stig.rhel9os:def:257788" href="#oval0" />
+      </xccdf:check>
+     </xccdf:rule-result>
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257797r1262133_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="medium" version="RHEL-09-213010" weight="10.000000">
+      <xccdf:result>pass</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-001082</xccdf:ident>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-001090</xccdf:ident>
+      <xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+       <xccdf:check-content-ref name="oval:mil.disa.stig.rhel9os:def:257797" href="#oval0" />
+      </xccdf:check>
+     </xccdf:rule-result>
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257835r1155679_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="high" version="RHEL-09-215060" weight="10.000000">
+      <xccdf:result>notapplicable</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+     </xccdf:rule-result>
+     <xccdf:rule-result idref="xccdf_mil.disa.stig_rule_SV-257854r1044934_rule" role="full" time="2026-11-10T23:35:06+00:00" severity="medium" version="RHEL-09-231065" weight="10.000000">
+      <xccdf:result>notapplicable</xccdf:result>
+      <xccdf:ident system="http://cyber.mil/cci">CCI-000366</xccdf:ident>
+     </xccdf:rule-result>
+     <xccdf:score system="urn:xccdf:scoring:default" maximum="100.000000">27.223721</xccdf:score>
+    </xccdf:TestResult>
+   </arf:content>
+  </arf:report>
+ </arf:reports>
+</arf:asset-report-collection>

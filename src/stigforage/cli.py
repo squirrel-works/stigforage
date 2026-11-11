@@ -22,6 +22,7 @@ from stigforage.fsio import atomic_write_text, check_write_target, read_limited
 from stigforage.log import configure, get_logger
 from stigforage.merge import MergeResult, StigMerge, merge_checklists
 from stigforage.model import Checklist, ChecklistError, ImportResult, Issue, Status, validate
+from stigforage.results import Scan, ScanImport, import_results, load_xccdf_results
 from stigforage.schema import check_supported, validate_instance
 from stigforage.upgrade import StigUpgrade, UpgradeResult, upgrade_checklist
 
@@ -134,6 +135,42 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     upg.add_argument("--apply", action="store_true", help="actually write the output file")
     upg.add_argument("--force", action="store_true", help="overwrite an existing output file")
+
+    imp = sub.add_parser(
+        "import-results",
+        help="apply scan results (SCC, Evaluate-STIG, OpenSCAP XCCDF or ARF) to a checklist",
+        description=(
+            "Apply each RESULTS file to the CHECKLIST STIG it was scanned against and write "
+            "OUTPUT (.cklb or .ckl). pass, fail and notapplicable set the status and finding "
+            "details; other results are counted, not imported; comments are never touched. "
+            "The checklist wins a conflict unless --prefer results. A scan of another release "
+            "is refused, and so is a scan of another host unless --allow-host-mismatch. "
+            "Dry-run by default: nothing is written unless --apply is given. "
+            "Inputs are never modified."
+        ),
+    )
+    imp.add_argument("checklist", type=Path, metavar="CHECKLIST", help=_INPUT_HELP)
+    imp.add_argument(
+        "results",
+        nargs="+",
+        type=Path,
+        metavar="RESULTS",
+        help="XCCDF results or ARF .xml, at most one per STIG",
+    )
+    imp.add_argument("-o", "--output", required=True, type=Path, help="output .cklb or .ckl path")
+    imp.add_argument(
+        "--prefer",
+        choices=("checklist", "results"),
+        default="checklist",
+        help="which side wins a conflict (default: checklist)",
+    )
+    imp.add_argument(
+        "--allow-host-mismatch",
+        action="store_true",
+        help="import a scan even when its host differs from the checklist's (warns instead)",
+    )
+    imp.add_argument("--apply", action="store_true", help="actually write the output file")
+    imp.add_argument("--force", action="store_true", help="overwrite an existing output file")
     return parser
 
 
@@ -467,6 +504,67 @@ def _run_upgrade(args: argparse.Namespace, out: TextIO) -> int:
     return _write_output(result.checklist, dest, apply=args.apply, force=args.force, out=out)
 
 
+def _format_scan_import(si: ScanImport, prefer: str, out: TextIO) -> None:
+    not_imported = ", ".join(f"{k}={v}" for k, v in sorted(si.not_imported.items())) or "none"
+    out.write(
+        f"{si.source}: {si.stig_id} ({si.tool or 'unknown tool'}, ended {si.end_time or '?'})\n"
+        f"  applied={si.applied} unchanged={si.unchanged} conflicts={len(si.conflicts)} "
+        f"unmatched={len(si.unmatched)} not_imported: {not_imported}"
+    )
+    if si.matched_by_group_id:
+        out.write(f" matched_by_group_id={si.matched_by_group_id}")
+    out.write("\n")
+    for c in si.conflicts:
+        what = (
+            f"checklist {c.checklist_status.value}"
+            if c.reason == "status"
+            else "checklist not_reviewed with finding details"
+        )
+        out.write(
+            f"  ! {c.group_id} {c.rule_id}: {what}, scan {c.scan_status.value}; kept {prefer}\n"
+        )
+    for rr in si.unmatched:
+        out.write(f"  - {rr.group_id or '?'} {rr.rule_id_src}: no matching rule in the checklist\n")
+    for group_id in si.ambiguous:
+        out.write(f"  ? {group_id}: several rules share this group_id; not matched\n")
+
+
+def _run_import_results(args: argparse.Namespace, out: TextIO) -> int:
+    log = get_logger()
+    dest: Path = args.output
+    if not _check_output_path(dest, (args.checklist, *args.results)):
+        return EXIT_UNREADABLE
+    loaded = _load_all((args.checklist,))
+    if loaded is None:
+        return EXIT_UNREADABLE
+    scans: list[Scan] = []
+    for n, path in enumerate(args.results, start=1):
+        log.info("reading results", step=f"{n}/{len(args.results)}", file=str(path))
+        try:
+            scans.extend(load_xccdf_results(path))
+        except (ChecklistError, OSError) as exc:
+            log.error("cannot read results", file=str(path), error=str(exc))
+            return EXIT_UNREADABLE
+    log.info("importing", scans=len(scans), prefer=args.prefer)
+    try:
+        result = import_results(
+            loaded[0],
+            scans,
+            prefer=args.prefer,
+            allow_host_mismatch=args.allow_host_mismatch,
+        )
+    except ChecklistError as exc:
+        log.error("cannot import results", error=str(exc))
+        return EXIT_UNREADABLE
+    for warning in result.warnings:
+        log.warning("import-results", detail=warning)
+    for si in result.scans:
+        _format_scan_import(si, result.prefer, out)
+    if args.apply:
+        log.info("writing", file=str(dest))
+    return _write_output(result.checklist, dest, apply=args.apply, force=args.force, out=out)
+
+
 def _run_inspect(args: argparse.Namespace, out: TextIO) -> int:
     log = get_logger()
     files: list[Path] = args.files
@@ -537,6 +635,8 @@ def run(argv: Sequence[str] | None = None, *, out: TextIO | None = None) -> int:
         return _run_merge(args, out)
     if args.command == "upgrade":
         return _run_upgrade(args, out)
+    if args.command == "import-results":
+        return _run_import_results(args, out)
     return _run_inspect(args, out)
 
 

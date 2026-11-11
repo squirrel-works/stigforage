@@ -4,8 +4,18 @@ Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 Test fixtures under tests/fixtures/ are copied from
 https://github.com/NUWCDIVNPT/stig-manager-client-modules (test-files/parsers), MIT License,
-Copyright (c) 2020-2026 U.S. Federal Government (in countries where recognized).
+Copyright (c) 2020-2026 U.S. Federal Government (in countries where recognized),
+Copyright (c) 2020-2026 Science Applications International Corporation, and
+Copyright (c) 2020-2026 Rite-Solutions, An Arcfield Company.
 See tests/fixtures/LICENSE-stig-manager-client-modules.md.
+
+tests/fixtures/xccdf-results/openscap-RHEL_9-V2R10-arf-truncated.xml was generated for this
+project with OpenSCAP 1.3.14, scanning a Red Hat UBI 9 container against DISA's RHEL 9 V2R10
+SCAP 1.3 benchmark. It was truncated to 10 rules, OVAL content was removed, and host details were
+replaced with documentation addresses.
+tests/fixtures/xccdf-results/RHEL_9-V2R10-manual-truncated.cklb holds the same 10 rules from
+DISA's RHEL 9 V2R10 manual STIG, converted with stigforage. Both contain DISA STIG content,
+truncated for testing.
 
 tests/fixtures/schema/SV3_CKLB_1_0_JSON_SCHEMA.json is the DISA CKLB JSON schema, supplied by the
 maintainer. Its redistribution terms have not been verified; it is used only by tests and the

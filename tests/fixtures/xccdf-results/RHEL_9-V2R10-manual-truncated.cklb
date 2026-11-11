@@ -1,0 +1,525 @@
+{
+  "title": "RHEL 9 V2R10 (truncated to the rules in the OpenSCAP ARF fixture)",
+  "id": "d281f670-be8d-450f-8ae4-a4e834172acf",
+  "target_data": {
+    "target_type": "Computing",
+    "host_name": "",
+    "ip_address": "",
+    "mac_address": "",
+    "fqdn": "",
+    "comments": "",
+    "role": "None",
+    "is_web_database": false,
+    "technology_area": "",
+    "web_db_site": "",
+    "web_db_instance": ""
+  },
+  "stigs": [
+    {
+      "stig_name": "Red Hat Enterprise Linux 9 Security Technical Implementation Guide",
+      "display_name": "Red Hat Enterprise Linux 9 Security Technical Implementation Guide",
+      "stig_id": "RHEL_9_STIG",
+      "release_info": "Release: 10 Benchmark Date: 30 Sep 2026",
+      "uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+      "rules": [
+        {
+          "uuid": "52adf9e3-898c-4d3b-8ffa-9c3839532e25",
+          "group_id": "V-257777",
+          "rule_id": "SV-257777r1268251",
+          "rule_id_src": "SV-257777r1268251_rule",
+          "rule_version": "RHEL-09-211010",
+          "rule_title": "RHEL 9 must be a vendor-supported release.",
+          "severity": "high",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-000366"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257777",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257777",
+          "fix_text": "Upgrade to a supported version of RHEL 9.",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "An operating system release is considered \"supported\" if the vendor continues to provide security patches for the product. With an unsupported release, it will not be possible to resolve security issues discovered in the system software.\n\nEnd Of Life dates for Red Hat Linux 9 releases are as follows:\nCurrent end of Full Support for Red Hat Linux 9 is 31 May 2027.\nCurrent end of Maintenance Support for Red Hat Linux 9 is 31 May 3032.\nCurrent end of Extended Life Cycle Support (ELS) for Red Hat Linux 9 is 31 May 2035.",
+          "check_content": "Verify the version or RHEL 9 is vendor supported with the following command:\n\n$ cat /etc/redhat-release \n\nRed Hat Enterprise Linux release 9.6 (Plow)\n\nIf the installed version of RHEL 9 is not supported, this is a finding.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        },
+        {
+          "uuid": "90079f9d-4477-45f8-a21b-4071469f81f6",
+          "group_id": "V-257781",
+          "rule_id": "SV-257781r1268251",
+          "rule_id_src": "SV-257781r1268251_rule",
+          "rule_version": "RHEL-09-211030",
+          "rule_title": "The graphical display manager must not be the default target on RHEL 9 unless approved.",
+          "severity": "medium",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-000366"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257781",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257781",
+          "fix_text": "Document the requirement for a graphical user interface with the ISSO or set the default target to multi-user with the following command:\n\n$ sudo systemctl set-default multi-user.target",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "Unnecessary service packages must not be installed to decrease the attack surface of the system. Graphical display managers have a long history of security vulnerabilities and must not be used, unless approved and documented.",
+          "check_content": "Verify that RHEL 9 is configured to boot to the command line:\n\n$ systemctl get-default\n\nmulti-user.target\n\nIf the system default target is not set to \"multi-user.target\" and the information system security officer (ISSO) lacks a documented requirement for a graphical user interface, this is a finding.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        },
+        {
+          "uuid": "ec849b94-af6c-4822-a535-a1195f70e98a",
+          "group_id": "V-257782",
+          "rule_id": "SV-257782r1268251",
+          "rule_id_src": "SV-257782r1268251_rule",
+          "rule_version": "RHEL-09-211035",
+          "rule_title": "RHEL 9 must enable the hardware random number generator entropy gatherer service.",
+          "severity": "low",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-000366"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257782",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257782",
+          "fix_text": "Install the rng-tools package with the following command:\n\n$ sudo dnf install rng-tools\n\nThen enable the rngd service run the following command:\n\n$ sudo systemctl enable --now rngd",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "The most important characteristic of a random number generator is its randomness, namely its ability to deliver random numbers that are impossible to predict. Entropy in computer security is associated with the unpredictability of a source of randomness. The random source with high entropy tends to achieve a uniform distribution of random values. Random number generators are one of the most important building blocks of cryptosystems.  \n\nThe rngd service feeds random data from hardware device to kernel random device. Quality (nonpredictable) random number generation is important for several security functions (i.e., ciphers).",
+          "check_content": "Note: For RHEL 9 systems running with kernel FIPS mode enabled as specified by RHEL-09-671010, this requirement is Not Applicable.\n\nVerify that RHEL 9 has enabled the hardware random number generator entropy gatherer service with the following command:\n\n$ systemctl is-active rngd\n\nactive\n\nIf the \"rngd\" service is not active, this is a finding.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        },
+        {
+          "uuid": "c34c599c-0c5e-4a96-bc70-50661d7c2690",
+          "group_id": "V-257783",
+          "rule_id": "SV-257783r991562",
+          "rule_id_src": "SV-257783r991562_rule",
+          "rule_version": "RHEL-09-211040",
+          "rule_title": "RHEL 9 systemd-journald service must be enabled.",
+          "severity": "medium",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-001665"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000269-GPOS-00103",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257783",
+              "title": "SRG-OS-000269-GPOS-00103",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257783",
+          "fix_text": "To enable the systemd-journald service, run the following command:\n\n$ sudo systemctl enable --now systemd-journald",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "In the event of a system failure, RHEL 9 must preserve any information necessary to determine cause of failure and any information necessary to return to operations with least disruption to system processes.",
+          "check_content": "Verify that \"systemd-journald\" is active with the following command:\n\n$ systemctl is-active systemd-journald\n\nactive\n\nIf the systemd-journald service is not active, this is a finding.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        },
+        {
+          "uuid": "e63fc14f-22c3-4a03-9c7e-3ce5705d93c3",
+          "group_id": "V-257784",
+          "rule_id": "SV-257784r1262100",
+          "rule_id_src": "SV-257784r1262100_rule",
+          "rule_version": "RHEL-09-211045",
+          "rule_title": "The systemd Ctrl-Alt-Delete burst key sequence in RHEL 9 must be disabled.",
+          "severity": "high",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-002235"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000324-GPOS-00125",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257784",
+              "title": "SRG-OS-000324-GPOS-00125",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257784",
+          "fix_text": "Configure RHEL 9 to disable the CtrlAltDelBurstAction by adding it to a drop file in a \"/etc/systemd/system.conf.d/\" configuration file:\n\nIf no drop file exists, create one with the following command:\n\n$ sudo mkdir -p /etc/systemd/system.conf.d && sudo vi /etc/systemd/system.conf.d/55-CtrlAltDel-BurstAction.conf\n\nEdit the file to contain the setting by adding the following text:\n\n[Manager]\nCtrlAltDelBurstAction=none\n\nReload the daemon for this change to take effect.\n\n$ sudo systemctl daemon-reload",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "A locally logged-on user who presses Ctrl-Alt-Delete when at the console can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In a graphical user environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.\n\nSatisfies: SRG-OS-000324-GPOS-00125, SRG-OS-000480-GPOS-00227",
+          "check_content": "Verify RHEL 9 is configured to not reboot the system when Ctrl-Alt-Delete is pressed seven times within two seconds with the following command:\n\n$ sudo grep -iR CtrlAltDelBurstAction /etc/systemd/system*\n/etc/systemd/system.conf.d/55-CtrlAltDel-BurstAction.conf:CtrlAltDelBurstAction=none\n\nIf the \"CtrlAltDelBurstAction\" is not set to \"none\", is commented out, or is missing, this is a finding.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        },
+        {
+          "uuid": "9821f24c-2b58-435d-ac95-60c21c07a65d",
+          "group_id": "V-257787",
+          "rule_id": "SV-257787r1268226",
+          "rule_id_src": "SV-257787r1268226_rule",
+          "rule_version": "RHEL-09-212010",
+          "rule_title": "RHEL 9 must require authentication upon booting into single-user and maintenance modes.",
+          "severity": "medium",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-000213"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000080-GPOS-00048",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257787",
+              "title": "SRG-OS-000080-GPOS-00048",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257787",
+          "fix_text": "Configure RHEL 9 to require a grub bootloader password for the grub superuser account.\n\nGenerate an encrypted grub2 password for the grub superuser account with the following command:\n\n$ sudo grub2-setpassword\nEnter password:\nConfirm password:",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "To mitigate the risk of unauthorized access to sensitive information by entities that have been issued certificates by DoW-approved PKIs, all DoW systems (e.g., web servers and web portals) must be properly configured to incorporate access control methods that do not rely solely on the possession of a certificate for access. Successful authentication must not automatically give an entity access to an asset or security boundary. Authorization procedures and controls must be implemented to ensure each authenticated entity also has a validated and current authorization. Authorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset. Information systems use access control policies and enforcement mechanisms to implement this requirement.\n\nPassword protection on the boot loader configuration ensures users with physical access cannot trivially alter important bootloader settings. These include which kernel to use, and whether to enter single-user mode.",
+          "check_content": "Verify that RHEL 9 requires a password for the GRUB 2 bootloader to prevent unauthorized modifications to boot parameters.\n\nCheck the unified configuration file where the GRUB 2 password is stored:\n\n# sudo grep -iw \"GRUB2_PASSWORD\" /boot/grub2/user.cfg\nGRUB2_PASSWORD=grub.pbkdf2.sha512.[password_hash]\n\nIf the \"GRUB2_PASSWORD\" entry does not exist, is commented out, or if the hash does not begin with \"grub.pbkdf2.sha512\", this is a finding.\n\nNote for upgraded systems: If the system was upgraded from an early release of RHEL 8 to RHEL 9, legacy configurations might still reside in the EFI partition. If \"/boot/grub2/user.cfg\" does not exist, verify the legacy path:\n\n# grep -iw \"GRUB2_PASSWORD\" /boot/efi/EFI/redhat/user.cfg\n\nIf the \"GRUB2_PASSWORD\" entry does not exist in either location, is commented out, or does not begin with \"grub.pbkdf2.sha512\", this is a finding.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        },
+        {
+          "uuid": "22e981f4-fc62-4f8d-b575-b6d2ae0b46e9",
+          "group_id": "V-257788",
+          "rule_id": "SV-257788r1268251",
+          "rule_id_src": "SV-257788r1268251_rule",
+          "rule_version": "RHEL-09-212015",
+          "rule_title": "RHEL 9 must disable the ability of systemd to spawn an interactive boot process.",
+          "severity": "medium",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-000366"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257788",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257788",
+          "fix_text": "Configure the current GRUB 2 configuration to disable the ability of systemd to spawn an interactive boot process with the following command:\n\n$ sudo grubby --update-kernel=ALL --remove-args=\"systemd.confirm_spawn\"",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "Using interactive or recovery boot, the console user could disable auditing, firewalls, or other services, weakening system security.",
+          "check_content": "Verify that GRUB 2 is configured to disable interactive boot.\n\nCheck that the current GRUB 2 configuration disables the ability of systemd to spawn an interactive boot process with the following command:\n\n$ sudo grubby --info=ALL | grep args | grep 'systemd.confirm_spawn'\n\nIf any output is returned, this is a finding.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        },
+        {
+          "uuid": "a7ec02cf-5684-4267-bd28-b3976ed9d4c3",
+          "group_id": "V-257797",
+          "rule_id": "SV-257797r1262133",
+          "rule_id_src": "SV-257797r1262133_rule",
+          "rule_version": "RHEL-09-213010",
+          "rule_title": "RHEL 9 must restrict access to the kernel message buffer.",
+          "severity": "medium",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-001082",
+            "CCI-001090"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000132-GPOS-00067",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257797",
+              "title": "SRG-OS-000132-GPOS-00067",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257797",
+          "fix_text": "Configure RHEL 9 to restrict access to the kernel message buffer.\n\nCreate a drop-in if it does not already exist:\n\n$ sudo vi /etc/sysctl.d/99-dmesg_restrict.conf\n\nAdd the following to the file:\nkernel.dmesg_restrict = 1\n\nReload settings from all system configuration files with the following command:\n\n$ sudo sysctl --system",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "Preventing unauthorized information transfers mitigates the risk of information, including encrypted representations of information, produced by the actions of prior users/roles (or the actions of processes acting on behalf of prior users/roles) from being available to any current users/roles (or current processes) that obtain access to shared system resources (e.g., registers, main memory, hard disks) after those resources have been released back to information systems. The control of information in shared resources is also commonly referred to as object reuse and residual information protection.\n\nThis requirement generally applies to the design of an information technology product, but it can also apply to the configuration of particular information system components that are, or use, such products. This can be verified by acceptance/validation processes in DoW or other government agencies.\n\nThere may be shared resources with configurable protections (e.g., files in storage) that may be assessed on specific information system components.\n\nRestricting access to the kernel message buffer limits access to only root. This prevents attackers from gaining additional system information as a nonprivileged user.\n\nThe sysctl --system command will load settings from all system configuration files. All configuration files are sorted by their filename in lexicographical order, regardless of the directories in which they reside. If multiple files specify the same option, the entry in the file with the lexicographically latest name will take precedence. Files are read from directories in the following list from top to bottom. Once a file of a given filename is loaded, any file of the same name in subsequent directories is ignored.\n\n/etc/sysctl.d/*.conf\n/run/sysctl.d/*.conf\n/usr/local/lib/sysctl.d/*.conf\n/usr/lib/sysctl.d/*.conf\n/lib/sysctl.d/*.conf\n/etc/sysctl.conf\n\nSatisfies: SRG-OS-000132-GPOS-00067, SRG-OS-000138-GPOS-00069",
+          "check_content": "Verify RHEL 9 is configured to restrict access to the kernel message buffer.\n\nCheck the status of the \"kernel.dmesg_restrict\" kernel parameter with the following command:\n\n$ sudo sysctl kernel.dmesg_restrict\nkernel.dmesg_restrict = 1\n\nIf \"kernel.dmesg_restrict\" is not set to \"1\" or is missing, this is a finding.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        },
+        {
+          "uuid": "d0de303b-1381-4ac6-9399-b7287a7d6599",
+          "group_id": "V-257835",
+          "rule_id": "SV-257835r1268251",
+          "rule_id_src": "SV-257835r1268251_rule",
+          "rule_version": "RHEL-09-215060",
+          "rule_title": "The Trivial File Transfer Protocol (TFTP) server must not be installed unless it is required, and if required, the RHEL 9 TFTP daemon must be configured to operate in secure mode.",
+          "severity": "high",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-000366"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257835",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257835",
+          "fix_text": "Configure RHEL 9 so that TFTP operates in secure mode if installed.\n\nIf TFTP server is not required, remove it with the following command:\n$ sudo dnf -y remove tftp-server\n\nConfigure the TFTP daemon to operate in secure mode with the following command:\n$ sudo systemctl edit tftp.service\n\nIn the editor, enter:\n[Service]\nExecStart=/usr/sbin/in.tftpd -s /var/lib/tftpboot\n\nAfter making changes, reload the systemd daemon and restart the TFTP service as follows:\n\n$ sudo systemctl daemon-reload\n$ sudo systemctl restart tftp.service\n\nIf the \"-s\" option is not present in the \"ExecStart\" line or if the line is missing, this is a finding.",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "Removing the \"tftp-server\" package decreases the risk of the accidental (or intentional) activation of tftp services.\n\nIf TFTP is required for operational support (such as transmission of router configurations), its use must be documented with the information systems security manager (ISSM), restricted to only authorized personnel, and have access control rules established.\n\nRestricting TFTP to a specific directory prevents remote users from copying, transferring, or overwriting system files.",
+          "check_content": "Verify if TFTP is installed, it is configured to operate in secure mode.\n\nNote: If TFTP is not required, it must not be installed. If TFTP is not installed, this rule is not applicable.\n\nCheck to see if TFTP server is installed with the following command:\n\n$ sudo dnf list --installed tftp-server\n\nUpdating Subscription Management repositories.\nInstalled Packages\ntftp-server.x86_64                             5.2-38.el9                              @rhel-9-for-x86_64-appstream-rpms\n\nVerify the TFTP daemon, if tftp.server is installed, is configured to operate in secure mode with the following command:\n\n$ grep -i execstart /usr/lib/systemd/system/tftp.service\nExecStart=/usr/sbin/in.tftpd -s /var/lib/tftpboot\n\nNote: The \"-s\" option ensures the TFTP server only serves files from the specified directory, which is a security measure to prevent unauthorized access to other parts of the file system.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        },
+        {
+          "uuid": "1349157f-d701-4db2-9b33-00c1419dffcb",
+          "group_id": "V-257854",
+          "rule_id": "SV-257854r1268251",
+          "rule_id_src": "SV-257854r1268251_rule",
+          "rule_version": "RHEL-09-231065",
+          "rule_title": "RHEL 9 must prevent special devices on file systems that are imported via Network File System (NFS).",
+          "severity": "medium",
+          "status": "not_reviewed",
+          "comments": "",
+          "finding_details": "",
+          "overrides": {},
+          "ccis": [
+            "CCI-000366"
+          ],
+          "stig_uuid": "ccfbea68-4f1c-44e2-9581-e39c566ad330",
+          "weight": "10.0",
+          "classification": "NONE",
+          "group_title": "SRG-OS-000480-GPOS-00227",
+          "check_content_ref": {
+            "href": "Red_Hat_Enterprise_Linux_9_STIG.xml",
+            "name": "M"
+          },
+          "legacy_ids": [],
+          "group_tree": [
+            {
+              "id": "V-257854",
+              "title": "SRG-OS-000480-GPOS-00227",
+              "description": "<GroupDescription></GroupDescription>"
+            }
+          ],
+          "group_id_src": "V-257854",
+          "fix_text": "Update each NFS mounted file system to use the \"nodev\" option on file systems that are being imported via NFS.",
+          "false_positives": "",
+          "false_negatives": "",
+          "discussion": "The \"nodev\" mount option causes the system to not interpret character or block special devices. Executing character or block special devices from untrusted file systems increases the opportunity for nonprivileged users to attain unauthorized administrative access.",
+          "check_content": "Note: If no NFS mounts are configured, this requirement is Not Applicable.\n\nVerify RHEL 9 has the \"nodev\" option configured for all NFS mounts with the following command:\n\n$ grep nfs /etc/fstab\n\n192.168.22.2:/mnt/export /data nfs4 rw,nosuid,nodev,noexec,sync,soft,sec=krb5:krb5i:krb5p\n\nIf the system is mounting file systems via NFS and the \"nodev\" option is missing, this is a finding.",
+          "documentable": "false",
+          "mitigations": "",
+          "potential_impacts": "",
+          "third_party_tools": "",
+          "mitigation_control": "",
+          "responsibility": "",
+          "security_override_guidance": "",
+          "ia_controls": "",
+          "reference_identifier": "5551",
+          "target_key": "5551",
+          "stig_ref": null
+        }
+      ],
+      "reference_identifier": "5551",
+      "size": 10
+    }
+  ],
+  "cklb_version": "1.0",
+  "active": false,
+  "mode": 1,
+  "has_path": true
+}

@@ -3,7 +3,7 @@
 Free, offline STIG checklist toolkit. Working name. Donationware: free to use, no feature gating,
 no nag screens, no network access.
 
-**Status: pre-release (V0.2.2 accepted).** Not yet usable as a replacement
+**Status: pre-release (V0.2.2 accepted; V0.3.3 in progress).** Not yet usable as a replacement
 for anything. The roadmap below shows what exists and what does not.
 
 > CKLB output is checked against the DISA schema, not against STIG Viewer 3 itself (which has no
@@ -31,6 +31,12 @@ for anything. The roadmap below shows what exists and what does not.
   review is lost, and severity changes. Dry run unless `--apply`. The test suite uses synthetic
   releases built from the public fixtures; one real release step (RHEL 9 V2R9 to V2R10) was
   checked by hand, see ADR 0002.
+- `stigforage import-results CHECKLIST RESULTS... -o OUTPUT` applies scan results (SCC,
+  Evaluate-STIG, OpenSCAP or STIG Manager XCCDF results, or ARF) to the STIGs they scanned.
+  `pass`, `fail` and `notapplicable` set the status and finding details; other results are
+  counted, not imported; comments are never touched. The checklist wins conflicts unless
+  `--prefer results`. Scans of another release are refused, and so are scans of another host
+  unless `--allow-host-mismatch`. Dry run unless `--apply`. See ADR 0003.
 - `stigforage convert INPUT -o OUTPUT` converts between `.cklb`, `.ckl` and benchmarks. It is a
   dry run unless you pass `--apply`, never modifies INPUT, and refuses to overwrite OUTPUT without
   `--force`. A dry run reports the same refusals and export warnings as `--apply` would.
@@ -62,7 +68,9 @@ standard-library parser that rejects any DTD or entity declaration.
   `stig_ref`/`release_info`).
 - CKL severity overrides and non-default `MARKING` values are reported as warnings but not carried
   to CKLB, and CKLB rule overrides are not written to CKL: the CKLB layout for them is unverified.
-- The SCAP data stream path is tested only with a synthetic wrapper around a real benchmark.
+- The SCAP data stream path is tested in the suite only with a synthetic wrapper around a real
+  benchmark. A real DISA SCAP 1.3 data stream (RHEL 9 V2R10) was loaded by hand during V0.3.3;
+  see ADR 0003.
 - Defaults such as `active`/`mode`/`has_path` and `reference_identifier` come from public
   fixtures, not from DISA documentation.
 
@@ -70,8 +78,9 @@ standard-library parser that rejects any DTD or entity declaration.
 
 - **V0.1.1** (accepted): core model, CKLB I/O, CKL and XCCDF/SCAP import, `convert` CLI.
 - **V0.2.2** (accepted): carry-forward merge, STIG upgrade wizard, checklist diff.
-- **V0.3.3** (planned): result importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit/npm
-  audit/CVE JSON.
+- **V0.3.3** (in progress; unit 1, XCCDF results and ARF, done): result importers:
+  SCC/XCCDF/ARF, InSpec HDF, SARIF (which also covers Trivy, Grype and OSV-Scanner), pip-audit
+  and npm audit JSON.
 - **V0.4.4** (planned): CSV, POA&M and evidence ZIP export; CCI to NIST 800-53 Rev 5 crosswalk;
   dashboard data.
 - **V0.5.5** (planned): refactor and stabilization.

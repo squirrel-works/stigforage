@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- STIG Manager 1.3.13 -->
+<!-- Classification: NONE -->
+<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sm="http://github.com/nuwcdivnpt/stig-manager" id="xccdf_mil.disa.stig_benchmark_VPN_TRUNCATED">
+  <status date="2023-05-04">accepted</status>
+  <title>Virtual Private Network (VPN) TRUNCATED</title>
+  <description>This Security Requirements Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description>
+  <version>V2R5</version>
+  <metadata>
+    <dc:creator>DISA</dc:creator>
+    <dc:publisher>STIG Manager OSS</dc:publisher>
+  </metadata>
+  <Group id="xccdf_mil.disa.stig_group_V-207184">
+    <title>SRG-NET-000019</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207184r695317_rule" weight="10.0" severity="medium">
+      <title>The VPN Gateway must ensure inbound and outbound traffic is configured with a security policy in compliance with information flow control policies.</title>
+      <check>
+        <check-content>Verify the VPN Gateway has an inbound and outbound traffic security policy which is in compliance with information flow control policies (e.g., IPsec policy configuration).
+
+Review network device configurations and topology diagrams. Verify encapsulated or encrypted traffic received from other enclaves with different security policies terminate at the perimeter for filtering and content inspection by a firewall and IDPS before gaining access to the private network.
+
+If the IPsec VPN Gateway does not use Encapsulating Security Payload (ESP) in tunnel mode for establishing secured paths to transport traffic between the organizations sites or between a gateway and remote end-stations, this is a finding,</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="xccdf_mil.disa.stig_group_V-207185">
+    <title>SRG-NET-000041</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207185r608988_rule" weight="10.0" severity="medium">
+      <title>The Remote Access VPN Gateway and/or client must display the Standard Mandatory DoD Notice and Consent Banner before granting remote access to the network.</title>
+      <check>
+        <check-content>If the user/remote client connection banner is the same as the banner configured as part of the NDM SRG, then this is not applicable.
+
+Determine if the network device is configured to present a DoD-approved banner that is formatted in accordance with DoD policy. 
+
+If the Remote Access VPN Gateway or VPN client does not display the Standard Mandatory DoD Notice and Consent Banner before granting remote access to the network, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="xccdf_mil.disa.stig_group_V-207186">
+    <title>SRG-NET-000042</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207186r608988_rule" weight="10.0" severity="medium">
+      <title>The Remote Access VPN Gateway and/or client must enforce a policy to retain the Standard Mandatory DoD Notice and Consent Banner on the screen until users acknowledge the usage conditions and take explicit actions to log on for further access.</title>
+      <check>
+        <check-content>If the user/remote client connection banner is the same as the banner configured as part of the NDM SRG, then this is not applicable.
+
+Verify the ALG retains the Standard Mandatory DoD-approved Notice and Consent Banner on the screen until users acknowledge the usage conditions and takes explicit actions to log on for further access.
+
+If the Remote Access VPN Gateway and/or client does not retain the Standard Mandatory DoD-approved Notice and Consent Banner on the screen until users acknowledge the usage conditions and take explicit actions to log on for further access, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="xccdf_mil.disa.stig_group_V-207187">
+    <title>SRG-NET-000043</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207187r608988_rule" weight="10.0" severity="medium">
+      <title>The publicly accessible VPN Gateway must display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system.</title>
+      <check>
+        <check-content>Verify the publicly accessible VPN Gateway displays the Standard Mandatory DoD Notice and Consent Banner before granting access to the system.  The banner must be formatted in accordance with DTM-08-060. Use the following verbiage for network elements that can accommodate banners of 1300 characters:
+
+&quot;You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+-At any time, the USG may inspect and seize data stored on this IS.
+
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.&quot;
+
+Use the following verbiage for operating systems that have severe limitations on the number of characters that can be displayed in the banner:
+
+&quot;I&apos;ve read &amp; consent to terms in IS user agreem&apos;t.&quot;
+
+If the publicly accessible VPN Gateway does not display the Standard Mandatory DoD Notice and Consent Banner before granting access to the system, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="xccdf_mil.disa.stig_group_V-207188">
+    <title>SRG-NET-000049</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207188r608988_rule" weight="10.0" severity="low">
+      <title>The VPN Gateway must notify the user, upon successful logon (access), of the number of unsuccessful logon (access) attempts since the last successful logon (access).</title>
+      <check>
+        <check-content>Determine if the VPN Gateway is either configured to notify the administrator of the number of unsuccessful login attempts since the last successful login or configured to use an authentication server which would perform this function. If the administrator is not notified of the number of unsuccessful login attempts since the last successful login, this is a finding.
+
+If the VPN Gateway does not notify the user, upon successful logon (access), of the number of unsuccessful logon (access) attempts since the last successful logon (access), this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="xccdf_mil.disa.stig_group_V-207189">
+    <title>SRG-NET-000053</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207189r608988_rule" weight="10.0" severity="medium">
+      <title>The VPN Gateway must limit the number of concurrent sessions for user accounts to 1 or to an organization-defined number.</title>
+      <check>
+        <check-content>Inspect the VPN Gateway configuration. Verify the number of concurrent sessions for user accounts to 1 or to an organization-defined number (defined in the SSP).
+
+If the VPN Gateway does not limit the number of concurrent sessions for user accounts to 1 or to an organization-defined number, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="xccdf_mil.disa.stig_group_V-207190">
+    <title>SRG-NET-000062</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207190r803417_rule" weight="10.0" severity="high">
+      <title>The TLS VPN Gateway must use TLS 1.2, at a minimum, to protect the confidentiality of sensitive data during transmission for remote access connections.</title>
+      <check>
+        <check-content>Verify the TLS VPN Gateway is configured to use  TLS 1.2 or higher to protect the confidentiality of sensitive data during transmission.
+
+If the TLS VPN Gateway does not use TLS 1.2, at a minimum, to protect the confidentiality of sensitive data during transmission, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="xccdf_mil.disa.stig_group_V-207191">
+    <title>SRG-NET-000063</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207191r803418_rule" weight="10.0" severity="medium">
+      <title>The remote access VPN Gateway must use a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of TLS remote access sessions.</title>
+      <check>
+        <check-content>Verify the remote access VPN Gateway uses a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of remote access sessions.
+
+If the remote access VPN Gateway does not use a digital signature generated using FIPS-validated algorithms and an approved hash function to protect the integrity of remote access sessions, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="xccdf_mil.disa.stig_group_V-207192">
+    <title>SRG-NET-000063</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207192r916146_rule" weight="10.0" severity="medium">
+      <title>The VPN Gateway must be configured to use IPsec with SHA-2 at 384 bits or greater for hashing to protect the integrity of remote access sessions.</title>
+      <check>
+        <check-content>Verify the VPN Gateway uses IPsec with SHA-2 at 384 bits or greater for hashing to protect the integrity of remote access sessions.
+
+If the VPN Gateway does not use IPsec with SHA-2 at 384 bits or greater for hashing to protect the integrity of remote access sessions, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="xccdf_mil.disa.stig_group_V-207193">
+    <title>SRG-NET-000074</title>
+    <Rule id="xccdf_mil.disa.stig_rule_SV-207193r916149_rule" weight="10.0" severity="high">
+      <title>The IPSec VPN must be configured to use a Diffie-Hellman (DH) Group of 16 or greater for Internet Key Exchange (IKE) Phase 1.</title>
+      <check>
+        <check-content>Verify all IKE proposals are set to use DH Group of 16 or greater for IKE Phase 1.
+
+View the IKE options dh-group option.
+
+If the IKE option is not set to use DH Group of 16 or greater for IKE Phase 1, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <TestResult id="xccdf_mil.navy.nuwcdivnpt.stig-manager_testresult_VPN_TRUNCATED" test-system="cpe:/a:nuwcdivnpt:stig-manager:1.3.13" end-time="2023-11-13T16:32:15.409Z" version="1.0">
+    <title></title>
+    <target>Asset_a</target>
+    <target-address></target-address>
+    <target-facts>
+      <fact name="tag:stig-manager@users.noreply.github.com,2020:asset:name" type="string">Asset_aaaaaaaaaa</fact>
+      <fact name="tag:stig-manager@users.noreply.github.com,2020:asset:noncomputing" type="string">true</fact>
+    </target-facts>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207184r695317_rule" time="2023-11-13T16:30:36.000Z">
+      <result>pass</result>
+      <check>
+        <check-content>
+          <sm:detail>xyz</sm:detail>
+        </check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207185r608988_rule" time="2023-11-13T16:30:44.000Z">
+      <result>fail</result>
+      <check>
+        <check-content>
+          <sm:detail>xyz</sm:detail>
+        </check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207186r608988_rule" time="2023-11-13T16:30:52.000Z">
+      <result>notapplicable</result>
+      <check>
+        <check-content>
+          <sm:detail>xyz</sm:detail>
+        </check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207187r608988_rule" time="2023-11-13T16:30:59.000Z">
+      <result>informational</result>
+      <check>
+        <check-content>
+          <sm:detail>xyz</sm:detail>
+        </check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207188r608988_rule" time="2023-11-13T16:31:06.000Z">
+      <result>pass</result>
+      <check>
+        <check-content>
+          <sm:detail>xyz</sm:detail>
+        </check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207189r608988_rule" time="2023-11-13T16:31:15.000Z">
+      <result>notchecked</result>
+      <check>
+        <check-content>
+          <sm:detail>xyz</sm:detail>
+        </check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207190r803417_rule" time="2023-11-13T16:31:22.000Z">
+      <result>pass</result>
+      <check>
+        <check-content>
+          <sm:detail>xyz</sm:detail>
+        </check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207191r803418_rule" time="2023-11-13T16:31:36.000Z">
+      <result>fail</result>
+      <check>
+        <check-content>
+          <sm:detail>xyz</sm:detail>
+          <sm:comment>xyz</sm:comment>
+        </check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207192r916146_rule">
+      <result>notchecked</result>
+      <check>
+        <check-content></check-content>
+      </check>
+    </rule-result>
+    <rule-result idref="xccdf_mil.disa.stig_rule_SV-207193r916149_rule">
+      <result>notchecked</result>
+      <check>
+        <check-content></check-content>
+      </check>
+    </rule-result>
+    <score>1.0</score>
+  </TestResult>
+</Benchmark>
