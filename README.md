@@ -32,7 +32,8 @@ for anything. The roadmap below shows what exists and what does not.
   releases built from the public fixtures; one real release step (RHEL 9 V2R9 to V2R10) was
   checked by hand, see ADR 0002.
 - `stigforage import-results CHECKLIST RESULTS... -o OUTPUT` applies scan results (SCC,
-  Evaluate-STIG, OpenSCAP or STIG Manager XCCDF results, or ARF) to the STIGs they scanned.
+  Evaluate-STIG, OpenSCAP or STIG Manager XCCDF results, ARF, or InSpec HDF `.json`) to the
+  STIGs they scanned.
   `pass`, `fail` and `notapplicable` set the status and finding details; other results are
   counted, not imported; comments are never touched. The checklist wins conflicts unless
   `--prefer results`. Scans of another release are refused, and so are scans of another host
@@ -76,15 +77,18 @@ standard-library parser that rejects any DTD or entity declaration.
 
 ## Roadmap
 
-- **V0.1.1** (accepted): core model, CKLB I/O, CKL and XCCDF/SCAP import, `convert` CLI.
-- **V0.2.2** (accepted): carry-forward merge, STIG upgrade wizard, checklist diff.
-- **V0.3.3** (in progress; unit 1, XCCDF results and ARF, done): result importers:
-  SCC/XCCDF/ARF, InSpec HDF, SARIF (which also covers Trivy, Grype and OSV-Scanner), pip-audit
-  and npm audit JSON.
-- **V0.4.4** (planned): CSV, POA&M and evidence ZIP export; CCI to NIST 800-53 Rev 5 crosswalk;
-  dashboard data.
-- **V0.5.5** (planned): refactor and stabilization.
-- **V1.x** (planned): PySide6 desktop GUI, packaging for Windows, Linux, macOS.
+| Stage | Scope | State |
+| --- | --- | --- |
+| V0.1.1 | Core model, CKLB I/O, CKL and XCCDF/SCAP import, `convert` CLI | accepted |
+| V0.2.2 | Carry-forward merge, STIG upgrade wizard, checklist diff | accepted |
+| V0.3.3 | Result importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit, npm audit | in progress |
+| V0.4.4 | CSV/POA&M/evidence ZIP export, CCI to 800-53 Rev 5 crosswalk, dashboard data | planned |
+| V0.5.5 | Refactor and stabilization | planned |
+| V1.x | PySide6 desktop GUI, packaging for Windows, Linux, macOS | planned |
+
+V0.3.3 progress: XCCDF results and ARF (unit 1) and InSpec HDF (unit 2) are done; SARIF (unit 3)
+and pip-audit/npm audit JSON (unit 4) are next. The SARIF importer also covers Trivy, Grype and
+OSV-Scanner, which all write SARIF.
 
 ## Principles
 

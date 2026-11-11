@@ -19,6 +19,7 @@ from typing import Any, TextIO, cast
 from stigforage import __version__, ckl, cklb, xccdf
 from stigforage.diff import ChecklistDiff, RuleDiff, StigDiff, diff_checklists
 from stigforage.fsio import atomic_write_text, check_write_target, read_limited
+from stigforage.hdf import load_hdf
 from stigforage.log import configure, get_logger
 from stigforage.merge import MergeResult, StigMerge, merge_checklists
 from stigforage.model import Checklist, ChecklistError, ImportResult, Issue, Status, validate
@@ -138,7 +139,7 @@ def _build_parser() -> argparse.ArgumentParser:
 
     imp = sub.add_parser(
         "import-results",
-        help="apply scan results (SCC, Evaluate-STIG, OpenSCAP XCCDF or ARF) to a checklist",
+        help="apply scan results (XCCDF or ARF from SCC, Evaluate-STIG, OpenSCAP; InSpec HDF)",
         description=(
             "Apply each RESULTS file to the CHECKLIST STIG it was scanned against and write "
             "OUTPUT (.cklb or .ckl). pass, fail and notapplicable set the status and finding "
@@ -155,7 +156,7 @@ def _build_parser() -> argparse.ArgumentParser:
         nargs="+",
         type=Path,
         metavar="RESULTS",
-        help="XCCDF results or ARF .xml, at most one per STIG",
+        help="XCCDF results or ARF .xml, or InSpec HDF .json; at most one per STIG",
     )
     imp.add_argument("-o", "--output", required=True, type=Path, help="output .cklb or .ckl path")
     imp.add_argument(
@@ -541,7 +542,10 @@ def _run_import_results(args: argparse.Namespace, out: TextIO) -> int:
     for n, path in enumerate(args.results, start=1):
         log.info("reading results", step=f"{n}/{len(args.results)}", file=str(path))
         try:
-            scans.extend(load_xccdf_results(path))
+            if path.suffix.lower() == ".json":
+                scans.extend(load_hdf(path))
+            else:
+                scans.extend(load_xccdf_results(path))
         except (ChecklistError, OSError) as exc:
             log.error("cannot read results", file=str(path), error=str(exc))
             return EXIT_UNREADABLE

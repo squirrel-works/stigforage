@@ -17,6 +17,14 @@ tests/fixtures/xccdf-results/RHEL_9-V2R10-manual-truncated.cklb holds the same 1
 DISA's RHEL 9 V2R10 manual STIG, converted with stigforage. Both contain DISA STIG content,
 truncated for testing.
 
+Test fixtures under tests/fixtures/hdf/ are copied from https://github.com/mitre/heimdall2
+(apps/frontend/public/static/samples), Apache License 2.0, (c) 2025 The MITRE Corporation,
+Approved for Public Release; Distribution Unlimited, Case Number 18-3678.
+See tests/fixtures/LICENSE-heimdall2.md. rhel7-results-truncated.json and
+example-3-layer-overlay-truncated.json were modified by the stigforage maintainers, cut to a
+dozen controls each; each says so in its "_stigforage_note" key. small_overrides_hdf.json is
+unmodified.
+
 tests/fixtures/schema/SV3_CKLB_1_0_JSON_SCHEMA.json is the DISA CKLB JSON schema, supplied by the
 maintainer. Its redistribution terms have not been verified; it is used only by tests and the
 `--schema` option and can be removed without affecting the library.

@@ -75,7 +75,7 @@ class Scan:
     source: str
     tool: str  # the TestResult's test-system, e.g. "cpe:/a:niwc:scc:5.8"
     end_time: str
-    stig_id: str  # benchmark prefix dropped
+    stig_id: str  # benchmark prefix dropped; "" when the format names none (HDF)
     version: str
     release_info: str
     hosts: tuple[str, ...]  # target name and host-name facts, as written
@@ -99,6 +99,7 @@ class ScanImport:
     stig_id: str
     applied: int = 0
     unchanged: int = 0
+    matched: int = 0
     matched_by_group_id: int = 0
     conflicts: list[ScanConflict] = field(default_factory=list)
     not_imported: Counter[str] = field(default_factory=Counter)  # by XCCDF result value
@@ -274,10 +275,13 @@ def _short_host(name: str) -> str:
     return name.strip().split(".", 1)[0].casefold()
 
 
-def _pair(scans: list[Scan], output: Checklist) -> list[Stig]:
-    """The checklist STIG for each scan, refusing anything ambiguous."""
-    paired: list[Stig] = []
-    for scan in scans:
+def _candidates(scan: Scan, output: Checklist) -> list[Stig]:
+    """Checklist STIGs a scan could be for, refusing when there is not exactly one.
+
+    XCCDF results name their benchmark. HDF does not (profile names are free text), so a scan
+    with no STIG id pairs with the STIG holding its V-numbers (ADR 0003, unit 2).
+    """
+    if scan.stig_id:
         candidates = [
             s for s in output.stigs if s.stig_id.removeprefix(_BENCHMARK_PREFIX) == scan.stig_id
         ]
@@ -287,31 +291,58 @@ def _pair(scans: list[Scan], output: Checklist) -> list[Stig]:
                 f"{scan.source}: scan is for {scan.stig_id!r} but the checklist has {found} "
                 "with that id"
             )
-        if any(candidates[0] is p for p in paired):
+        return candidates
+    v_numbers = {r.group_id for r in scan.results if r.group_id}
+    candidates = [s for s in output.stigs if v_numbers & {r.group_id for r in s.rules}]
+    if not candidates:
+        raise ChecklistError(
+            f"{scan.source}: none of the scan's {len(v_numbers)} V-numbers is in the checklist"
+        )
+    if len(candidates) > 1:
+        raise ChecklistError(
+            f"{scan.source}: the scan's V-numbers are spread over {len(candidates)} checklist "
+            f"STIGs ({', '.join(s.stig_id for s in candidates)})"
+        )
+    return candidates
+
+
+def _pair(scans: list[Scan], output: Checklist) -> list[Stig]:
+    """The checklist STIG for each scan, refusing anything ambiguous."""
+    paired: list[Stig] = []
+    for scan in scans:
+        [stig] = _candidates(scan, output)
+        if any(stig is p for p in paired):
             raise ChecklistError(
-                f"{scan.source}: another results file is also for {scan.stig_id!r}; import "
+                f"{scan.source}: another results file is also for {stig.stig_id!r}; import "
                 "one scan per STIG at a time"
             )
-        paired.append(candidates[0])
+        paired.append(stig)
     return paired
 
 
-def _check(
-    scan: Scan, stig: Stig, checklist: Checklist, allow_host_mismatch: bool, warnings: list[str]
-) -> None:
-    """Refuse a different release or host (ADR 0003 decisions 6 and 7)."""
+def _check_release(scan: Scan, stig: Stig, warnings: list[str]) -> bool:
+    """Refuse a different release (ADR 0003 decision 6). Returns whether it could be compared."""
     scan_rid = release_id(scan.version, scan.release_info)
     stig_rid = release_id(stig.version, stig.release_info)
     if scan_rid and stig_rid and not _same_release(scan_rid, stig_rid):
         raise ChecklistError(
-            f"{scan.source}: scan is {scan.stig_id} {_show_release(scan_rid)} but the checklist "
-            f"STIG is {_show_release(stig_rid)}; results only apply to the release they scanned"
+            f"{scan.source}: scan is {stig.stig_id.removeprefix(_BENCHMARK_PREFIX)} "
+            f"{_show_release(scan_rid)} but the checklist STIG is {_show_release(stig_rid)}; "
+            "results only apply to the release they scanned"
         )
     if not (scan_rid and stig_rid):
         warnings.append(
             f"{scan.source}: release could not be compared (scan {_show_release(scan_rid)}, "
             f"checklist {_show_release(stig_rid)})"
         )
+        return False
+    return True
+
+
+def _check_host(
+    scan: Scan, checklist: Checklist, allow_host_mismatch: bool, warnings: list[str]
+) -> None:
+    """Refuse a scan of another host unless allowed (ADR 0003 decision 7)."""
     host = checklist.host_name.strip()
     if not host:
         return
@@ -329,7 +360,7 @@ def _check(
 
 
 def _apply(scan: Scan, stig: Stig, prefer: Prefer) -> ScanImport:
-    report = ScanImport(scan.source, scan.tool, scan.end_time, scan.stig_id)
+    report = ScanImport(scan.source, scan.tool, scan.end_time, stig.stig_id)
     # match_rules pairs Rule objects, so each result gets a stand-in Rule carrying its ids.
     stand_ins = [
         Rule(
@@ -344,6 +375,7 @@ def _apply(scan: Scan, stig: Stig, prefer: Prefer) -> ScanImport:
     ]
     by_stand_in = {id(s): rr for s, rr in zip(stand_ins, scan.results, strict=True)}
     matching = match_rules(stand_ins, stig.rules)
+    report.matched = len(matching.pairs)
     report.ambiguous = matching.ambiguous
     report.unmatched = [by_stand_in[id(r)] for r in matching.old_only]
     header = (
@@ -392,7 +424,18 @@ def import_results(
     output = copy.deepcopy(checklist)
     result = ResultsImport(output, prefer)
     stigs = _pair(scans, output)
+    compared: list[bool] = []
     for scan, stig in zip(scans, stigs, strict=True):
-        _check(scan, stig, output, allow_host_mismatch, result.warnings)
+        compared.append(_check_release(scan, stig, result.warnings))
+        _check_host(scan, output, allow_host_mismatch, result.warnings)
     result.scans = [_apply(scan, stig, prefer) for scan, stig in zip(scans, stigs, strict=True)]
+    for report, was_compared in zip(result.scans, compared, strict=True):
+        # Unknown release, but rule revisions disagree: the best remaining sign of drift.
+        # (A known release is already checked; SCAP and manual revisions differ even then.)
+        if not was_compared and report.matched_by_group_id:
+            result.warnings.append(
+                f"{report.source}: {report.matched_by_group_id} of {report.matched} matched "
+                "rules have a different rule revision than the checklist; the scan may be for "
+                "another release"
+            )
     return result

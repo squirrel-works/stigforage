@@ -1,0 +1,2182 @@
+{
+ "_stigforage_note": "Modified by the stigforage maintainers: cut from apps/frontend/public/static/samples/rhel7-results.json in github.com/mitre/heimdall2 (Apache-2.0) to the 12 controls listed, otherwise unchanged.",
+ "platform": {
+  "name": "centos",
+  "release": "7.6.1810"
+ },
+ "profiles": [
+  {
+   "name": "disa_stig-el7",
+   "version": "0.2.0",
+   "sha256": "d4ecb3e201285a383a4aa6af8d9028e8311cb1975af2b380f098a21c895246ff",
+   "title": "DISA RedHat Enterprise Linux 7 STIG - v1r4",
+   "maintainer": "SIMP Team",
+   "summary": "The `disa_stig-el7` inspec profile helps scan your system aginst the DISA RHEL7 STIG",
+   "license": "Apache-2.0",
+   "copyright": "SIMP Team",
+   "copyright_email": "simp-dev@googlegroups.com",
+   "supports": [],
+   "attributes": [],
+   "groups": [
+    {
+     "id": "controls/V-71849.rb",
+     "controls": [
+      "V-71849"
+     ]
+    },
+    {
+     "id": "controls/V-71855.rb",
+     "controls": [
+      "V-71855"
+     ]
+    },
+    {
+     "id": "controls/V-71859.rb",
+     "controls": [
+      "V-71859"
+     ]
+    },
+    {
+     "id": "controls/V-71861.rb",
+     "controls": [
+      "V-71861"
+     ]
+    },
+    {
+     "id": "controls/V-71863.rb",
+     "controls": [
+      "V-71863"
+     ]
+    },
+    {
+     "id": "controls/V-71891.rb",
+     "controls": [
+      "V-71891"
+     ]
+    },
+    {
+     "id": "controls/V-71893.rb",
+     "controls": [
+      "V-71893"
+     ]
+    },
+    {
+     "id": "controls/V-71895.rb",
+     "controls": [
+      "V-71895"
+     ]
+    },
+    {
+     "id": "controls/V-71897.rb",
+     "controls": [
+      "V-71897"
+     ]
+    },
+    {
+     "id": "controls/V-71899.rb",
+     "controls": [
+      "V-71899"
+     ]
+    },
+    {
+     "id": "controls/V-71901.rb",
+     "controls": [
+      "V-71901"
+     ]
+    },
+    {
+     "id": "controls/V-71903.rb",
+     "controls": [
+      "V-71903"
+     ]
+    },
+    {
+     "id": "controls/V-71905.rb",
+     "controls": [
+      "V-71905"
+     ]
+    },
+    {
+     "id": "controls/V-71907.rb",
+     "controls": [
+      "V-71907"
+     ]
+    },
+    {
+     "id": "controls/V-71909.rb",
+     "controls": [
+      "V-71909"
+     ]
+    },
+    {
+     "id": "controls/V-71911.rb",
+     "controls": [
+      "V-71911"
+     ]
+    },
+    {
+     "id": "controls/V-71913.rb",
+     "controls": [
+      "V-71913"
+     ]
+    },
+    {
+     "id": "controls/V-71915.rb",
+     "controls": [
+      "V-71915"
+     ]
+    },
+    {
+     "id": "controls/V-71917.rb",
+     "controls": [
+      "V-71917"
+     ]
+    },
+    {
+     "id": "controls/V-71919.rb",
+     "controls": [
+      "V-71919"
+     ]
+    },
+    {
+     "id": "controls/V-71921.rb",
+     "controls": [
+      "V-71921"
+     ]
+    },
+    {
+     "id": "controls/V-71923.rb",
+     "controls": [
+      "V-71923"
+     ]
+    },
+    {
+     "id": "controls/V-71925.rb",
+     "controls": [
+      "V-71925"
+     ]
+    },
+    {
+     "id": "controls/V-71927.rb",
+     "controls": [
+      "V-71927"
+     ]
+    },
+    {
+     "id": "controls/V-71929.rb",
+     "controls": [
+      "V-71929"
+     ]
+    },
+    {
+     "id": "controls/V-71931.rb",
+     "controls": [
+      "V-71931"
+     ]
+    },
+    {
+     "id": "controls/V-71933.rb",
+     "controls": [
+      "V-71933"
+     ]
+    },
+    {
+     "id": "controls/V-71935.rb",
+     "controls": [
+      "V-71935"
+     ]
+    },
+    {
+     "id": "controls/V-71937.rb",
+     "controls": [
+      "V-71937"
+     ]
+    },
+    {
+     "id": "controls/V-71939.rb",
+     "controls": [
+      "V-71939"
+     ]
+    },
+    {
+     "id": "controls/V-71941.rb",
+     "controls": [
+      "V-71941"
+     ]
+    },
+    {
+     "id": "controls/V-71943.rb",
+     "controls": [
+      "V-71943"
+     ]
+    },
+    {
+     "id": "controls/V-71945.rb",
+     "controls": [
+      "V-71945"
+     ]
+    },
+    {
+     "id": "controls/V-71947.rb",
+     "controls": [
+      "V-71947"
+     ]
+    },
+    {
+     "id": "controls/V-71949.rb",
+     "controls": [
+      "V-71949"
+     ]
+    },
+    {
+     "id": "controls/V-71951.rb",
+     "controls": [
+      "V-71951"
+     ]
+    },
+    {
+     "id": "controls/V-71953.rb",
+     "controls": [
+      "V-71953"
+     ]
+    },
+    {
+     "id": "controls/V-71955.rb",
+     "controls": [
+      "V-71955"
+     ]
+    },
+    {
+     "id": "controls/V-71957.rb",
+     "controls": [
+      "V-71957"
+     ]
+    },
+    {
+     "id": "controls/V-71959.rb",
+     "controls": [
+      "V-71959"
+     ]
+    },
+    {
+     "id": "controls/V-71961.rb",
+     "controls": [
+      "V-71961"
+     ]
+    },
+    {
+     "id": "controls/V-71963.rb",
+     "controls": [
+      "V-71963"
+     ]
+    },
+    {
+     "id": "controls/V-71965.rb",
+     "controls": [
+      "V-71965"
+     ]
+    },
+    {
+     "id": "controls/V-71967.rb",
+     "controls": [
+      "V-71967"
+     ]
+    },
+    {
+     "id": "controls/V-71969.rb",
+     "controls": [
+      "V-71969"
+     ]
+    },
+    {
+     "id": "controls/V-71971.rb",
+     "controls": [
+      "V-71971"
+     ]
+    },
+    {
+     "id": "controls/V-71973.rb",
+     "controls": [
+      "V-71973"
+     ]
+    },
+    {
+     "id": "controls/V-71975.rb",
+     "controls": [
+      "V-71975"
+     ]
+    },
+    {
+     "id": "controls/V-71977.rb",
+     "controls": [
+      "V-71977"
+     ]
+    },
+    {
+     "id": "controls/V-71979.rb",
+     "controls": [
+      "V-71979"
+     ]
+    },
+    {
+     "id": "controls/V-71981.rb",
+     "controls": [
+      "V-71981"
+     ]
+    },
+    {
+     "id": "controls/V-71983.rb",
+     "controls": [
+      "V-71983"
+     ]
+    },
+    {
+     "id": "controls/V-71985.rb",
+     "controls": [
+      "V-71985"
+     ]
+    },
+    {
+     "id": "controls/V-71987.rb",
+     "controls": [
+      "V-71987"
+     ]
+    },
+    {
+     "id": "controls/V-71989.rb",
+     "controls": [
+      "V-71989"
+     ]
+    },
+    {
+     "id": "controls/V-71991.rb",
+     "controls": [
+      "V-71991"
+     ]
+    },
+    {
+     "id": "controls/V-71993.rb",
+     "controls": [
+      "V-71993"
+     ]
+    },
+    {
+     "id": "controls/V-71995.rb",
+     "controls": [
+      "V-71995"
+     ]
+    },
+    {
+     "id": "controls/V-71997.rb",
+     "controls": [
+      "V-71997"
+     ]
+    },
+    {
+     "id": "controls/V-71999.rb",
+     "controls": [
+      "V-71999"
+     ]
+    },
+    {
+     "id": "controls/V-72001.rb",
+     "controls": [
+      "V-72001"
+     ]
+    },
+    {
+     "id": "controls/V-72003.rb",
+     "controls": [
+      "V-72003"
+     ]
+    },
+    {
+     "id": "controls/V-72005.rb",
+     "controls": [
+      "V-72005"
+     ]
+    },
+    {
+     "id": "controls/V-72007.rb",
+     "controls": [
+      "V-72007"
+     ]
+    },
+    {
+     "id": "controls/V-72009.rb",
+     "controls": [
+      "V-72009"
+     ]
+    },
+    {
+     "id": "controls/V-72011.rb",
+     "controls": [
+      "V-72011"
+     ]
+    },
+    {
+     "id": "controls/V-72013.rb",
+     "controls": [
+      "V-72013"
+     ]
+    },
+    {
+     "id": "controls/V-72015.rb",
+     "controls": [
+      "V-72015"
+     ]
+    },
+    {
+     "id": "controls/V-72017.rb",
+     "controls": [
+      "V-72017"
+     ]
+    },
+    {
+     "id": "controls/V-72019.rb",
+     "controls": [
+      "V-72019"
+     ]
+    },
+    {
+     "id": "controls/V-72021.rb",
+     "controls": [
+      "V-72021"
+     ]
+    },
+    {
+     "id": "controls/V-72023.rb",
+     "controls": [
+      "V-72023"
+     ]
+    },
+    {
+     "id": "controls/V-72025.rb",
+     "controls": [
+      "V-72025"
+     ]
+    },
+    {
+     "id": "controls/V-72027.rb",
+     "controls": [
+      "V-72027"
+     ]
+    },
+    {
+     "id": "controls/V-72029.rb",
+     "controls": [
+      "V-72029"
+     ]
+    },
+    {
+     "id": "controls/V-72031.rb",
+     "controls": [
+      "V-72031"
+     ]
+    },
+    {
+     "id": "controls/V-72033.rb",
+     "controls": [
+      "V-72033"
+     ]
+    },
+    {
+     "id": "controls/V-72035.rb",
+     "controls": [
+      "V-72035"
+     ]
+    },
+    {
+     "id": "controls/V-72037.rb",
+     "controls": [
+      "V-72037"
+     ]
+    },
+    {
+     "id": "controls/V-72039.rb",
+     "controls": [
+      "V-72039"
+     ]
+    },
+    {
+     "id": "controls/V-72041.rb",
+     "controls": [
+      "V-72041"
+     ]
+    },
+    {
+     "id": "controls/V-72043.rb",
+     "controls": [
+      "V-72043"
+     ]
+    },
+    {
+     "id": "controls/V-72045.rb",
+     "controls": [
+      "V-72045"
+     ]
+    },
+    {
+     "id": "controls/V-72047.rb",
+     "controls": [
+      "V-72047"
+     ]
+    },
+    {
+     "id": "controls/V-72049.rb",
+     "controls": [
+      "V-72049"
+     ]
+    },
+    {
+     "id": "controls/V-72051.rb",
+     "controls": [
+      "V-72051"
+     ]
+    },
+    {
+     "id": "controls/V-72053.rb",
+     "controls": [
+      "V-72053"
+     ]
+    },
+    {
+     "id": "controls/V-72055.rb",
+     "controls": [
+      "V-72055"
+     ]
+    },
+    {
+     "id": "controls/V-72057.rb",
+     "controls": [
+      "V-72057"
+     ]
+    },
+    {
+     "id": "controls/V-72059.rb",
+     "controls": [
+      "V-72059"
+     ]
+    },
+    {
+     "id": "controls/V-72061.rb",
+     "controls": [
+      "V-72061"
+     ]
+    },
+    {
+     "id": "controls/V-72063.rb",
+     "controls": [
+      "V-72063"
+     ]
+    },
+    {
+     "id": "controls/V-72065.rb",
+     "controls": [
+      "V-72065"
+     ]
+    },
+    {
+     "id": "controls/V-72067.rb",
+     "controls": [
+      "V-72067"
+     ]
+    },
+    {
+     "id": "controls/V-72069.rb",
+     "controls": [
+      "V-72069"
+     ]
+    },
+    {
+     "id": "controls/V-72071.rb",
+     "controls": [
+      "V-72071"
+     ]
+    },
+    {
+     "id": "controls/V-72073.rb",
+     "controls": [
+      "V-72073"
+     ]
+    },
+    {
+     "id": "controls/V-72075.rb",
+     "controls": [
+      "V-72075"
+     ]
+    },
+    {
+     "id": "controls/V-72077.rb",
+     "controls": [
+      "V-72077"
+     ]
+    },
+    {
+     "id": "controls/V-72079.rb",
+     "controls": [
+      "V-72079"
+     ]
+    },
+    {
+     "id": "controls/V-72081.rb",
+     "controls": [
+      "V-72081"
+     ]
+    },
+    {
+     "id": "controls/V-72083.rb",
+     "controls": [
+      "V-72083"
+     ]
+    },
+    {
+     "id": "controls/V-72085.rb",
+     "controls": [
+      "V-72085"
+     ]
+    },
+    {
+     "id": "controls/V-72087.rb",
+     "controls": [
+      "V-72087"
+     ]
+    },
+    {
+     "id": "controls/V-72089.rb",
+     "controls": [
+      "V-72089"
+     ]
+    },
+    {
+     "id": "controls/V-72091.rb",
+     "controls": [
+      "V-72091"
+     ]
+    },
+    {
+     "id": "controls/V-72093.rb",
+     "controls": [
+      "V-72093"
+     ]
+    },
+    {
+     "id": "controls/V-72095.rb",
+     "controls": [
+      "V-72095"
+     ]
+    },
+    {
+     "id": "controls/V-72097.rb",
+     "controls": [
+      "V-72097"
+     ]
+    },
+    {
+     "id": "controls/V-72099.rb",
+     "controls": [
+      "V-72099"
+     ]
+    },
+    {
+     "id": "controls/V-72101.rb",
+     "controls": [
+      "V-72101"
+     ]
+    },
+    {
+     "id": "controls/V-72103.rb",
+     "controls": [
+      "V-72103"
+     ]
+    },
+    {
+     "id": "controls/V-72105.rb",
+     "controls": [
+      "V-72105"
+     ]
+    },
+    {
+     "id": "controls/V-72107.rb",
+     "controls": [
+      "V-72107"
+     ]
+    },
+    {
+     "id": "controls/V-72109.rb",
+     "controls": [
+      "V-72109"
+     ]
+    },
+    {
+     "id": "controls/V-72111.rb",
+     "controls": [
+      "V-72111"
+     ]
+    },
+    {
+     "id": "controls/V-72113.rb",
+     "controls": [
+      "V-72113"
+     ]
+    },
+    {
+     "id": "controls/V-72115.rb",
+     "controls": [
+      "V-72115"
+     ]
+    },
+    {
+     "id": "controls/V-72117.rb",
+     "controls": [
+      "V-72117"
+     ]
+    },
+    {
+     "id": "controls/V-72119.rb",
+     "controls": [
+      "V-72119"
+     ]
+    },
+    {
+     "id": "controls/V-72121.rb",
+     "controls": [
+      "V-72121"
+     ]
+    },
+    {
+     "id": "controls/V-72123.rb",
+     "controls": [
+      "V-72123"
+     ]
+    },
+    {
+     "id": "controls/V-72125.rb",
+     "controls": [
+      "V-72125"
+     ]
+    },
+    {
+     "id": "controls/V-72127.rb",
+     "controls": [
+      "V-72127"
+     ]
+    },
+    {
+     "id": "controls/V-72129.rb",
+     "controls": [
+      "V-72129"
+     ]
+    },
+    {
+     "id": "controls/V-72131.rb",
+     "controls": [
+      "V-72131"
+     ]
+    },
+    {
+     "id": "controls/V-72133.rb",
+     "controls": [
+      "V-72133"
+     ]
+    },
+    {
+     "id": "controls/V-72135.rb",
+     "controls": [
+      "V-72135"
+     ]
+    },
+    {
+     "id": "controls/V-72137.rb",
+     "controls": [
+      "V-72137"
+     ]
+    },
+    {
+     "id": "controls/V-72139.rb",
+     "controls": [
+      "V-72139"
+     ]
+    },
+    {
+     "id": "controls/V-72141.rb",
+     "controls": [
+      "V-72141"
+     ]
+    },
+    {
+     "id": "controls/V-72143.rb",
+     "controls": [
+      "V-72143"
+     ]
+    },
+    {
+     "id": "controls/V-72145.rb",
+     "controls": [
+      "V-72145"
+     ]
+    },
+    {
+     "id": "controls/V-72147.rb",
+     "controls": [
+      "V-72147"
+     ]
+    },
+    {
+     "id": "controls/V-72149.rb",
+     "controls": [
+      "V-72149"
+     ]
+    },
+    {
+     "id": "controls/V-72151.rb",
+     "controls": [
+      "V-72151"
+     ]
+    },
+    {
+     "id": "controls/V-72153.rb",
+     "controls": [
+      "V-72153"
+     ]
+    },
+    {
+     "id": "controls/V-72155.rb",
+     "controls": [
+      "V-72155"
+     ]
+    },
+    {
+     "id": "controls/V-72157.rb",
+     "controls": [
+      "V-72157"
+     ]
+    },
+    {
+     "id": "controls/V-72159.rb",
+     "controls": [
+      "V-72159"
+     ]
+    },
+    {
+     "id": "controls/V-72161.rb",
+     "controls": [
+      "V-72161"
+     ]
+    },
+    {
+     "id": "controls/V-72163.rb",
+     "controls": [
+      "V-72163"
+     ]
+    },
+    {
+     "id": "controls/V-72165.rb",
+     "controls": [
+      "V-72165"
+     ]
+    },
+    {
+     "id": "controls/V-72167.rb",
+     "controls": [
+      "V-72167"
+     ]
+    },
+    {
+     "id": "controls/V-72169.rb",
+     "controls": [
+      "V-72169"
+     ]
+    },
+    {
+     "id": "controls/V-72171.rb",
+     "controls": [
+      "V-72171"
+     ]
+    },
+    {
+     "id": "controls/V-72173.rb",
+     "controls": [
+      "V-72173"
+     ]
+    },
+    {
+     "id": "controls/V-72175.rb",
+     "controls": [
+      "V-72175"
+     ]
+    },
+    {
+     "id": "controls/V-72177.rb",
+     "controls": [
+      "V-72177"
+     ]
+    },
+    {
+     "id": "controls/V-72179.rb",
+     "controls": [
+      "V-72179"
+     ]
+    },
+    {
+     "id": "controls/V-72181.rb",
+     "controls": [
+      "V-72181"
+     ]
+    },
+    {
+     "id": "controls/V-72183.rb",
+     "controls": [
+      "V-72183"
+     ]
+    },
+    {
+     "id": "controls/V-72185.rb",
+     "controls": [
+      "V-72185"
+     ]
+    },
+    {
+     "id": "controls/V-72187.rb",
+     "controls": [
+      "V-72187"
+     ]
+    },
+    {
+     "id": "controls/V-72189.rb",
+     "controls": [
+      "V-72189"
+     ]
+    },
+    {
+     "id": "controls/V-72191.rb",
+     "controls": [
+      "V-72191"
+     ]
+    },
+    {
+     "id": "controls/V-72193.rb",
+     "controls": [
+      "V-72193"
+     ]
+    },
+    {
+     "id": "controls/V-72195.rb",
+     "controls": [
+      "V-72195"
+     ]
+    },
+    {
+     "id": "controls/V-72197.rb",
+     "controls": [
+      "V-72197"
+     ]
+    },
+    {
+     "id": "controls/V-72199.rb",
+     "controls": [
+      "V-72199"
+     ]
+    },
+    {
+     "id": "controls/V-72201.rb",
+     "controls": [
+      "V-72201"
+     ]
+    },
+    {
+     "id": "controls/V-72203.rb",
+     "controls": [
+      "V-72203"
+     ]
+    },
+    {
+     "id": "controls/V-72205.rb",
+     "controls": [
+      "V-72205"
+     ]
+    },
+    {
+     "id": "controls/V-72207.rb",
+     "controls": [
+      "V-72207"
+     ]
+    },
+    {
+     "id": "controls/V-72209.rb",
+     "controls": [
+      "V-72209"
+     ]
+    },
+    {
+     "id": "controls/V-72211.rb",
+     "controls": [
+      "V-72211"
+     ]
+    },
+    {
+     "id": "controls/V-72213.rb",
+     "controls": [
+      "V-72213"
+     ]
+    },
+    {
+     "id": "controls/V-72215.rb",
+     "controls": [
+      "V-72215"
+     ]
+    },
+    {
+     "id": "controls/V-72217.rb",
+     "controls": [
+      "V-72217"
+     ]
+    },
+    {
+     "id": "controls/V-72219.rb",
+     "controls": [
+      "V-72219"
+     ]
+    },
+    {
+     "id": "controls/V-72221.rb",
+     "controls": [
+      "V-72221"
+     ]
+    },
+    {
+     "id": "controls/V-72223.rb",
+     "controls": [
+      "V-72223"
+     ]
+    },
+    {
+     "id": "controls/V-72225.rb",
+     "controls": [
+      "V-72225"
+     ]
+    },
+    {
+     "id": "controls/V-72227.rb",
+     "controls": [
+      "V-72227"
+     ]
+    },
+    {
+     "id": "controls/V-72229.rb",
+     "controls": [
+      "V-72229"
+     ]
+    },
+    {
+     "id": "controls/V-72231.rb",
+     "controls": [
+      "V-72231"
+     ]
+    },
+    {
+     "id": "controls/V-72233.rb",
+     "controls": [
+      "V-72233"
+     ]
+    },
+    {
+     "id": "controls/V-72235.rb",
+     "controls": [
+      "V-72235"
+     ]
+    },
+    {
+     "id": "controls/V-72237.rb",
+     "controls": [
+      "V-72237"
+     ]
+    },
+    {
+     "id": "controls/V-72239.rb",
+     "controls": [
+      "V-72239"
+     ]
+    },
+    {
+     "id": "controls/V-72241.rb",
+     "controls": [
+      "V-72241"
+     ]
+    },
+    {
+     "id": "controls/V-72243.rb",
+     "controls": [
+      "V-72243"
+     ]
+    },
+    {
+     "id": "controls/V-72245.rb",
+     "controls": [
+      "V-72245"
+     ]
+    },
+    {
+     "id": "controls/V-72247.rb",
+     "controls": [
+      "V-72247"
+     ]
+    },
+    {
+     "id": "controls/V-72249.rb",
+     "controls": [
+      "V-72249"
+     ]
+    },
+    {
+     "id": "controls/V-72251.rb",
+     "controls": [
+      "V-72251"
+     ]
+    },
+    {
+     "id": "controls/V-72253.rb",
+     "controls": [
+      "V-72253"
+     ]
+    },
+    {
+     "id": "controls/V-72255.rb",
+     "controls": [
+      "V-72255"
+     ]
+    },
+    {
+     "id": "controls/V-72257.rb",
+     "controls": [
+      "V-72257"
+     ]
+    },
+    {
+     "id": "controls/V-72259.rb",
+     "controls": [
+      "V-72259"
+     ]
+    },
+    {
+     "id": "controls/V-72261.rb",
+     "controls": [
+      "V-72261"
+     ]
+    },
+    {
+     "id": "controls/V-72263.rb",
+     "controls": [
+      "V-72263"
+     ]
+    },
+    {
+     "id": "controls/V-72265.rb",
+     "controls": [
+      "V-72265"
+     ]
+    },
+    {
+     "id": "controls/V-72267.rb",
+     "controls": [
+      "V-72267"
+     ]
+    },
+    {
+     "id": "controls/V-72269.rb",
+     "controls": [
+      "V-72269"
+     ]
+    },
+    {
+     "id": "controls/V-72271.rb",
+     "controls": [
+      "V-72271"
+     ]
+    },
+    {
+     "id": "controls/V-72273.rb",
+     "controls": [
+      "V-72273"
+     ]
+    },
+    {
+     "id": "controls/V-72275.rb",
+     "controls": [
+      "V-72275"
+     ]
+    },
+    {
+     "id": "controls/V-72277.rb",
+     "controls": [
+      "V-72277"
+     ]
+    },
+    {
+     "id": "controls/V-72279.rb",
+     "controls": [
+      "V-72279"
+     ]
+    },
+    {
+     "id": "controls/V-72281.rb",
+     "controls": [
+      "V-72281"
+     ]
+    },
+    {
+     "id": "controls/V-72283.rb",
+     "controls": [
+      "V-72283"
+     ]
+    },
+    {
+     "id": "controls/V-72285.rb",
+     "controls": [
+      "V-72285"
+     ]
+    },
+    {
+     "id": "controls/V-72287.rb",
+     "controls": [
+      "V-72287"
+     ]
+    },
+    {
+     "id": "controls/V-72289.rb",
+     "controls": [
+      "V-72289"
+     ]
+    },
+    {
+     "id": "controls/V-72291.rb",
+     "controls": [
+      "V-72291"
+     ]
+    },
+    {
+     "id": "controls/V-72293.rb",
+     "controls": [
+      "V-72293"
+     ]
+    },
+    {
+     "id": "controls/V-72295.rb",
+     "controls": [
+      "V-72295"
+     ]
+    },
+    {
+     "id": "controls/V-72297.rb",
+     "controls": [
+      "V-72297"
+     ]
+    },
+    {
+     "id": "controls/V-72299.rb",
+     "controls": [
+      "V-72299"
+     ]
+    },
+    {
+     "id": "controls/V-72301.rb",
+     "controls": [
+      "V-72301"
+     ]
+    },
+    {
+     "id": "controls/V-72303.rb",
+     "controls": [
+      "V-72303"
+     ]
+    },
+    {
+     "id": "controls/V-72305.rb",
+     "controls": [
+      "V-72305"
+     ]
+    },
+    {
+     "id": "controls/V-72307.rb",
+     "controls": [
+      "V-72307"
+     ]
+    },
+    {
+     "id": "controls/V-72309.rb",
+     "controls": [
+      "V-72309"
+     ]
+    },
+    {
+     "id": "controls/V-72311.rb",
+     "controls": [
+      "V-72311"
+     ]
+    },
+    {
+     "id": "controls/V-72313.rb",
+     "controls": [
+      "V-72313"
+     ]
+    },
+    {
+     "id": "controls/V-72315.rb",
+     "controls": [
+      "V-72315"
+     ]
+    },
+    {
+     "id": "controls/V-72317.rb",
+     "controls": [
+      "V-72317"
+     ]
+    },
+    {
+     "id": "controls/V-72319.rb",
+     "controls": [
+      "V-72319"
+     ]
+    },
+    {
+     "id": "controls/V-72417.rb",
+     "controls": [
+      "V-72417"
+     ]
+    },
+    {
+     "id": "controls/V-72427.rb",
+     "controls": [
+      "V-72427"
+     ]
+    },
+    {
+     "id": "controls/V-72433.rb",
+     "controls": [
+      "V-72433"
+     ]
+    },
+    {
+     "id": "controls/V-72435.rb",
+     "controls": [
+      "V-72435"
+     ]
+    },
+    {
+     "id": "controls/V-73155.rb",
+     "controls": [
+      "V-73155"
+     ]
+    },
+    {
+     "id": "controls/V-73157.rb",
+     "controls": [
+      "V-73157"
+     ]
+    },
+    {
+     "id": "controls/V-73159.rb",
+     "controls": [
+      "V-73159"
+     ]
+    },
+    {
+     "id": "controls/V-73161.rb",
+     "controls": [
+      "V-73161"
+     ]
+    },
+    {
+     "id": "controls/V-73163.rb",
+     "controls": [
+      "V-73163"
+     ]
+    },
+    {
+     "id": "controls/V-73165.rb",
+     "controls": [
+      "V-73165"
+     ]
+    },
+    {
+     "id": "controls/V-73167.rb",
+     "controls": [
+      "V-73167"
+     ]
+    },
+    {
+     "id": "controls/V-73171.rb",
+     "controls": [
+      "V-73171"
+     ]
+    },
+    {
+     "id": "controls/V-73173.rb",
+     "controls": [
+      "V-73173"
+     ]
+    },
+    {
+     "id": "controls/V-73175.rb",
+     "controls": [
+      "V-73175"
+     ]
+    },
+    {
+     "id": "controls/V-73177.rb",
+     "controls": [
+      "V-73177"
+     ]
+    },
+    {
+     "id": "controls/V-77819.rb",
+     "controls": [
+      "V-77819"
+     ]
+    },
+    {
+     "id": "controls/V-77821.rb",
+     "controls": [
+      "V-77821"
+     ]
+    },
+    {
+     "id": "controls/V-77823.rb",
+     "controls": [
+      "V-77823"
+     ]
+    },
+    {
+     "id": "controls/V-77825.rb",
+     "controls": [
+      "V-77825"
+     ]
+    },
+    {
+     "id": "controls/V-78995.rb",
+     "controls": [
+      "V-78995"
+     ]
+    },
+    {
+     "id": "controls/V-78997.rb",
+     "controls": [
+      "V-78997"
+     ]
+    },
+    {
+     "id": "controls/V-78999.rb",
+     "controls": [
+      "V-78999"
+     ]
+    },
+    {
+     "id": "controls/V-79001.rb",
+     "controls": [
+      "V-79001"
+     ]
+    }
+   ],
+   "controls": [
+    {
+     "id": "V-71849",
+     "title": "The file permissions, ownership, and group membership of system files and commands must match the vendor values.",
+     "desc": "Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Discretionary access control is weakened if a user or group has access permissions to system files and directories greater than the default."
+      },
+      {
+       "label": "check",
+       "data": "Verify the file permissions, ownership, and group membership of\nsystem files and commands match the vendor values.\n\nCheck the file permissions, ownership, and group membership of system files and\ncommands with the following command:\n\n# rpm -Va | grep '^.M'\n\nIf there is any output from the command indicating that the ownership or group\nof a system file or command, or a system file, has permissions less restrictive\nthan the default, this is a finding."
+      },
+      {
+       "label": "fix",
+       "data": "Run the following command to determine which package owns the\nfile:\n\n# rpm -qf <filename>\n\nReset the permissions of files within a package with the following command:\n\n#rpm --setperms <packagename>\n\nReset the user and group ownership of files within a package with the following\ncommand:\n\n#rpm --setugids <packagename>"
+      }
+     ],
+     "impact": 0.7,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000257-GPOS-00098",
+      "satisfies": [
+       "SRG-OS-000257-GPOS-00098",
+       "SRG-OS-000278-GPOS-00108"
+      ],
+      "gid": "V-71849",
+      "rid": "SV-86473r2_rule",
+      "stig_id": "RHEL-07-010010",
+      "cci": [
+       "CCI-001494",
+       "CCI-001496"
+      ],
+      "documentable": false,
+      "nist": [
+       "AU-9",
+       "AU-9 (3)",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "permissions",
+       "package",
+       "rpm"
+      ],
+      "fix_id": "F-78201r3_fix"
+     },
+     "code": "control \"V-71849\" do\n  title \"The file permissions, ownership, and group membership of system files and commands must match the vendor\" \\\n        \" values.\"\n  desc  \"Discretionary access control is weakened if a user or group has access\" \\\n        \" permissions to system files and directories greater than the default.\"\n  impact 0.7\n  tag \"gtitle\": \"SRG-OS-000257-GPOS-00098\"\n  tag \"satisfies\": [\"SRG-OS-000257-GPOS-00098\", \"SRG-OS-000278-GPOS-00108\"]\n  tag \"gid\": \"V-71849\"\n  tag \"rid\": \"SV-86473r2_rule\"\n  tag \"stig_id\": \"RHEL-07-010010\"\n  tag \"cci\": [\"CCI-001494\", \"CCI-001496\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"AU-9\", \"AU-9 (3)\", \"Rev_4\"]\n  tag \"subsystems\": [ \"permissions\", \"package\", \"rpm\" ]\n  desc \"check\", \"Verify the file permissions, ownership, and group membership of\nsystem files and commands match the vendor values.\n\nCheck the file permissions, ownership, and group membership of system files and\ncommands with the following command:\n\n# rpm -Va | grep '^.M'\n\nIf there is any output from the command indicating that the ownership or group\nof a system file or command, or a system file, has permissions less restrictive\nthan the default, this is a finding.\"\n  desc \"fix\", \"Run the following command to determine which package owns the\nfile:\n\n# rpm -qf <filename>\n\nReset the permissions of files within a package with the following command:\n\n#rpm --setperms <packagename>\n\nReset the user and group ownership of files within a package with the following\ncommand:\n\n#rpm --setugids <packagename>\"\n  tag \"fix_id\": \"F-78201r3_fix\"\n\n  if disable_slow_controls\n    describe \"This control consistently takes a long time to run and has been disabled\n    using the disable_slow_controls attribute.\" do\n      skip \"This control consistently takes a long time to run and has been disabled\n            using the disable_slow_controls attribute. You must enable this control for a\n            full accredidation for production.\"\n    end\n  else\n    describe command(\"rpm -Va | grep '^.M' | awk 'NF>1{print $NF}'\").stdout.strip.split(\"\\n\") do\n      it { should all(be_in rpm_verify_perms_except) }\n    end\n  end\nend\n",
+     "source_location": {
+      "line": 16,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-71849.rb"
+     },
+     "results": [
+      {
+       "status": "failed",
+       "code_desc": "[\"/boot/initramfs-3.10.0-957.27.2.el7.x86_64.img\", \"/run/lsm\", \"/run/lsm/ipc\", \"/var/lib/setroubleshoot/email_alert_recipients\", \"/var/run/libvirt/qemu\", \"/boot/initramfs-3.10.0-957.el7.x86_64.img\", \"/var/log/dmesg\", \"/var/log/dmesg.old\", \"/var/lib/PackageKit/transactions.db\", \"/etc/pki/ca-trust/extracted/java/cacerts\", \"/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt\", \"/etc/pki/ca-trust/extracted/pem/email-ca-bundle.pem\", \"/etc/pki/ca-trust/extracted/pem/objsign-ca-bundle.pem\", \"/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem\", \"/var/lock/iscsi\", \"/var/lock/iscsi/lock\"] should all be in",
+       "run_time": 0.00056624,
+       "start_time": "2019-11-04T16:17:07-05:00",
+       "message": "expected [\"/boot/initramfs-3.10.0-957.27.2.el7.x86_64.img\", \"/run/lsm\", \"/run/lsm/ipc\", \"/var/lib/setroublesho...em\", \"/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem\", \"/var/lock/iscsi\", \"/var/lock/iscsi/lock\"] to all be in\n\n   object at index 0 failed to match:\n      expected `/boot/initramfs-3.10.0-957.27.2.el7.x86_64.img` to be in the list: `[]`\n\n   object at index 1 failed to match:\n      expected `/run/lsm` to be in the list: `[]`\n\n   object at index 2 failed to match:\n      expected `/run/lsm/ipc` to be in the list: `[]`\n\n   object at index 3 failed to match:\n      expected `/var/lib/setroubleshoot/email_alert_recipients` to be in the list: `[]`\n\n   object at index 4 failed to match:\n      expected `/var/run/libvirt/qemu` to be in the list: `[]`\n\n   object at index 5 failed to match:\n      expected `/boot/initramfs-3.10.0-957.el7.x86_64.img` to be in the list: `[]`\n\n   object at index 6 failed to match:\n      expected `/var/log/dmesg` to be in the list: `[]`\n\n   object at index 7 failed to match:\n      expected `/var/log/dmesg.old` to be in the list: `[]`\n\n   object at index 8 failed to match:\n      expected `/var/lib/PackageKit/transactions.db` to be in the list: `[]`\n\n   object at index 9 failed to match:\n      expected `/etc/pki/ca-trust/extracted/java/cacerts` to be in the list: `[]`\n\n   object at index 10 failed to match:\n      expected `/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt` to be in the list: `[]`\n\n   object at index 11 failed to match:\n      expected `/etc/pki/ca-trust/extracted/pem/email-ca-bundle.pem` to be in the list: `[]`\n\n   object at index 12 failed to match:\n      expected `/etc/pki/ca-trust/extracted/pem/objsign-ca-bundle.pem` to be in the list: `[]`\n\n   object at index 13 failed to match:\n      expected `/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem` to be in the list: `[]`\n\n   object at index 14 failed to match:\n      expected `/var/lock/iscsi` to be in the list: `[]`\n\n   object at index 15 failed to match:\n      expected `/var/lock/iscsi/lock` to be in the list: `[]`"
+      }
+     ]
+    },
+    {
+     "id": "V-71855",
+     "title": "The cryptographic hash of system files and commands must match vendor\nvalues.",
+     "desc": "Without cryptographic integrity protections, system command and files can\nbe altered by unauthorized users without detection.\n\n    Cryptographic mechanisms used for protecting the integrity of information\ninclude, for example, signed hash functions using asymmetric cryptography\nenabling distribution of the public key to verify the hash information while\nmaintaining the confidentiality of the key used to generate the hash.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Without cryptographic integrity protections, system command and files can\nbe altered by unauthorized users without detection.\n\n    Cryptographic mechanisms used for protecting the integrity of information\ninclude, for example, signed hash functions using asymmetric cryptography\nenabling distribution of the public key to verify the hash information while\nmaintaining the confidentiality of the key used to generate the hash."
+      },
+      {
+       "label": "check",
+       "data": "Verify the cryptographic hash of system files and commands\nmatch the vendor values.\n\nCheck the cryptographic hash of system files and commands with the following\ncommand:\n\nNote: System configuration files (indicated by a \"c\" in the second column)\nare expected to change over time. Unusual modifications should be investigated\nthrough the system audit log.\n\n# rpm -Va | grep '^..5'\n\nIf there is any output from the command for system binaries, this is a finding."
+      },
+      {
+       "label": "fix",
+       "data": "Run the following command to determine which package owns the\nfile:\n\n# rpm -qf <filename>\n\nThe package can be reinstalled from a yum repository using the command:\n\n# sudo yum reinstall <packagename>\n\nAlternatively, the package can be reinstalled from trusted media using the\ncommand:\n\n# sudo rpm -Uvh <packagename>"
+      }
+     ],
+     "impact": 0.7,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000480-GPOS-00227",
+      "gid": "V-71855",
+      "rid": "SV-86479r2_rule",
+      "stig_id": "RHEL-07-010020",
+      "cci": [
+       "CCI-000663"
+      ],
+      "documentable": false,
+      "nist": [
+       "SA-7",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "rpm",
+       "package"
+      ],
+      "fix_id": "F-78207r1_fix"
+     },
+     "code": "control \"V-71855\" do\n  title \"The cryptographic hash of system files and commands must match vendor\nvalues.\"\n  desc  \"\n    Without cryptographic integrity protections, system command and files can\nbe altered by unauthorized users without detection.\n\n    Cryptographic mechanisms used for protecting the integrity of information\ninclude, for example, signed hash functions using asymmetric cryptography\nenabling distribution of the public key to verify the hash information while\nmaintaining the confidentiality of the key used to generate the hash.\n  \"\n  impact 0.7\n  tag \"gtitle\": \"SRG-OS-000480-GPOS-00227\"\n  tag \"gid\": \"V-71855\"\n  tag \"rid\": \"SV-86479r2_rule\"\n  tag \"stig_id\": \"RHEL-07-010020\"\n  tag \"cci\": [\"CCI-000663\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"SA-7\", \"Rev_4\"]\n  tag \"subsystems\": ['rpm', 'package']\n  desc \"check\", \"Verify the cryptographic hash of system files and commands\nmatch the vendor values.\n\nCheck the cryptographic hash of system files and commands with the following\ncommand:\n\nNote: System configuration files (indicated by a \\\"c\\\" in the second column)\nare expected to change over time. Unusual modifications should be investigated\nthrough the system audit log.\n\n# rpm -Va | grep '^..5'\n\nIf there is any output from the command for system binaries, this is a finding.\"\n  desc \"fix\", \"Run the following command to determine which package owns the\nfile:\n\n# rpm -qf <filename>\n\nThe package can be reinstalled from a yum repository using the command:\n\n# sudo yum reinstall <packagename>\n\nAlternatively, the package can be reinstalled from trusted media using the\ncommand:\n\n# sudo rpm -Uvh <packagename>\"\n  tag \"fix_id\": \"F-78207r1_fix\"\n\n  if disable_slow_controls\n    describe \"This control consistently takes a long to run and has been disabled\n    using the disable_slow_controls attribute.\" do\n      skip \"This control consistently takes a long to run and has been disabled\n      using the disable_slow_controls attribute. You must enable this control for a\n      full accredidation for production.\"\n    end\n  else\n    # grep excludes files that are marked with 'c' attribute (config files)\n    describe command(\"rpm -Va | grep '^..5' | grep -E -v '[a-z]*c[a-z]*\\\\s+\\\\S+$' | awk 'NF>1{print $NF}'\").\n      stdout.strip.split(\"\\n\") do\n        it { should all(be_in rpm_verify_integrity_except) }\n      end\n  end\nend\n",
+     "source_location": {
+      "line": 15,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-71855.rb"
+     },
+     "results": [
+      {
+       "status": "passed",
+       "code_desc": "[] should all be in",
+       "run_time": 0.000103517,
+       "start_time": "2019-11-04T16:17:07-05:00"
+      }
+     ]
+    },
+    {
+     "id": "V-71859",
+     "title": "The operating system must display the Standard Mandatory DoD Notice\nand Consent Banner before granting local or remote access to the system via a\ngraphical user logon.",
+     "desc": "Display of a standardized and approved use notification before granting\naccess to the operating system ensures privacy and security notification\nverbiage used is consistent with applicable federal laws, Executive Orders,\ndirectives, policies, regulations, standards, and guidance.\n\n    System use notifications are required only for access via logon interfaces\nwith human users and are not required when such human interfaces do not exist.\n\n    The banner must be formatted in accordance with applicable DoD policy. Use\nthe following verbiage for operating systems that can accommodate banners of\n1300 characters:\n\n    \"You are accessing a U.S. Government (USG) Information System (IS) that is\nprovided for USG-authorized use only.\n\n    By using this IS (which includes any device attached to this IS), you\nconsent to the following conditions:\n\n    -The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\n\n    -At any time, the USG may inspect and seize data stored on this IS.\n\n    -Communications using, or data stored on, this IS are not private, are\nsubject to routine monitoring, interception, and search, and may be disclosed\nor used for any USG-authorized purpose.\n\n    -This IS includes security measures (e.g., authentication and access\ncontrols) to protect USG interests--not for your personal benefit or privacy.\n\n    -Notwithstanding the above, using this IS does not constitute consent to\nPM, LE or CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details.\"\nUse the following verbiage for operating systems that have severe limitations on\nthe number of characters that can be displayed in the banner:\n\n  \"I've read & consent to terms in IS user agreem't.\"",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Display of a standardized and approved use notification before granting\naccess to the operating system ensures privacy and security notification\nverbiage used is consistent with applicable federal laws, Executive Orders,\ndirectives, policies, regulations, standards, and guidance.\n\n    System use notifications are required only for access via logon interfaces\nwith human users and are not required when such human interfaces do not exist.\n\n    The banner must be formatted in accordance with applicable DoD policy. Use\nthe following verbiage for operating systems that can accommodate banners of\n1300 characters:\n\n    \"You are accessing a U.S. Government (USG) Information System (IS) that is\nprovided for USG-authorized use only.\n\n    By using this IS (which includes any device attached to this IS), you\nconsent to the following conditions:\n\n    -The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\n\n    -At any time, the USG may inspect and seize data stored on this IS.\n\n    -Communications using, or data stored on, this IS are not private, are\nsubject to routine monitoring, interception, and search, and may be disclosed\nor used for any USG-authorized purpose.\n\n    -This IS includes security measures (e.g., authentication and access\ncontrols) to protect USG interests--not for your personal benefit or privacy.\n\n    -Notwithstanding the above, using this IS does not constitute consent to\nPM, LE or CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details.\"\nUse the following verbiage for operating systems that have severe limitations on\nthe number of characters that can be displayed in the banner:\n\n  \"I've read & consent to terms in IS user agreem't.\""
+      },
+      {
+       "label": "check",
+       "data": "Verify the operating system displays the Standard Mandatory DoD\nNotice and Consent Banner before granting access to the operating system via a\ngraphical user logon.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCheck to see if the operating system displays a banner at the logon screen with\nthe following command:\n\n# grep banner-message-enable /etc/dconf/db/local.d/*\nbanner-message-enable=true\n\nIf \"banner-message-enable\" is set to \"false\" or is missing, this is a\nfinding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure the operating system to display the Standard Mandatory\nDoD Notice and Consent Banner before granting access to the system.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCreate a database to contain the system-wide graphical user logon settings (if\nit does not already exist) with the following command:\n\n# touch /etc/dconf/db/local.d/01-banner-message\n\nAdd the following line to the [org/gnome/login-screen] section of the\n\"/etc/dconf/db/local.d/01-banner-message\":\n\n[org/gnome/login-screen]\nbanner-message-enable=true\n\nUpdate the system databases:\n\n# dconf update\n\nUsers must log out and back in again before the system-wide settings take\neffect."
+      }
+     ],
+     "impact": 0.5,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000023-GPOS-00006",
+      "satisfies": [
+       "SRG-OS-000023-GPOS-00006",
+       "SRG-OS-000024-GPOS-00007",
+       "SRG-OS-000228-GPOS-00088"
+      ],
+      "gid": "V-71859",
+      "rid": "SV-86483r3_rule",
+      "stig_id": "RHEL-07-010030",
+      "cci": [
+       "CCI-000048"
+      ],
+      "documentable": false,
+      "nist": [
+       "AC-8 a",
+       "Rev_4"
+      ],
+      "subsystem": [
+       "gdm"
+      ],
+      "fix_id": "F-78211r4_fix"
+     },
+     "code": "control \"V-71859\" do\n  title \"The operating system must display the Standard Mandatory DoD Notice\nand Consent Banner before granting local or remote access to the system via a\ngraphical user logon.\"\n  desc  \"\n    Display of a standardized and approved use notification before granting\naccess to the operating system ensures privacy and security notification\nverbiage used is consistent with applicable federal laws, Executive Orders,\ndirectives, policies, regulations, standards, and guidance.\n\n    System use notifications are required only for access via logon interfaces\nwith human users and are not required when such human interfaces do not exist.\n\n    The banner must be formatted in accordance with applicable DoD policy. Use\nthe following verbiage for operating systems that can accommodate banners of\n1300 characters:\n\n    \\\"You are accessing a U.S. Government (USG) Information System (IS) that is\nprovided for USG-authorized use only.\n\n    By using this IS (which includes any device attached to this IS), you\nconsent to the following conditions:\n\n    -The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\n\n    -At any time, the USG may inspect and seize data stored on this IS.\n\n    -Communications using, or data stored on, this IS are not private, are\nsubject to routine monitoring, interception, and search, and may be disclosed\nor used for any USG-authorized purpose.\n\n    -This IS includes security measures (e.g., authentication and access\ncontrols) to protect USG interests--not for your personal benefit or privacy.\n\n    -Notwithstanding the above, using this IS does not constitute consent to\nPM, LE or CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details.\\\"\nUse the following verbiage for operating systems that have severe limitations on\nthe number of characters that can be displayed in the banner:\n\n  \\\"I've read & consent to terms in IS user agreem't.\\\"\"\n\n  if package('gnome-desktop3').installed?\n    impact 0.5\n  else\n    impact 0.0\n  end\n  tag \"gtitle\": \"SRG-OS-000023-GPOS-00006\"\n  tag \"satisfies\": [\"SRG-OS-000023-GPOS-00006\", \"SRG-OS-000024-GPOS-00007\",\n\"SRG-OS-000228-GPOS-00088\"]\n  tag \"gid\": \"V-71859\"\n  tag \"rid\": \"SV-86483r3_rule\"\n  tag \"stig_id\": \"RHEL-07-010030\"\n  tag \"cci\": [\"CCI-000048\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"AC-8 a\", \"Rev_4\"]\n  tag \"subsystem\": [ \"gdm\" ]\n  desc \"check\", \"Verify the operating system displays the Standard Mandatory DoD\nNotice and Consent Banner before granting access to the operating system via a\ngraphical user logon.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCheck to see if the operating system displays a banner at the logon screen with\nthe following command:\n\n# grep banner-message-enable /etc/dconf/db/local.d/*\nbanner-message-enable=true\n\nIf \\\"banner-message-enable\\\" is set to \\\"false\\\" or is missing, this is a\nfinding.\"\n  desc \"fix\", \"Configure the operating system to display the Standard Mandatory\nDoD Notice and Consent Banner before granting access to the system.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCreate a database to contain the system-wide graphical user logon settings (if\nit does not already exist) with the following command:\n\n# touch /etc/dconf/db/local.d/01-banner-message\n\nAdd the following line to the [org/gnome/login-screen] section of the\n\\\"/etc/dconf/db/local.d/01-banner-message\\\":\n\n[org/gnome/login-screen]\nbanner-message-enable=true\n\nUpdate the system databases:\n\n# dconf update\n\nUsers must log out and back in again before the system-wide settings take\neffect.\"\n  tag \"fix_id\": \"F-78211r4_fix\"\n\n  if package('gnome-desktop3').installed?\n    if !dconf_user.empty? and command('whoami').stdout.strip == 'root'\n      describe command(\"sudo -u #{dconf_user} dconf read /org/gnome/login-screen/banner-message-enable\") do\n        its('stdout.strip') { should cmp banner_message_enabled.to_s }\n      end\n    else\n      describe command(\"dconf read /org/gnome/login-screen/banner-message-enable\") do\n        its('stdout.strip') { should cmp banner_message_enabled.to_s }\n      end\n    end\n  else\n    describe \"The GNOME desktop is not installed\" do\n      skip \"The GNOME desktop is not installed, this control is Not Applicable.\"\n    end\n  end\nend\n",
+     "source_location": {
+      "line": 14,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-71859.rb"
+     },
+     "results": [
+      {
+       "status": "failed",
+       "code_desc": "Command: `dconf read /org/gnome/login-screen/banner-message-enable` stdout.strip should cmp == \"true\"",
+       "run_time": 0.017205426,
+       "start_time": "2019-11-04T16:17:07-05:00",
+       "message": "\nexpected: \"true\"\n     got: \"\"\n\n(compared using `cmp` matcher)\n"
+      }
+     ]
+    },
+    {
+     "id": "V-71861",
+     "title": "The operating system must display the approved Standard Mandatory DoD\nNotice and Consent Banner before granting local or remote access to the system\nvia a graphical user logon.",
+     "desc": "Display of a standardized and approved use notification before granting\naccess to the operating system ensures privacy and security notification\nverbiage used is consistent with applicable federal laws, Executive Orders,\ndirectives, policies, regulations, standards, and guidance.\n\n    System use notifications are required only for access via logon interfaces\nwith human users and are not required when such human interfaces do not exist.\n\n    The banner must be formatted in accordance with applicable DoD policy. Use\nthe following verbiage for operating systems that can accommodate banners of\n1300 characters:\n\n    \"You are accessing a U.S. Government (USG) Information System (IS) that is\nprovided for USG-authorized use only.\n\n    By using this IS (which includes any device attached to this IS), you\nconsent to the following conditions:\n\n    -The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\n\n    -At any time, the USG may inspect and seize data stored on this IS.\n\n    -Communications using, or data stored on, this IS are not private, are\nsubject to routine monitoring, interception, and search, and may be disclosed\nor used for any USG-authorized purpose.\n\n    -This IS includes security measures (e.g., authentication and access\ncontrols) to protect USG interests--not for your personal benefit or privacy.\n\n    -Notwithstanding the above, using this IS does not constitute consent to\nPM, LE or CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details.\"\nUse the following verbiage for operating systems that have severe limitations on\nthe number of characters that can be displayed in the banner:\n\n  - `I've read & consent to terms in IS user agreem't.'`",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Display of a standardized and approved use notification before granting\naccess to the operating system ensures privacy and security notification\nverbiage used is consistent with applicable federal laws, Executive Orders,\ndirectives, policies, regulations, standards, and guidance.\n\n    System use notifications are required only for access via logon interfaces\nwith human users and are not required when such human interfaces do not exist.\n\n    The banner must be formatted in accordance with applicable DoD policy. Use\nthe following verbiage for operating systems that can accommodate banners of\n1300 characters:\n\n    \"You are accessing a U.S. Government (USG) Information System (IS) that is\nprovided for USG-authorized use only.\n\n    By using this IS (which includes any device attached to this IS), you\nconsent to the following conditions:\n\n    -The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\n\n    -At any time, the USG may inspect and seize data stored on this IS.\n\n    -Communications using, or data stored on, this IS are not private, are\nsubject to routine monitoring, interception, and search, and may be disclosed\nor used for any USG-authorized purpose.\n\n    -This IS includes security measures (e.g., authentication and access\ncontrols) to protect USG interests--not for your personal benefit or privacy.\n\n    -Notwithstanding the above, using this IS does not constitute consent to\nPM, LE or CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details.\"\nUse the following verbiage for operating systems that have severe limitations on\nthe number of characters that can be displayed in the banner:\n\n  - `I've read & consent to terms in IS user agreem't.'`"
+      },
+      {
+       "label": "check",
+       "data": "Verify the operating system displays the approved Standard\nMandatory DoD Notice and Consent Banner before granting access to the operating\nsystem via a graphical user logon.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCheck that the operating system displays the exact approved Standard Mandatory\nDoD Notice and Consent Banner text with the command:\n\n# grep banner-message-text /etc/dconf/db/local.d/*\nbanner-message-text=\n'You are accessing a U.S. Government (USG) Information System (IS) that is\nprovided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent\nto the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject\nto routine monitoring, interception, and search, and may be disclosed or used\nfor any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls)\nto protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE\nor CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details. '\n\nNote: The \"\n\" characters are for formatting only. They will not be displayed\non the GUI.\n\nIf the banner does not match the approved Standard Mandatory DoD Notice and\nConsent Banner, this is a finding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure the operating system to display the approved Standard\nMandatory DoD Notice and Consent Banner before granting access to the system.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCreate a database to contain the system-wide graphical user logon settings (if\nit does not already exist) with the following command:\n\n# touch /etc/dconf/db/local.d/01-banner-message\n\nAdd the following line to the [org/gnome/login-screen] section of the\n\"/etc/dconf/db/local.d/01-banner-message\":\n\n[org/gnome/login-screen]\n\nbanner-message-enable=true\n\nbanner-message-text='You are accessing a U.S. Government (USG) Information\nSystem (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent\nto the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject\nto routine monitoring, interception, and search, and may be disclosed or used\nfor any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls)\nto protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE\nor CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details. '\n\nNote: The \"\n \" characters are for formatting only. They will not be displayed\non the GUI.\n\nRun the following command to update the database:\n# dconf update"
+      }
+     ],
+     "impact": 0.5,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000023-GPOS-00006",
+      "satisfies": [
+       "SRG-OS-000023-GPOS-00006",
+       "SRG-OS-000024-GPOS-00007",
+       "SRG-OS-000228-GPOS-00088"
+      ],
+      "gid": "V-71861",
+      "rid": "SV-86485r3_rule",
+      "stig_id": "RHEL-07-010040",
+      "cci": [
+       "CCI-000048"
+      ],
+      "documentable": false,
+      "nist": [
+       "AC-8 a",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "gdm"
+      ],
+      "fix_id": "F-78213r5_fix"
+     },
+     "code": "control \"V-71861\" do\n  title \"The operating system must display the approved Standard Mandatory DoD\nNotice and Consent Banner before granting local or remote access to the system\nvia a graphical user logon.\"\n  desc  \"\n    Display of a standardized and approved use notification before granting\naccess to the operating system ensures privacy and security notification\nverbiage used is consistent with applicable federal laws, Executive Orders,\ndirectives, policies, regulations, standards, and guidance.\n\n    System use notifications are required only for access via logon interfaces\nwith human users and are not required when such human interfaces do not exist.\n\n    The banner must be formatted in accordance with applicable DoD policy. Use\nthe following verbiage for operating systems that can accommodate banners of\n1300 characters:\n\n    \\\"You are accessing a U.S. Government (USG) Information System (IS) that is\nprovided for USG-authorized use only.\n\n    By using this IS (which includes any device attached to this IS), you\nconsent to the following conditions:\n\n    -The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\n\n    -At any time, the USG may inspect and seize data stored on this IS.\n\n    -Communications using, or data stored on, this IS are not private, are\nsubject to routine monitoring, interception, and search, and may be disclosed\nor used for any USG-authorized purpose.\n\n    -This IS includes security measures (e.g., authentication and access\ncontrols) to protect USG interests--not for your personal benefit or privacy.\n\n    -Notwithstanding the above, using this IS does not constitute consent to\nPM, LE or CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details.\\\"\nUse the following verbiage for operating systems that have severe limitations on\nthe number of characters that can be displayed in the banner:\n\n  - `I've read & consent to terms in IS user agreem't.'`\"\n\n  if package('gnome-desktop3').installed?\n    impact 0.5\n  else\n    impact 0.0\n  end\n  tag \"gtitle\": \"SRG-OS-000023-GPOS-00006\"\n  tag \"satisfies\": [\"SRG-OS-000023-GPOS-00006\", \"SRG-OS-000024-GPOS-00007\",\n\"SRG-OS-000228-GPOS-00088\"]\n  tag \"gid\": \"V-71861\"\n  tag \"rid\": \"SV-86485r3_rule\"\n  tag \"stig_id\": \"RHEL-07-010040\"\n  tag \"cci\": [\"CCI-000048\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"AC-8 a\", \"Rev_4\"]\n  tag \"subsystems\": [ \"gdm\" ]\n  desc \"check\", \"Verify the operating system displays the approved Standard\nMandatory DoD Notice and Consent Banner before granting access to the operating\nsystem via a graphical user logon.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCheck that the operating system displays the exact approved Standard Mandatory\nDoD Notice and Consent Banner text with the command:\n\n# grep banner-message-text /etc/dconf/db/local.d/*\nbanner-message-text=\n'You are accessing a U.S. Government (USG) Information System (IS) that is\nprovided for USG-authorized use only.\\n\nBy using this IS (which includes any device attached to this IS), you consent\nto the following conditions:\\n\n-The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\\n\n-At any time, the USG may inspect and seize data stored on this IS.\\n\n-Communications using, or data stored on, this IS are not private, are subject\nto routine monitoring, interception, and search, and may be disclosed or used\nfor any USG-authorized purpose.\\n\n-This IS includes security measures (e.g., authentication and access controls)\nto protect USG interests--not for your personal benefit or privacy.\\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE\nor CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details. '\n\nNote: The \\\"\\n\\\" characters are for formatting only. They will not be displayed\non the GUI.\n\nIf the banner does not match the approved Standard Mandatory DoD Notice and\nConsent Banner, this is a finding.\"\n  desc \"fix\", \"Configure the operating system to display the approved Standard\nMandatory DoD Notice and Consent Banner before granting access to the system.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCreate a database to contain the system-wide graphical user logon settings (if\nit does not already exist) with the following command:\n\n# touch /etc/dconf/db/local.d/01-banner-message\n\nAdd the following line to the [org/gnome/login-screen] section of the\n\\\"/etc/dconf/db/local.d/01-banner-message\\\":\n\n[org/gnome/login-screen]\n\nbanner-message-enable=true\n\nbanner-message-text='You are accessing a U.S. Government (USG) Information\nSystem (IS) that is provided for USG-authorized use only.\\n\nBy using this IS (which includes any device attached to this IS), you consent\nto the following conditions:\\n\n-The USG routinely intercepts and monitors communications on this IS for\npurposes including, but not limited to, penetration testing, COMSEC monitoring,\nnetwork operations and defense, personnel misconduct (PM), law enforcement\n(LE), and counterintelligence (CI) investigations.\\n\n-At any time, the USG may inspect and seize data stored on this IS.\\n\n-Communications using, or data stored on, this IS are not private, are subject\nto routine monitoring, interception, and search, and may be disclosed or used\nfor any USG-authorized purpose.\\n\n-This IS includes security measures (e.g., authentication and access controls)\nto protect USG interests--not for your personal benefit or privacy.\\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE\nor CI investigative searching or monitoring of the content of privileged\ncommunications, or work product, related to personal representation or services\nby attorneys, psychotherapists, or clergy, and their assistants. Such\ncommunications and work product are private and confidential. See User\nAgreement for details. '\n\nNote: The \\\"\\n \\\" characters are for formatting only. They will not be displayed\non the GUI.\n\nRun the following command to update the database:\n# dconf update\"\n  tag \"fix_id\": \"F-78213r5_fix\"\n  if package('gnome-desktop3').installed?\n    #Get all files that have the banner-message-text specified.\n    banner_files =\n      command(\"grep -l banner-message-text /etc/dconf/db/local.d/*\").stdout.split(\"\\n\")\n\n    #If there are no banner files then this is a finding.\n    banner_missing = banner_files.empty?\n    describe \"If no files specify the banner text then this is a finding\" do\n      subject { banner_missing }\n      it{should be false}\n    end if banner_missing\n\n    #If there are banner files then check them to make sure they have the correct text.\n    banner_files.each do |banner_file|\n      banner_message =\n        parse_config_file(banner_file).params(\"banner-message-text\").gsub(%r{[\\r\\n\\s]}, '')\n      #dconf expects the banner-message-text to be quoted so remove leading and trailing quote.\n      #See https://developer.gnome.org/dconf/unstable/dconf-tool.html which states:\n      #  VALUE arguments must be in GVariant format, so e.g. a string must include\n      #  explicit quotes: \"'foo'\". This format is also used when printing out values.\n      if banner_message.start_with?('\"') || banner_message.start_with?('\\'')\n        banner_message = banner_message[1,banner_message.length]\n      end\n      if banner_message.end_with?('\"') || banner_message.end_with?('\\'')\n        banner_message = banner_message.chop\n      end\n      describe.one do\n        describe banner_message do\n          it{should cmp banner_message_text_gui.gsub(%r{[\\r\\n\\s]}, '')}\n        end\n        describe banner_message do\n          it{should cmp banner_message_text_gui_limited.gsub(%r{[\\r\\n\\s]}, '')}\n        end\n      end\n    end\n  else\n    describe \"The system does not have GNOME installed\" do\n      skip \"The system does not have GNOME installed, this requirement is Not\n        Applicable.\"\n    end\n  end\nend\n",
+     "source_location": {
+      "line": 29,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-71861.rb"
+     },
+     "results": [
+      {
+       "status": "failed",
+       "code_desc": "If no files specify the banner text then this is a finding should equal false",
+       "run_time": 0.001565842,
+       "start_time": "2019-11-04T16:17:07-05:00",
+       "message": "\nexpected false\n     got true\n"
+      }
+     ]
+    },
+    {
+     "id": "V-71891",
+     "title": "The operating system must enable a user session lock until that user\nre-establishes access using established identification and authentication\nprocedures.",
+     "desc": "A session lock is a temporary action taken when a user stops work and moves\naway from the immediate physical vicinity of the information system but does\nnot want to log out because of the temporary nature of the absence.\n\n    The session lock is implemented at the point where session activity can be\ndetermined.\n\n    Regardless of where the session lock is determined and implemented, once\ninvoked, the session lock must remain in place until the user reauthenticates.\nNo other activity aside from reauthentication must unlock the system.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "A session lock is a temporary action taken when a user stops work and moves\naway from the immediate physical vicinity of the information system but does\nnot want to log out because of the temporary nature of the absence.\n\n    The session lock is implemented at the point where session activity can be\ndetermined.\n\n    Regardless of where the session lock is determined and implemented, once\ninvoked, the session lock must remain in place until the user reauthenticates.\nNo other activity aside from reauthentication must unlock the system."
+      },
+      {
+       "label": "check",
+       "data": "Verify the operating system enables a user's session lock until\nthat user re-establishes access using established identification and\nauthentication procedures. The screen program must be installed to lock\nsessions on the console.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCheck to see if the screen lock is enabled with the following command:\n\n# grep -i lock-enabled /etc/dconf/db/local.d/00-screensaver\nlock-enabled=true\n\nIf the \"lock-enabled\" setting is missing or is not set to \"true\", this is a\nfinding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure the operating system to enable a user's session lock\nuntil that user re-establishes access using established identification and\nauthentication procedures.\n\nCreate a database to contain the system-wide screensaver settings (if it does\nnot already exist) with the following command:\n\n# touch /etc/dconf/db/local.d/00-screensaver\n\nEdit \"org/gnome/desktop/screensaver\" and add or update the following lines:\n\n# Set this to true to lock the screen when the screensaver activates\nlock-enabled=true\n\nUpdate the system databases:\n\n# dconf update\n\nUsers must log out and back in again before the system-wide settings take\neffect."
+      }
+     ],
+     "impact": 0.5,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000028-GPOS-00009",
+      "satisfies": [
+       "SRG-OS-000028-GPOS-00009",
+       "SRG-OS-000030-GPOS-00011"
+      ],
+      "gid": "V-71891",
+      "rid": "SV-86515r4_rule",
+      "stig_id": "RHEL-07-010060",
+      "cci": [
+       "CCI-000056"
+      ],
+      "documentable": false,
+      "nist": [
+       "AC-11 b",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "session",
+       "lock",
+       "gnome",
+       "screensaver"
+      ],
+      "fix_id": "F-78243r7_fix"
+     },
+     "code": "control \"V-71891\" do\n  title \"The operating system must enable a user session lock until that user\nre-establishes access using established identification and authentication\nprocedures.\"\n  desc  \"\n    A session lock is a temporary action taken when a user stops work and moves\naway from the immediate physical vicinity of the information system but does\nnot want to log out because of the temporary nature of the absence.\n\n    The session lock is implemented at the point where session activity can be\ndetermined.\n\n    Regardless of where the session lock is determined and implemented, once\ninvoked, the session lock must remain in place until the user reauthenticates.\nNo other activity aside from reauthentication must unlock the system.\n  \"\n  if package('gnome-desktop3').installed?\n    impact 0.5\n  else\n    impact 0.0\n  end\n  tag \"gtitle\": \"SRG-OS-000028-GPOS-00009\"\n  tag \"satisfies\": [\"SRG-OS-000028-GPOS-00009\", \"SRG-OS-000030-GPOS-00011\"]\n  tag \"gid\": \"V-71891\"\n  tag \"rid\": \"SV-86515r4_rule\"\n  tag \"stig_id\": \"RHEL-07-010060\"\n  tag \"cci\": [\"CCI-000056\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"AC-11 b\", \"Rev_4\"]\n  tag \"subsystems\": [ \"session\", \"lock\", \"gnome\", \"screensaver\" ]\n  desc \"check\", \"Verify the operating system enables a user's session lock until\nthat user re-establishes access using established identification and\nauthentication procedures. The screen program must be installed to lock\nsessions on the console.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCheck to see if the screen lock is enabled with the following command:\n\n# grep -i lock-enabled /etc/dconf/db/local.d/00-screensaver\nlock-enabled=true\n\nIf the \\\"lock-enabled\\\" setting is missing or is not set to \\\"true\\\", this is a\nfinding.\"\n  desc \"fix\", \"Configure the operating system to enable a user's session lock\nuntil that user re-establishes access using established identification and\nauthentication procedures.\n\nCreate a database to contain the system-wide screensaver settings (if it does\nnot already exist) with the following command:\n\n# touch /etc/dconf/db/local.d/00-screensaver\n\nEdit \\\"org/gnome/desktop/screensaver\\\" and add or update the following lines:\n\n# Set this to true to lock the screen when the screensaver activates\nlock-enabled=true\n\nUpdate the system databases:\n\n# dconf update\n\nUsers must log out and back in again before the system-wide settings take\neffect.\"\n  tag \"fix_id\": \"F-78243r7_fix\"\n\n  describe command('gsettings get org.gnome.desktop.screensaver lock-enabled') do\n    its('stdout.strip') { should cmp 'true' }\n  end if package('gnome-desktop3').installed?\n\n  describe \"The system does not have GNOME installed\" do\n    skip \"The system does not have GNOME installed, this requirement is Not\n    Applicable.\"\n  end if !package('gnome-desktop3').installed?\nend\n",
+     "source_location": {
+      "line": 3,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-71891.rb"
+     },
+     "results": [
+      {
+       "status": "passed",
+       "code_desc": "Command: `gsettings get org.gnome.desktop.screensaver lock-enabled` stdout.strip should cmp == \"true\"",
+       "run_time": 0.018772374,
+       "start_time": "2019-11-04T16:17:07-05:00"
+      }
+     ]
+    },
+    {
+     "id": "V-71893",
+     "title": "The operating system must initiate a screensaver after a 15-minute\nperiod of inactivity for graphical user interfaces.",
+     "desc": "A session time-out lock is a temporary action taken when a user stops work\nand moves away from the immediate physical vicinity of the information system\nbut does not log out because of the temporary nature of the absence. Rather\nthan relying on the user to manually lock their operating system session prior\nto vacating the vicinity, operating systems need to be able to identify when a\nuser's session has idled and take action to initiate the session lock.\n\n    The session lock is implemented at the point where session activity can be\ndetermined and/or controlled.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "A session time-out lock is a temporary action taken when a user stops work\nand moves away from the immediate physical vicinity of the information system\nbut does not log out because of the temporary nature of the absence. Rather\nthan relying on the user to manually lock their operating system session prior\nto vacating the vicinity, operating systems need to be able to identify when a\nuser's session has idled and take action to initiate the session lock.\n\n    The session lock is implemented at the point where session activity can be\ndetermined and/or controlled."
+      },
+      {
+       "label": "check",
+       "data": "Verify the operating system initiates a screensaver after a\n15-minute period of inactivity for graphical user interfaces. The screen\nprogram must be installed to lock sessions on the console.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCheck to see if GNOME is configured to display a screensaver after a 15 minute\ndelay with the following command:\n\n# grep -i idle-delay /etc/dconf/db/local.d/*\nidle-delay=uint32 900\n\nIf the \"idle-delay\" setting is missing or is not set to \"900\" or less, this\nis a finding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure the operating system to initiate a screensaver after a\n15-minute period of inactivity for graphical user interfaces.\n\nCreate a database to contain the system-wide screensaver settings (if it does\nnot already exist) with the following command:\n\n# touch /etc/dconf/db/local.d/00-screensaver\n\nEdit /etc/dconf/db/local.d/00-screensaver and add or update the following lines:\n\n[org/gnome/desktop/session]\n# Set the lock time out to 900 seconds before the session is considered idle\nidle-delay=uint32 900\n\nYou must include the \"uint32\" along with the integer key values as shown.\n\nUpdate the system databases:\n\n# dconf update\n\nUsers must log out and back in again before the system-wide settings take\neffect."
+      }
+     ],
+     "impact": 0.5,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000029-GPOS-00010",
+      "gid": "V-71893",
+      "rid": "SV-86517r4_rule",
+      "stig_id": "RHEL-07-010070",
+      "cci": [
+       "CCI-000057"
+      ],
+      "documentable": false,
+      "nist": [
+       "AC-11 a",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "gnome",
+       "screensaver",
+       "session",
+       "lock"
+      ],
+      "fix_id": "F-78245r5_fix"
+     },
+     "code": "control \"V-71893\" do\n  title \"The operating system must initiate a screensaver after a 15-minute\nperiod of inactivity for graphical user interfaces.\"\n  desc  \"\n    A session time-out lock is a temporary action taken when a user stops work\nand moves away from the immediate physical vicinity of the information system\nbut does not log out because of the temporary nature of the absence. Rather\nthan relying on the user to manually lock their operating system session prior\nto vacating the vicinity, operating systems need to be able to identify when a\nuser's session has idled and take action to initiate the session lock.\n\n    The session lock is implemented at the point where session activity can be\ndetermined and/or controlled.\n  \"\n  if package('gnome-desktop3').installed?\n    impact 0.5\n  else\n    impact 0.0\n  end\n  tag \"gtitle\": \"SRG-OS-000029-GPOS-00010\"\n  tag \"gid\": \"V-71893\"\n  tag \"rid\": \"SV-86517r4_rule\"\n  tag \"stig_id\": \"RHEL-07-010070\"\n  tag \"cci\": [\"CCI-000057\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"AC-11 a\", \"Rev_4\"]\n  tag \"subsystems\": [ \"gnome\", \"screensaver\", \"session\", \"lock\" ]\n  desc \"check\", \"Verify the operating system initiates a screensaver after a\n15-minute period of inactivity for graphical user interfaces. The screen\nprogram must be installed to lock sessions on the console.\n\nNote: If the system does not have GNOME installed, this requirement is Not\nApplicable.\n\nCheck to see if GNOME is configured to display a screensaver after a 15 minute\ndelay with the following command:\n\n# grep -i idle-delay /etc/dconf/db/local.d/*\nidle-delay=uint32 900\n\nIf the \\\"idle-delay\\\" setting is missing or is not set to \\\"900\\\" or less, this\nis a finding.\"\n  desc \"fix\", \"Configure the operating system to initiate a screensaver after a\n15-minute period of inactivity for graphical user interfaces.\n\nCreate a database to contain the system-wide screensaver settings (if it does\nnot already exist) with the following command:\n\n# touch /etc/dconf/db/local.d/00-screensaver\n\nEdit /etc/dconf/db/local.d/00-screensaver and add or update the following lines:\n\n[org/gnome/desktop/session]\n# Set the lock time out to 900 seconds before the session is considered idle\nidle-delay=uint32 900\n\nYou must include the \\\"uint32\\\" along with the integer key values as shown.\n\nUpdate the system databases:\n\n# dconf update\n\nUsers must log out and back in again before the system-wide settings take\neffect.\"\n  tag \"fix_id\": \"F-78245r5_fix\"\n\n  describe command(\"gsettings get org.gnome.desktop.session idle-delay | cut -d ' ' -f2\") do\n    its('stdout.strip') { should cmp <= 900 }\n  end if package('gnome-desktop3').installed?\n\n  describe \"The system does not have GNOME installed\" do\n    skip \"The system does not have GNOME installed, this requirement is Not\n    Applicable.\"\n  end if !package('gnome-desktop3').installed?\nend\n",
+     "source_location": {
+      "line": 3,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-71893.rb"
+     },
+     "results": [
+      {
+       "status": "passed",
+       "code_desc": "Command: `gsettings get org.gnome.desktop.session idle-delay | cut -d ' ' -f2` stdout.strip should cmp <= 900",
+       "run_time": 0.019886463,
+       "start_time": "2019-11-04T16:17:07-05:00"
+      }
+     ]
+    },
+    {
+     "id": "V-71931",
+     "title": "Existing passwords must be restricted to a 60-day maximum lifetime.",
+     "desc": "Any password, no matter how complex, can eventually be cracked.\nTherefore, passwords need to be changed periodically. If the operating system\ndoes not limit the lifetime of passwords and force users to change their\npasswords, there is the risk that the operating system passwords could be\ncompromised.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Any password, no matter how complex, can eventually be cracked.\nTherefore, passwords need to be changed periodically. If the operating system\ndoes not limit the lifetime of passwords and force users to change their\npasswords, there is the risk that the operating system passwords could be\ncompromised."
+      },
+      {
+       "label": "check",
+       "data": "Check whether the maximum time period for existing passwords is\nrestricted to 60 days.\n\n# awk -F: '$5 > 60 {print $1}' /etc/shadow\n\nIf any results are returned that are not associated with a system account, this\nis a finding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure non-compliant accounts to enforce a 60-day maximum\npassword lifetime restriction.\n\n# chage -M 60 [user]"
+      }
+     ],
+     "impact": 0.5,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000076-GPOS-00044",
+      "gid": "V-71931",
+      "rid": "SV-86555r1_rule",
+      "stig_id": "RHEL-07-010260",
+      "cci": [
+       "CCI-000199"
+      ],
+      "documentable": false,
+      "nist": [
+       "IA-5 (1) (d)",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "password",
+       "/etc/shadow"
+      ],
+      "fix_id": "F-78283r1_fix"
+     },
+     "code": "control \"V-71931\" do\n  title \"Existing passwords must be restricted to a 60-day maximum lifetime.\"\n  desc  \"Any password, no matter how complex, can eventually be cracked.\nTherefore, passwords need to be changed periodically. If the operating system\ndoes not limit the lifetime of passwords and force users to change their\npasswords, there is the risk that the operating system passwords could be\ncompromised.\"\n  impact 0.5\n  tag \"gtitle\": \"SRG-OS-000076-GPOS-00044\"\n  tag \"gid\": \"V-71931\"\n  tag \"rid\": \"SV-86555r1_rule\"\n  tag \"stig_id\": \"RHEL-07-010260\"\n  tag \"cci\": [\"CCI-000199\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"IA-5 (1) (d)\", \"Rev_4\"]\n  tag \"subsystems\": ['password', '/etc/shadow']\n  desc \"check\", \"Check whether the maximum time period for existing passwords is\nrestricted to 60 days.\n\n# awk -F: '$5 > 60 {print $1}' /etc/shadow\n\nIf any results are returned that are not associated with a system account, this\nis a finding.\"\n  desc \"fix\", \"Configure non-compliant accounts to enforce a 60-day maximum\npassword lifetime restriction.\n\n# chage -M 60 [user]\"\n  tag \"fix_id\": \"F-78283r1_fix\"\n  shadow.users.each do |user|\n    # filtering on non-system accounts (uid >= 1000)\n    next unless user(user).uid >= 1000\n    describe shadow.users(user) do\n      its('max_days.first.to_i') { should cmp <= 60 }\n    end\n  end\nend\n",
+     "source_location": {
+      "line": 6,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-71931.rb"
+     },
+     "results": [
+      {
+       "status": "failed",
+       "code_desc": "/etc/shadow with user == \"dhaynes\" max_days.first.to_i should cmp <= 60",
+       "run_time": 0.000143191,
+       "start_time": "2019-11-04T16:17:07-05:00",
+       "message": "\nexpected it to be <= 60\n     got: 99999\n\n(compared using `cmp` matcher)\n"
+      },
+      {
+       "status": "passed",
+       "code_desc": "/etc/shadow with user == \"nfsnobody\" max_days.first.to_i should cmp <= 60",
+       "run_time": 0.000118522,
+       "start_time": "2019-11-04T16:17:07-05:00"
+      }
+     ]
+    },
+    {
+     "id": "V-71941",
+     "title": "The operating system must disable account identifiers (individuals,\ngroups, roles, and devices) if the password expires.",
+     "desc": "Inactive identifiers pose a risk to systems and applications because\nattackers may exploit an inactive identifier and potentially obtain undetected\naccess to the system. Owners of inactive accounts will not notice if\nunauthorized access to their user account has been obtained.\n\n    Operating systems need to track periods of inactivity and disable\napplication identifiers after zero days of inactivity.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Inactive identifiers pose a risk to systems and applications because\nattackers may exploit an inactive identifier and potentially obtain undetected\naccess to the system. Owners of inactive accounts will not notice if\nunauthorized access to their user account has been obtained.\n\n    Operating systems need to track periods of inactivity and disable\napplication identifiers after zero days of inactivity."
+      },
+      {
+       "label": "check",
+       "data": "Verify the operating system disables account identifiers\n(individuals, groups, roles, and devices) after the password expires with the\nfollowing command:\n\n# grep -i inactive /etc/default/useradd\nINACTIVE=0\n\nIf the value is not set to \"0\", is commented out, or is not defined, this is\na finding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure the operating system to disable account identifiers\n(individuals, groups, roles, and devices) after the password expires.\n\nAdd the following line to \"/etc/default/useradd\" (or modify the line to have\nthe required value):\n\nINACTIVE=0"
+      }
+     ],
+     "impact": 0.5,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000118-GPOS-00060",
+      "gid": "V-71941",
+      "rid": "SV-86565r1_rule",
+      "stig_id": "RHEL-07-010310",
+      "cci": [
+       "CCI-000795"
+      ],
+      "documentable": false,
+      "nist": [
+       "IA-4 e",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "user"
+      ],
+      "fix_id": "F-78293r1_fix"
+     },
+     "code": "control \"V-71941\" do\n  title \"The operating system must disable account identifiers (individuals,\ngroups, roles, and devices) if the password expires.\"\n  desc  \"\n    Inactive identifiers pose a risk to systems and applications because\nattackers may exploit an inactive identifier and potentially obtain undetected\naccess to the system. Owners of inactive accounts will not notice if\nunauthorized access to their user account has been obtained.\n\n    Operating systems need to track periods of inactivity and disable\napplication identifiers after zero days of inactivity.\n  \"\n  impact 0.5\n  tag \"gtitle\": \"SRG-OS-000118-GPOS-00060\"\n  tag \"gid\": \"V-71941\"\n  tag \"rid\": \"SV-86565r1_rule\"\n  tag \"stig_id\": \"RHEL-07-010310\"\n  tag \"cci\": [\"CCI-000795\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"IA-4 e\", \"Rev_4\"]\n  tag \"subsystems\": ['user']\n  desc \"check\", \"Verify the operating system disables account identifiers\n(individuals, groups, roles, and devices) after the password expires with the\nfollowing command:\n\n# grep -i inactive /etc/default/useradd\nINACTIVE=0\n\nIf the value is not set to \\\"0\\\", is commented out, or is not defined, this is\na finding.\"\n  desc \"fix\", \"Configure the operating system to disable account identifiers\n(individuals, groups, roles, and devices) after the password expires.\n\nAdd the following line to \\\"/etc/default/useradd\\\" (or modify the line to have\nthe required value):\n\nINACTIVE=0\"\n  tag \"fix_id\": \"F-78293r1_fix\"\n  describe parse_config_file(\"/etc/default/useradd\") do\n    its('INACTIVE') { should cmp >= 0 }\n    its('INACTIVE') { should cmp <= days_of_inactivity }\n  end\nend\n",
+     "source_location": {
+      "line": 7,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-71941.rb"
+     },
+     "results": [
+      {
+       "status": "failed",
+       "code_desc": "Parse Config File /etc/default/useradd INACTIVE should cmp >= 0",
+       "run_time": 0.000150632,
+       "start_time": "2019-11-04T16:17:07-05:00",
+       "message": "\nexpected it to be >= 0\n     got: \"-1\"\n\n(compared using `cmp` matcher)\n"
+      },
+      {
+       "status": "passed",
+       "code_desc": "Parse Config File /etc/default/useradd INACTIVE should cmp <= 0",
+       "run_time": 0.000116559,
+       "start_time": "2019-11-04T16:17:07-05:00"
+      }
+     ]
+    },
+    {
+     "id": "V-72083",
+     "title": "The operating system must off-load audit records onto a different\nsystem or media from the system being audited.",
+     "desc": "Information stored in one location is vulnerable to accidental or\nincidental deletion or alteration.\n\n    Off-loading is a common process in information systems with limited audit\nstorage capacity.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Information stored in one location is vulnerable to accidental or\nincidental deletion or alteration.\n\n    Off-loading is a common process in information systems with limited audit\nstorage capacity."
+      },
+      {
+       "label": "check",
+       "data": "Verify the operating system off-loads audit records onto a different\nsystem or media from the system being audited.\n\nTo determine the remote server that the records are being sent to, use the\nfollowing command:\n\n# grep -i remote_server /etc/audisp/audisp-remote.conf\nremote_server = 10.0.21.1\n\nIf a remote server is not configured, or the line is commented out, ask the\nSystem Administrator to indicate how the audit logs are off-loaded to a\ndifferent system or media.\n\nIf there is no evidence that the audit logs are being off-loaded to another\nsystem or media, this is a finding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure the operating system to off-load audit records onto a\ndifferent system or media from the system being audited.\n\nSet the remote server option in \"/etc/audisp/audisp-remote.conf\" with the IP\naddress of the log aggregation server."
+      }
+     ],
+     "impact": 0.5,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000342-GPOS-00133",
+      "satisfies": [
+       "SRG-OS-000342-GPOS-00133",
+       "SRG-OS-000479-GPOS-00224"
+      ],
+      "gid": "V-72083",
+      "rid": "SV-86707r1_rule",
+      "stig_id": "RHEL-07-030300",
+      "cci": [
+       "CCI-001851"
+      ],
+      "documentable": false,
+      "nist": [
+       "AU-4 (1)",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "audit",
+       "auditd",
+       "audisp"
+      ],
+      "fix_id": "F-78435r1_fix"
+     },
+     "code": "control \"V-72083\" do\n  title \"The operating system must off-load audit records onto a different\nsystem or media from the system being audited.\"\n  desc  \"\n    Information stored in one location is vulnerable to accidental or\nincidental deletion or alteration.\n\n    Off-loading is a common process in information systems with limited audit\nstorage capacity.\n  \"\n  impact 0.5\n  tag \"gtitle\": \"SRG-OS-000342-GPOS-00133\"\n  tag \"satisfies\": [\"SRG-OS-000342-GPOS-00133\", \"SRG-OS-000479-GPOS-00224\"]\n  tag \"gid\": \"V-72083\"\n  tag \"rid\": \"SV-86707r1_rule\"\n  tag \"stig_id\": \"RHEL-07-030300\"\n  tag \"cci\": [\"CCI-001851\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"AU-4 (1)\", \"Rev_4\"]\n  tag \"subsystems\": ['audit', 'auditd', 'audisp']\n  desc \"check\", \"Verify the operating system off-loads audit records onto a different\nsystem or media from the system being audited.\n\nTo determine the remote server that the records are being sent to, use the\nfollowing command:\n\n# grep -i remote_server /etc/audisp/audisp-remote.conf\nremote_server = 10.0.21.1\n\nIf a remote server is not configured, or the line is commented out, ask the\nSystem Administrator to indicate how the audit logs are off-loaded to a\ndifferent system or media.\n\nIf there is no evidence that the audit logs are being off-loaded to another\nsystem or media, this is a finding.\"\n  desc \"fix\", \"Configure the operating system to off-load audit records onto a\ndifferent system or media from the system being audited.\n\nSet the remote server option in \\\"/etc/audisp/audisp-remote.conf\\\" with the IP\naddress of the log aggregation server.\"\n  tag \"fix_id\": \"F-78435r1_fix\"\n\n  if file('/etc/audisp/audisp-remote.conf').exist?\n    describe parse_config_file('/etc/audisp/audisp-remote.conf') do\n      its('remote_server') { should match %r{^\\S+$} }\n      its('remote_server') { should_not match %r{localhost|127.0.0.1} }\n    end\n  else\n    describe \"File '/etc/audisp/audisp-remote.conf' cannot be found. This test cannot be checked in a automated fashion and you must check it manually\" do\n      skip \"File '/etc/audisp/audisp-remote.conf' cannot be found. This check must be performed manually\"\n    end\n  end\nend\n",
+     "source_location": {
+      "line": 3,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-72083.rb"
+     },
+     "results": [
+      {
+       "status": "skipped",
+       "code_desc": "File '/etc/audisp/audisp-remote.conf' cannot be found. This test cannot be checked in a automated fashion and you must check it manually",
+       "run_time": 2.096e-05,
+       "start_time": "2019-11-04T16:17:15-05:00",
+       "resource": "",
+       "skip_message": "File '/etc/audisp/audisp-remote.conf' cannot be found. This check must be performed manually"
+      }
+     ]
+    },
+    {
+     "id": "V-72085",
+     "title": "The operating system must encrypt the transfer of audit records\noff-loaded onto a different system or media from the system being audited.",
+     "desc": "Information stored in one location is vulnerable to accidental or\nincidental deletion or alteration.\n\n    Off-loading is a common process in information systems with limited audit\nstorage capacity.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Information stored in one location is vulnerable to accidental or\nincidental deletion or alteration.\n\n    Off-loading is a common process in information systems with limited audit\nstorage capacity."
+      },
+      {
+       "label": "check",
+       "data": "Verify the operating system encrypts audit records off-loaded\nonto a different system or media from the system being audited.\n\nTo determine if the transfer is encrypted, use the following command:\n\n# grep -i enable_krb5 /etc/audisp/audisp-remote.conf\nenable_krb5 = yes\n\nIf the value of the \"enable_krb5\" option is not set to \"yes\" or the line is\ncommented out, ask the System Administrator to indicate how the audit logs are\noff-loaded to a different system or media.\n\nIf there is no evidence that the transfer of the audit logs being off-loaded to\nanother system or media is encrypted, this is a finding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure the operating system to encrypt the transfer of\noff-loaded audit records onto a different system or media from the system being\naudited.\n\nUncomment the \"enable_krb5\" option in \"/etc/audisp/audisp-remote.conf\" and\nset it with the following line:\n\nenable_krb5 = yes"
+      }
+     ],
+     "impact": 0.5,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000342-GPOS-00133",
+      "satisfies": [
+       "SRG-OS-000342-GPOS-00133",
+       "SRG-OS-000479-GPOS-00224"
+      ],
+      "gid": "V-72085",
+      "rid": "SV-86709r1_rule",
+      "stig_id": "RHEL-07-030310",
+      "cci": [
+       "CCI-001851"
+      ],
+      "documentable": false,
+      "nist": [
+       "AU-4 (1)",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "audit",
+       "auditd",
+       "audisp"
+      ],
+      "fix_id": "F-78437r1_fix"
+     },
+     "code": "control \"V-72085\" do\n  title \"The operating system must encrypt the transfer of audit records\noff-loaded onto a different system or media from the system being audited.\"\n  desc  \"\n    Information stored in one location is vulnerable to accidental or\nincidental deletion or alteration.\n\n    Off-loading is a common process in information systems with limited audit\nstorage capacity.\n  \"\n  impact 0.5\n  tag \"gtitle\": \"SRG-OS-000342-GPOS-00133\"\n  tag \"satisfies\": [\"SRG-OS-000342-GPOS-00133\", \"SRG-OS-000479-GPOS-00224\"]\n  tag \"gid\": \"V-72085\"\n  tag \"rid\": \"SV-86709r1_rule\"\n  tag \"stig_id\": \"RHEL-07-030310\"\n  tag \"cci\": [\"CCI-001851\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"AU-4 (1)\", \"Rev_4\"]\n  tag \"subsystems\": ['audit', 'auditd', 'audisp']\n  desc \"check\", \"Verify the operating system encrypts audit records off-loaded\nonto a different system or media from the system being audited.\n\nTo determine if the transfer is encrypted, use the following command:\n\n# grep -i enable_krb5 /etc/audisp/audisp-remote.conf\nenable_krb5 = yes\n\nIf the value of the \\\"enable_krb5\\\" option is not set to \\\"yes\\\" or the line is\ncommented out, ask the System Administrator to indicate how the audit logs are\noff-loaded to a different system or media.\n\nIf there is no evidence that the transfer of the audit logs being off-loaded to\nanother system or media is encrypted, this is a finding.\"\n  desc \"fix\", \"Configure the operating system to encrypt the transfer of\noff-loaded audit records onto a different system or media from the system being\naudited.\n\nUncomment the \\\"enable_krb5\\\" option in \\\"/etc/audisp/audisp-remote.conf\\\" and\nset it with the following line:\n\nenable_krb5 = yes\"\n  tag \"fix_id\": \"F-78437r1_fix\"\n\n  describe parse_config_file('/etc/audisp/audisp-remote.conf') do\n    its('enable_krb5.strip') { should cmp 'yes' }\n  end\nend\n",
+     "source_location": {
+      "line": 3,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-72085.rb"
+     },
+     "results": [
+      {
+       "status": "skipped",
+       "code_desc": "Parse Config File /etc/audisp/audisp-remote.conf",
+       "run_time": 8.689e-06,
+       "start_time": "2019-11-04T16:17:15-05:00",
+       "resource": "Parse Config File /etc/audisp/audisp-remote.conf",
+       "skip_message": "Can't find file: /etc/audisp/audisp-remote.conf"
+      }
+     ]
+    },
+    {
+     "id": "V-72181",
+     "title": "All uses of the pt_chown command must be audited.",
+     "desc": "Reconstruction of harmful events or forensic analysis is not possible if audit\nrecords do not contain enough information.\n\n    At a minimum, the organization must audit the full-text recording of privileged\ncommands. The organization must maintain audit trails in sufficient detail to\nreconstruct events to determine the cause and impact of compromise.\n\n    Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172,\nSRG-OS-000471-GPOS-0021.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Reconstruction of harmful events or forensic analysis is not possible if audit\nrecords do not contain enough information.\n\n    At a minimum, the organization must audit the full-text recording of privileged\ncommands. The organization must maintain audit trails in sufficient detail to\nreconstruct events to determine the cause and impact of compromise.\n\n    Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172,\nSRG-OS-000471-GPOS-0021."
+      },
+      {
+       "label": "check",
+       "data": "Verify the operating system generates audit records when\nsuccessful/unsuccessful attempts to use the \"pt_chown\" command occur.\n\nCheck for the following system call being audited by performing the following\ncommand to check the file system rules in \"/etc/audit/audit.rules\":\n\n# grep -i /usr/libexec/pt_chown /etc/audit/audit.rules\n\n-a always,exit -F path=/usr/libexec/pt_chown -F perm=x -F auid>=1000 -F\nauid!=4294967295 -k privileged_terminal\n\nIf the command does not return any output, this is a finding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure the operating system to generate audit records when\nsuccessful/unsuccessful attempts to use the \"pt_chown\" command occur.\n\nAdd or update the following rule in \"/etc/audit/rules.d/audit.rules\":\n\n-a always,exit -F path=/usr/libexec/pt_chown -F perm=x -F auid>=1000 -F\nauid!=4294967295 -k privileged_terminal\n\nThe audit daemon must be restarted for the changes to take effect."
+      }
+     ],
+     "impact": 0,
+     "refs": [],
+     "tags": {
+      "severity": "medium",
+      "gtitle": "SRG-OS-000042-GPOS-00020",
+      "gid": "V-72181",
+      "rid": "SV-86805r2_rule",
+      "stig_id": "RHEL-07-030790",
+      "cci": [
+       "CCI-002884"
+      ],
+      "nist": [
+       "MA-4 (1) (a)",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "audit",
+       "auditd",
+       "audit_rule"
+      ]
+     },
+     "code": "control \"V-72181\" do\n  title \"All uses of the pt_chown command must be audited.\"\n  desc  \"\n    Reconstruction of harmful events or forensic analysis is not possible if audit\nrecords do not contain enough information.\n\n    At a minimum, the organization must audit the full-text recording of privileged\ncommands. The organization must maintain audit trails in sufficient detail to\nreconstruct events to determine the cause and impact of compromise.\n\n    Satisfies: SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172,\nSRG-OS-000471-GPOS-0021.\n  \"\n  tag \"severity\": \"medium\"\n  tag \"gtitle\": \"SRG-OS-000042-GPOS-00020\"\n  tag \"gid\": \"V-72181\"\n  tag \"rid\": \"SV-86805r2_rule\"\n  tag \"stig_id\": \"RHEL-07-030790\"\n  tag \"cci\": \"CCI-000135\"\n  tag \"nist\": [\"AU-3 (1)\", \"Rev_4\"]\n  tag \"cci\": \"CCI-000172\"\n  tag \"nist\": [\"AU-12 c\", \"Rev_4\"]\n  tag \"cci\": \"CCI-002884\"\n  tag \"nist\": [\"MA-4 (1) (a)\", \"Rev_4\"]\n  tag \"subsystems\": ['audit', 'auditd', 'audit_rule']\n  desc \"check\", \"Verify the operating system generates audit records when\nsuccessful/unsuccessful attempts to use the \\\"pt_chown\\\" command occur.\n\nCheck for the following system call being audited by performing the following\ncommand to check the file system rules in \\\"/etc/audit/audit.rules\\\":\n\n# grep -i /usr/libexec/pt_chown /etc/audit/audit.rules\n\n-a always,exit -F path=/usr/libexec/pt_chown -F perm=x -F auid>=1000 -F\nauid!=4294967295 -k privileged_terminal\n\nIf the command does not return any output, this is a finding.\"\n  desc \"fix\", \"Configure the operating system to generate audit records when\nsuccessful/unsuccessful attempts to use the \\\"pt_chown\\\" command occur.\n\nAdd or update the following rule in \\\"/etc/audit/rules.d/audit.rules\\\":\n\n-a always,exit -F path=/usr/libexec/pt_chown -F perm=x -F auid>=1000 -F\nauid!=4294967295 -k privileged_terminal\n\nThe audit daemon must be restarted for the changes to take effect.\"\n\n  audit_file = '/usr/libexec/pt_chown'\n\n  if file(audit_file).exist?\n    impact 0.5\n  else\n    impact 0.0\n  end\n\n  describe auditd.file(audit_file) do\n    its('permissions') { should_not cmp [] }\n    its('action') { should_not include 'never' }\n  end if file(audit_file).exist?\n\n  # Resource creates data structure including all usages of file\n  perms = auditd.file(audit_file).permissions\n\n  perms.each do |perm|\n    describe perm do\n      it { should include 'x' }\n    end\n  end if file(audit_file).exist?\n\n  describe \"The #{audit_file} file does not exist\" do\n    skip \"The #{audit_file} file does not exist, this requirement is Not Applicable.\"\n  end if !file(audit_file).exist?\nend\n",
+     "source_location": {
+      "line": 3,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-72181.rb"
+     },
+     "results": [
+      {
+       "status": "skipped",
+       "code_desc": "The /usr/libexec/pt_chown file does not exist",
+       "run_time": 6.094e-06,
+       "start_time": "2019-11-04T16:17:15-05:00",
+       "resource": "",
+       "skip_message": "The /usr/libexec/pt_chown file does not exist, this requirement is Not Applicable."
+      }
+     ]
+    },
+    {
+     "id": "V-72227",
+     "title": "The operating system must implement cryptography to protect the\nintegrity of Lightweight Directory Access Protocol (LDAP) authentication\ncommunications.",
+     "desc": "Without cryptographic integrity protections, information can be altered by\nunauthorized users without detection.\n\n    Cryptographic mechanisms used for protecting the integrity of information\ninclude, for example, signed hash functions using asymmetric cryptography\nenabling distribution of the public key to verify the hash information while\nmaintaining the confidentiality of the key used to generate the hash.",
+     "descriptions": [
+      {
+       "label": "default",
+       "data": "Without cryptographic integrity protections, information can be altered by\nunauthorized users without detection.\n\n    Cryptographic mechanisms used for protecting the integrity of information\ninclude, for example, signed hash functions using asymmetric cryptography\nenabling distribution of the public key to verify the hash information while\nmaintaining the confidentiality of the key used to generate the hash."
+      },
+      {
+       "label": "check",
+       "data": "Verify the operating system implements cryptography to protect\nthe integrity of remote LDAP authentication sessions.\n\nTo determine if LDAP is being used for authentication, use the following\ncommand:\n\n# grep -i useldapauth /etc/sysconfig/authconfig\nUSELDAPAUTH=yes\n\nIf USELDAPAUTH=yes, then LDAP is being used. To see if LDAP is configured to\nuse TLS, use the following command:\n\n# grep -i ssl /etc/pam_ldap.conf\nssl start_tls\n\nIf the \"ssl\" option is not \"start_tls\", this is a finding."
+      },
+      {
+       "label": "fix",
+       "data": "Configure the operating system to implement cryptography to\nprotect the integrity of LDAP authentication sessions.\n\nSet the USELDAPAUTH=yes in \"/etc/sysconfig/authconfig\".\n\nSet \"ssl start_tls\" in \"/etc/pam_ldap.conf\"."
+      }
+     ],
+     "impact": 0,
+     "refs": [],
+     "tags": {
+      "gtitle": "SRG-OS-000250-GPOS-00093",
+      "gid": "V-72227",
+      "rid": "SV-86851r2_rule",
+      "stig_id": "RHEL-07-040180",
+      "cci": [
+       "CCI-001453"
+      ],
+      "documentable": false,
+      "nist": [
+       "AC-17 (2)",
+       "Rev_4"
+      ],
+      "subsystems": [
+       "sssd",
+       "ldap"
+      ],
+      "fix_id": "F-78581r1_fix"
+     },
+     "code": "control \"V-72227\" do\n  title \"The operating system must implement cryptography to protect the\nintegrity of Lightweight Directory Access Protocol (LDAP) authentication\ncommunications.\"\n  desc  \"\n    Without cryptographic integrity protections, information can be altered by\nunauthorized users without detection.\n\n    Cryptographic mechanisms used for protecting the integrity of information\ninclude, for example, signed hash functions using asymmetric cryptography\nenabling distribution of the public key to verify the hash information while\nmaintaining the confidentiality of the key used to generate the hash.\n  \"\n  impact 0.5\n  tag \"gtitle\": \"SRG-OS-000250-GPOS-00093\"\n  tag \"gid\": \"V-72227\"\n  tag \"rid\": \"SV-86851r2_rule\"\n  tag \"stig_id\": \"RHEL-07-040180\"\n  tag \"cci\": [\"CCI-001453\"]\n  tag \"documentable\": false\n  tag \"nist\": [\"AC-17 (2)\", \"Rev_4\"]\n  tag \"subsystems\": ['sssd', 'ldap']\n  desc \"check\", \"Verify the operating system implements cryptography to protect\nthe integrity of remote LDAP authentication sessions.\n\nTo determine if LDAP is being used for authentication, use the following\ncommand:\n\n# grep -i useldapauth /etc/sysconfig/authconfig\nUSELDAPAUTH=yes\n\nIf USELDAPAUTH=yes, then LDAP is being used. To see if LDAP is configured to\nuse TLS, use the following command:\n\n# grep -i ssl /etc/pam_ldap.conf\nssl start_tls\n\nIf the \\\"ssl\\\" option is not \\\"start_tls\\\", this is a finding.\"\n  desc \"fix\", \"Configure the operating system to implement cryptography to\nprotect the integrity of LDAP authentication sessions.\n\nSet the USELDAPAUTH=yes in \\\"/etc/sysconfig/authconfig\\\".\n\nSet \\\"ssl start_tls\\\" in \\\"/etc/pam_ldap.conf\\\".\"\n  tag \"fix_id\": \"F-78581r1_fix\"\n\n  sssd_id_ldap_enabled = (package('sssd').installed? and\n    !command('grep \"^\\s*id_provider\\s*=\\s*ldap\" /etc/sssd/sssd.conf').stdout.strip.empty?)\n\n  pam_ldap_enabled = (!command('grep \"^[^#]*pam_ldap\\.so\" /etc/pam.d/*').stdout.strip.empty?)\n\n  if !(sssd_id_ldap_enabled or pam_ldap_enabled)\n    impact 0.0\n    describe \"LDAP not enabled\" do\n      skip \"LDAP not enabled using any known mechanisms, this control is Not Applicable.\"\n    end\n  end\n\n  if sssd_id_ldap_enabled\n    ldap_id_use_start_tls = command('grep ldap_id_use_start_tls /etc/sssd/sssd.conf')\n    describe ldap_id_use_start_tls do\n      its('stdout.strip') { should match %r{^ldap_id_use_start_tls\\s*=\\s*true$}}\n    end\n\n    ldap_id_use_start_tls.stdout.strip.each_line do |line|\n      describe line do\n        it { should match %r{^ldap_id_use_start_tls\\s*=\\s*true$}}\n      end\n    end\n  end\n\n  if pam_ldap_enabled\n    describe command('grep -i ssl /etc/pam_ldap.conf') do\n      its('stdout.strip') { should match %r{^ssl start_tls$}}\n    end\n  end\nend\n",
+     "source_location": {
+      "line": 3,
+      "ref": "inspec-profile-disa_stig-el7-master/controls/V-72227.rb"
+     },
+     "results": [
+      {
+       "status": "skipped",
+       "code_desc": "LDAP not enabled",
+       "run_time": 6.202e-06,
+       "start_time": "2019-11-04T16:17:15-05:00",
+       "resource": "",
+       "skip_message": "LDAP not enabled using any known mechanisms, this control is Not Applicable."
+      }
+     ]
+    }
+   ],
+   "status": "loaded"
+  }
+ ],
+ "statistics": {
+  "duration": 10.681128104
+ },
+ "version": "4.16.0"
+}

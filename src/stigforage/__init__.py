@@ -27,6 +27,11 @@ Changelog
        results and ARF (SCC, Evaluate-STIG, OpenSCAP, STIG Manager) per ADR 0003: pass, fail
        and notapplicable imported, others counted; checklist wins unless --prefer results;
        other releases refused, other hosts refused unless --allow-host-mismatch.
+       Unit 2: InSpec / Heimdall HDF `.json` results (hdf.py). Control status follows
+       Heimdall's order, except waived controls are counted, not imported. HDF names no
+       benchmark or host, so scans pair with the checklist STIG holding their V-numbers;
+       release from a STIGRef tag or a vNrN profile title; overlay data from the base control.
+       Any scan of unknown release warns when matched rule revisions differ (drift).
 """
 
 __version__ = "0.2.2"

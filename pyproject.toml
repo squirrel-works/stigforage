@@ -7,7 +7,7 @@ name = "stigforage"
 dynamic = ["version"]
 description = "Offline STIG checklist assessment toolkit (working name)."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.14"
 license = { text = "Apache-2.0" }
 dependencies = [
     "structlog>=24.1",

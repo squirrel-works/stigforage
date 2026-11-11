@@ -81,6 +81,61 @@ V2R10 SCAP 1.3 benchmark, profile `MAC-1_Classified`, writing ARF (9.7 MB).
   matching 10-rule blank checklist of the manual STIG makes it an end-to-end test: 8 applied, 7
   by V-number.
 
+## Unit 2: HDF (maintainer-approved after review, 2026-11-10)
+
+Evidence from seven Heimdall samples (InSpec 1.37 to 4.52, plus Heimdall-converted checklists):
+
+- No DISA benchmark id. Profile names are free text (`disa_stig-el7`, `Red Hat Enterprise Linux
+  7 STIG`, `RHEL_9_STIG`, `redhat-enterprise-linux-7-stig-baseline`); control ids are V-numbers.
+- Release appears in 3 of 7: a `vNrN` in the profile title (2) or a `STIGRef` tag ("Version 1,
+  Release: 3", 1). The profile version is not a STIG release: `0.2.0` sits beside "v1r4".
+- No host name anywhere; `platform` is the operating system.
+- Overlays: up to three profiles linked by `parent_profile`/`depends`. Only the base profile
+  holds results; the outer layers repeat every control without them. In both overlay samples
+  every control has the same impact in every layer.
+
+Decisions, made during implementation because decisions 1-10 do not cover HDF's missing
+identifiers:
+
+- An HDF scan pairs with the one checklist STIG holding its V-numbers. None, or V-numbers spread
+  over several STIGs, is refused.
+- Release from `STIGRef`, else from a `vNrN` in the title, else unknown (a warning, per the
+  rule for unknown releases above).
+- The host is never checked; a checklist with a host name gets a warning.
+- Overlays: see "Revised to match Heimdall" below.
+- Control status: see "Revised to match Heimdall" below.
+- Finding details list each test as `[status] code_desc: message`. The scan time is the latest
+  result's start time, since HDF records no end time.
+- When the release cannot be compared and any matched rule's revision differs from the
+  checklist's, a warning gives the count ("3 of 10 matched rules have a different rule
+  revision"). InSpec STIG profiles take rule ids from the manual STIG, so a revision mismatch
+  is a real sign of release drift; the real V1R3 sample against the V1R1 fixture shows 3 of 10.
+  A warning only, with no threshold. It applies to any scan whose release is unknown.
+
+### Revised to match Heimdall
+
+- Superseded: decision 3 as first implemented ("impact 0 -> notapplicable; else any failed ->
+  fail, even alongside errors; else all passed -> pass; passed mixed with skipped not
+  imported"), and the unit 2 overlay rule ("impact from the outermost profile").
+- Evidence: Heimdall's own status code (`libs/inspecjs/src/compat_impl/compat_inspec_1_0.ts`,
+  `compute_status`) applies, first match wins: any error result, including any result with a
+  backtrace -> Profile Error; waived (`waiver_data.skipped_due_to_waiver`) or impact 0 -> Not
+  Applicable; no results -> Profile Error; any failed -> Failed; any passed -> Passed; skipped
+  -> Not Reviewed. Its overlay code (`context.ts`) reads every control's data from the base
+  ("root") control. The first implementation disagreed with Heimdall on failed with an error,
+  passed with a skip, impact 0 with an error, waived controls, and backtraces. On the real
+  samples that moved 1 to 3 passed-with-skipped controls per file to `pass`, and two failing
+  controls whose results carry backtraces (one RHEL 7 run, one Ubuntu run) to `error`.
+- Replacement: Heimdall's order, so a checklist agrees with what HDF users see in Heimdall,
+  with one exception. A waived control is not imported and is counted as `waived`, where
+  Heimdall shows Not Applicable: a waiver accepts the risk of a requirement that does apply,
+  which belongs in an open finding with a POA&M, not N/A, so the assessor decides. Imported:
+  `fail`, `pass`, `notapplicable`. Counted, not imported: `error`, `waived`, `no_results`,
+  `skipped`. Impact and everything else come from the control that ran (the base profile);
+  outer layers name the scan and may give the release in their title, searched outermost
+  first. Attestations are left alone, as Heimdall's status code also leaves them. No sample
+  has waiver data, so the waiver path is tested on synthetic data only.
+
 ## How decisions 4-6 apply to a scan
 
 A scan's review is its status and finding details only, since decision 5 keeps it away from
