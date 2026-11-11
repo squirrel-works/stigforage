@@ -35,6 +35,9 @@ Changelog
        Unit 3: SARIF 2.1.0 (findings.py). `--rule V-NUMBER` names the checklist rule that all
        SARIF files in a run are evidence for: any finding -> open, none -> status left alone.
        Findings exclude non-fail kinds, accepted suppressions and absent baseline results.
+       Unit 4: pip-audit and npm audit (report v2) JSON, through the same --rule mechanism;
+       duplicates merged, unaudited and transitively affected packages named. `.json`
+       results files are identified by content (HDF, SARIF, pip-audit, npm audit).
 """
 
 __version__ = "0.2.2"

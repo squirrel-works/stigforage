@@ -37,6 +37,15 @@ Test fixtures under tests/fixtures/sarif/ are unmodified copies, renamed only:
   from https://github.com/anchore/grype, Apache License 2.0, Copyright (c) Anchore, Inc.
 The Apache License 2.0 text is in LICENSE.
 
+Test fixtures under tests/fixtures/audit/ were generated for this project: pip-audit 2.10.1
+(`pip-audit -r ... --no-deps --disable-pip -f json`) on requests==2.19.1, urllib3==1.24.1,
+jinja2==2.10, structlog==26.1.0 and a package name not on PyPI, and npm 11.20.0
+(`npm audit --json`) for lodash 4.17.11, minimist 1.2.0 and mkdirp 0.5.1, each with a clean
+counterpart. The advisory identifiers, titles and descriptions in them come from the PyPA
+Advisory Database (https://github.com/pypa/advisory-database) and the GitHub Advisory Database
+(https://github.com/github/advisory-database), both licensed under Creative Commons Attribution
+4.0 International (CC BY 4.0).
+
 tests/fixtures/schema/SV3_CKLB_1_0_JSON_SCHEMA.json is the DISA CKLB JSON schema, supplied by the
 maintainer. Its redistribution terms have not been verified; it is used only by tests and the
 `--schema` option and can be removed without affecting the library.

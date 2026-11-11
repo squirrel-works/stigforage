@@ -12,13 +12,22 @@ import argparse
 import json
 import re
 import sys
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import Any, TextIO, cast
 
 from stigforage import __version__, ckl, cklb, xccdf
 from stigforage.diff import ChecklistDiff, RuleDiff, StigDiff, diff_checklists
-from stigforage.findings import FindingsFile, is_v_number, load_sarif, scan_for_rule
+from stigforage.findings import (
+    FindingsFile,
+    is_v_number,
+    json_results_kind,
+    load_npm_audit,
+    load_pip_audit,
+    load_sarif,
+    parse_json,
+    scan_for_rule,
+)
 from stigforage.fsio import atomic_write_text, check_write_target, read_limited
 from stigforage.hdf import load_hdf
 from stigforage.log import configure, get_logger
@@ -165,8 +174,9 @@ def _build_parser() -> argparse.ArgumentParser:
         type=Path,
         metavar="RESULTS",
         help=(
-            "XCCDF results or ARF .xml, InSpec HDF .json, or SARIF .sarif/.sarif.json; "
-            "at most one per STIG, except that every SARIF file goes to --rule"
+            "XCCDF results or ARF .xml; InSpec HDF, pip-audit or npm audit .json; SARIF "
+            ".sarif/.sarif.json. At most one per STIG, except that every SARIF and "
+            "dependency-audit file goes to --rule"
         ),
     )
     imp.add_argument(
@@ -174,8 +184,8 @@ def _build_parser() -> argparse.ArgumentParser:
         type=_v_number,
         metavar="V-NUMBER",
         help=(
-            "checklist rule that SARIF findings are evidence for (required with SARIF): any "
-            "finding makes it open; no findings leave it alone"
+            "checklist rule that SARIF and dependency-audit findings are evidence for (required "
+            "with them): any finding makes it open; no findings leave it alone"
         ),
     )
     imp.add_argument("-o", "--output", required=True, type=Path, help="output .cklb or .ckl path")
@@ -550,32 +560,64 @@ def _format_scan_import(si: ScanImport, prefer: str, out: TextIO) -> None:
         out.write(f"  ? {group_id}: several rules share this group_id; not matched\n")
 
 
-def _is_sarif(path: Path) -> bool:
-    return path.name.lower().endswith((".sarif", ".sarif.json"))
+# Findings files name no STIG rule, so they need --rule (ADR 0003 decisions 8 and 9).
+_FINDINGS_LOADERS: dict[str, Callable[[Path], list[FindingsFile]]] = {
+    "sarif": load_sarif,
+    "pip-audit": load_pip_audit,
+    "npm-audit": load_npm_audit,
+}
+
+
+def _results_kind(path: Path) -> str:
+    """xccdf, hdf, sarif, pip-audit or npm-audit. Raises ChecklistError, OSError.
+
+    `.xml` is XCCDF results or ARF, and `.sarif` is SARIF. Every other `.json` is identified by
+    its content, because HDF, pip-audit, npm audit and some SARIF all use that extension.
+    """
+    if path.name.lower().endswith((".sarif", ".sarif.json")):
+        return "sarif"
+    if path.suffix.lower() != ".json":
+        return "xccdf"
+    try:
+        text = read_limited(path).decode("utf-8-sig")
+    except UnicodeDecodeError as exc:
+        raise ChecklistError(f"{path}: not valid UTF-8: {exc.reason}") from exc
+    kind = json_results_kind(parse_json(text, str(path)))
+    if kind is None:
+        raise ChecklistError(
+            f"{path}: not a results format stigforage reads (InSpec HDF, SARIF, pip-audit or "
+            "npm audit JSON)"
+        )
+    return kind
 
 
 def _load_scans(paths: list[Path], rule: str | None) -> list[Scan] | None:
-    """Read every RESULTS file into scans; SARIF files become one scan for `rule`.
+    """Read every RESULTS file into scans; findings files become one scan for `rule`.
 
-    Returns None, with the error logged, when SARIF and --rule do not come together or a file
-    cannot be read.
+    Returns None, with the error logged, when findings files and --rule do not come together
+    or a file cannot be read.
     """
     log = get_logger()
-    sarif_paths = [p for p in paths if _is_sarif(p)]
-    if sarif_paths and not rule:
-        log.error("SARIF results need --rule V-NUMBER", files=[str(p) for p in sarif_paths])
+    try:
+        kinds = [(path, _results_kind(path)) for path in paths]
+    except (ChecklistError, OSError) as exc:
+        log.error("cannot read results", error=str(exc))
         return None
-    if rule and not sarif_paths:
-        log.error("--rule only applies to SARIF results, and none were given")
+    findings_paths = [str(p) for p, kind in kinds if kind in _FINDINGS_LOADERS]
+    if findings_paths and not rule:
+        log.error("SARIF and dependency-audit results need --rule V-NUMBER", files=findings_paths)
+        return None
+    if rule and not findings_paths:
+        log.error("--rule only applies to SARIF and dependency-audit results; none were given")
         return None
     scans: list[Scan] = []
     findings: list[FindingsFile] = []
-    for n, path in enumerate(paths, start=1):
-        log.info("reading results", step=f"{n}/{len(paths)}", file=str(path))
+    for n, (path, kind) in enumerate(kinds, start=1):
+        log.info("reading results", step=f"{n}/{len(paths)}", file=str(path), kind=kind)
         try:
-            if _is_sarif(path):
-                findings.extend(load_sarif(path))
-            elif path.suffix.lower() == ".json":
+            if kind in _FINDINGS_LOADERS:
+                findings.extend(_FINDINGS_LOADERS[kind](path))
+            elif kind == "hdf":
                 scans.extend(load_hdf(path))
             else:
                 scans.extend(load_xccdf_results(path))

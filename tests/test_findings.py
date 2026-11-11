@@ -238,8 +238,8 @@ def test_cli_sarif_opens_the_rule_in_a_schema_valid_checklist(tmp_path: Path) ->
 @pytest.mark.parametrize(
     ("files", "rule", "message"),
     [
-        ((TRIVY,), None, "SARIF results need --rule"),
-        ((VPN_A_RESULTS,), RULE, "--rule only applies to SARIF results"),
+        ((TRIVY,), None, "SARIF and dependency-audit results need --rule"),
+        ((VPN_A_RESULTS,), RULE, "--rule only applies to SARIF and dependency-audit results"),
     ],
 )
 def test_cli_sarif_and_rule_go_together(

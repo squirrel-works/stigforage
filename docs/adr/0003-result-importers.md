@@ -170,6 +170,41 @@ Details, made during implementation:
   V-number because it names no rule id, so the drift warning counts only matches where the scan
   gave a rule id that differs.
 
+## Unit 4: pip-audit and npm audit (details within decisions 8 and 9, pending maintainer review)
+
+Evidence from real output generated for this project: pip-audit 2.10.1 on old requests,
+urllib3 and jinja2 plus a name not on PyPI, and npm 11.20.0 audit of old lodash, minimist and
+mkdirp; each with a clean counterpart.
+
+- pip-audit JSON is `dependencies[]`, each with `vulns[]` (`id`, `aliases`, `fix_versions`,
+  `description`), and a `fixes` list. It has no severity. It listed 47 entries for 24 distinct
+  vulnerabilities: most appear twice. A package it cannot audit gets a `skip_reason` instead.
+- npm audit (report version 2) is keyed by package. Each entry's `via` holds advisory objects
+  (GHSA URL, title, severity, range) or the names of other vulnerable packages. npm counted 3
+  vulnerable packages; they carry 10 advisory entries, 8 distinct per package (minimist lists
+  two advisories twice, with different ranges). mkdirp is vulnerable only through minimist.
+
+Details, made during implementation:
+
+- Same mechanism as SARIF: every audit file in a run joins the SARIF files as evidence for the
+  one rule named with `--rule`; any finding makes it `open`, none leaves it alone.
+- Both formats are `.json`, like HDF, so a `.json` file is identified by its content: `runs`
+  and `version` (SARIF), `profiles` (HDF), `auditReportVersion` (npm audit), or a
+  `dependencies` list with `fixes` (pip-audit). Anything else is refused by name. `.sarif`
+  files are still taken as SARIF by name, and SARIF saved as `.json` is now found by content.
+- pip-audit: one finding per package, version and vulnerability id; repeats are merged and
+  counted as `duplicate`. The level is `unrated`, since pip-audit gives none. The message is
+  `requests 2.19.1 (CVE-..., GHSA-...); fixed in 2.20.0`; descriptions are left out to keep
+  the summary readable, and the ids lead to them. Unaudited packages are named in the summary.
+- npm audit: one finding per package and advisory (the GHSA id, else `npm-advisory-<source>`),
+  merging repeats and keeping the most severe. Levels are npm's own words, which the summary
+  orders across tools: critical, high, error, moderate, warning, low, note, info, none,
+  unrated. Packages affected only through others are named in the summary. Report version 1
+  (npm 6 and earlier) is refused by name.
+- The input pins are recorded in NOTICE, not committed as `requirements.txt` or
+  `package.json`: dependency scanners read those anywhere in a repository and would raise
+  alerts on pins that are vulnerable on purpose.
+
 ## How decisions 4-6 apply to a scan
 
 A scan's review is its status and finding details only, since decision 5 keeps it away from
