@@ -18,6 +18,7 @@ from typing import Any, TextIO, cast
 
 from stigforage import __version__, ckl, cklb, xccdf
 from stigforage.diff import ChecklistDiff, RuleDiff, StigDiff, diff_checklists
+from stigforage.findings import FindingsFile, is_v_number, load_sarif, scan_for_rule
 from stigforage.fsio import atomic_write_text, check_write_target, read_limited
 from stigforage.hdf import load_hdf
 from stigforage.log import configure, get_logger
@@ -32,6 +33,13 @@ EXIT_INVALID = 1
 EXIT_UNREADABLE = 2
 
 _INPUT_HELP = ".cklb, .ckl, XCCDF/SCAP .xml, or a .zip containing benchmarks"
+
+
+def _v_number(text: str) -> str:
+    """argparse type for --rule: a checklist V-number such as V-222612."""
+    if not is_v_number(text.strip()):
+        raise argparse.ArgumentTypeError(f"{text!r} is not a V-number like V-222612")
+    return text.strip()
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -156,7 +164,19 @@ def _build_parser() -> argparse.ArgumentParser:
         nargs="+",
         type=Path,
         metavar="RESULTS",
-        help="XCCDF results or ARF .xml, or InSpec HDF .json; at most one per STIG",
+        help=(
+            "XCCDF results or ARF .xml, InSpec HDF .json, or SARIF .sarif/.sarif.json; "
+            "at most one per STIG, except that every SARIF file goes to --rule"
+        ),
+    )
+    imp.add_argument(
+        "--rule",
+        type=_v_number,
+        metavar="V-NUMBER",
+        help=(
+            "checklist rule that SARIF findings are evidence for (required with SARIF): any "
+            "finding makes it open; no findings leave it alone"
+        ),
     )
     imp.add_argument("-o", "--output", required=True, type=Path, help="output .cklb or .ckl path")
     imp.add_argument(
@@ -530,6 +550,43 @@ def _format_scan_import(si: ScanImport, prefer: str, out: TextIO) -> None:
         out.write(f"  ? {group_id}: several rules share this group_id; not matched\n")
 
 
+def _is_sarif(path: Path) -> bool:
+    return path.name.lower().endswith((".sarif", ".sarif.json"))
+
+
+def _load_scans(paths: list[Path], rule: str | None) -> list[Scan] | None:
+    """Read every RESULTS file into scans; SARIF files become one scan for `rule`.
+
+    Returns None, with the error logged, when SARIF and --rule do not come together or a file
+    cannot be read.
+    """
+    log = get_logger()
+    sarif_paths = [p for p in paths if _is_sarif(p)]
+    if sarif_paths and not rule:
+        log.error("SARIF results need --rule V-NUMBER", files=[str(p) for p in sarif_paths])
+        return None
+    if rule and not sarif_paths:
+        log.error("--rule only applies to SARIF results, and none were given")
+        return None
+    scans: list[Scan] = []
+    findings: list[FindingsFile] = []
+    for n, path in enumerate(paths, start=1):
+        log.info("reading results", step=f"{n}/{len(paths)}", file=str(path))
+        try:
+            if _is_sarif(path):
+                findings.extend(load_sarif(path))
+            elif path.suffix.lower() == ".json":
+                scans.extend(load_hdf(path))
+            else:
+                scans.extend(load_xccdf_results(path))
+        except (ChecklistError, OSError) as exc:
+            log.error("cannot read results", file=str(path), error=str(exc))
+            return None
+    if rule and findings:
+        scans.append(scan_for_rule(rule, findings))
+    return scans
+
+
 def _run_import_results(args: argparse.Namespace, out: TextIO) -> int:
     log = get_logger()
     dest: Path = args.output
@@ -538,17 +595,9 @@ def _run_import_results(args: argparse.Namespace, out: TextIO) -> int:
     loaded = _load_all((args.checklist,))
     if loaded is None:
         return EXIT_UNREADABLE
-    scans: list[Scan] = []
-    for n, path in enumerate(args.results, start=1):
-        log.info("reading results", step=f"{n}/{len(args.results)}", file=str(path))
-        try:
-            if path.suffix.lower() == ".json":
-                scans.extend(load_hdf(path))
-            else:
-                scans.extend(load_xccdf_results(path))
-        except (ChecklistError, OSError) as exc:
-            log.error("cannot read results", file=str(path), error=str(exc))
-            return EXIT_UNREADABLE
+    scans = _load_scans(args.results, args.rule)
+    if scans is None:
+        return EXIT_UNREADABLE
     log.info("importing", scans=len(scans), prefer=args.prefer)
     try:
         result = import_results(

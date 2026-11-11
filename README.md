@@ -37,7 +37,10 @@ for anything. The roadmap below shows what exists and what does not.
   `pass`, `fail` and `notapplicable` set the status and finding details; other results are
   counted, not imported; comments are never touched. The checklist wins conflicts unless
   `--prefer results`. Scans of another release are refused, and so are scans of another host
-  unless `--allow-host-mismatch`. Dry run unless `--apply`. See ADR 0003.
+  unless `--allow-host-mismatch`. SARIF files (`.sarif`, from Trivy, Grype, OSV-Scanner,
+  Flawfinder and others) name no STIG rule, so `--rule V-NUMBER` says which rule they are
+  evidence for: any finding makes it `open`, and no findings leave it alone. Dry run unless
+  `--apply`. See ADR 0003.
 - `stigforage convert INPUT -o OUTPUT` converts between `.cklb`, `.ckl` and benchmarks. It is a
   dry run unless you pass `--apply`, never modifies INPUT, and refuses to overwrite OUTPUT without
   `--force`. A dry run reports the same refusals and export warnings as `--apply` would.
@@ -55,7 +58,7 @@ stigforage convert U_RHEL_9_STIG_V1R1_Manual-xccdf.xml -o rhel9.cklb --apply  # 
 pytest
 ```
 
-Requires Python 3.11+. The only runtime dependency is `structlog`; XML is parsed with a hardened
+Requires Python 3.14+. The only runtime dependency is `structlog`; XML is parsed with a hardened
 standard-library parser that rejects any DTD or entity declaration.
 
 ## Known gaps in V0.1.1
@@ -86,8 +89,8 @@ standard-library parser that rejects any DTD or entity declaration.
 | V0.5.5 | Refactor and stabilization | planned |
 | V1.x | PySide6 desktop GUI, packaging for Windows, Linux, macOS | planned |
 
-V0.3.3 progress: XCCDF results and ARF (unit 1) and InSpec HDF (unit 2) are done; SARIF (unit 3)
-and pip-audit/npm audit JSON (unit 4) are next. The SARIF importer also covers Trivy, Grype and
+V0.3.3 progress: XCCDF results and ARF (unit 1), InSpec HDF (unit 2) and SARIF (unit 3) are
+done; pip-audit/npm audit JSON (unit 4) is next. The SARIF importer also covers Trivy, Grype and
 OSV-Scanner, which all write SARIF.
 
 ## Principles

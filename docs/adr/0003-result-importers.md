@@ -136,6 +136,40 @@ identifiers:
   first. Attestations are left alone, as Heimdall's status code also leaves them. No sample
   has waiver data, so the waiver path is tested on synthetic data only.
 
+## Unit 3: SARIF (details within decision 8, maintainer-approved after review, 2026-11-10)
+
+Evidence from four real files: Flawfinder 2.0.15 (via Heimdall), and the Trivy and Grype
+projects' own SARIF test outputs.
+
+- Severity is the SARIF `level` (error, warning, note). Seven Flawfinder results have no level
+  and rely on the rule's `defaultConfiguration`, as SARIF 2.1.0 allows; with neither, the spec
+  default is `warning`.
+- Vulnerability scanners use the CVE as the rule id and add a `security-severity` property.
+  Messages can span lines (Trivy).
+- None uses `kind`, `suppressions` or `baselineState`, and none records an invocation time or a
+  machine.
+
+Details, made during implementation:
+
+- `--rule V-NUMBER` names one checklist rule per run. Every SARIF file in the run (`.sarif` or
+  `.sarif.json`) is evidence for it, combined into one scan, so several scanners can back one
+  rule. SARIF without `--rule`, or `--rule` without SARIF, is refused.
+- The rule's V-number picks the checklist STIG, through the same pairing as HDF. A SARIF scan
+  and an XCCDF or HDF scan of that same STIG in one run are refused by decision 1; run them
+  separately.
+- A finding is a result with `kind` `fail` (the default), not suppressed (a suppression whose
+  status is `accepted` or absent), and not `baselineState` `absent`. `kind` `review` or `open`
+  needs a person, so it is not a finding. Results not counted are tallied by reason.
+- Every level counts, `note` included, as decision 8 says ("any finding"). On Flawfinder's
+  sample that includes 35 `note` results, and Grype rates a low CVE `note`, so a rule may turn
+  `open` on low-severity findings alone. A level threshold was raised at review and declined:
+  every level counts, with no option to filter.
+- Finding details hold, per tool, the counts by level, then up to 50 findings as
+  `CVE-x [level] message (path:line)`, then "... and N more". Counts stay complete.
+- Release and host cannot be checked, so both warn, as for HDF. A SARIF scan always matches by
+  V-number because it names no rule id, so the drift warning counts only matches where the scan
+  gave a rule id that differs.
+
 ## How decisions 4-6 apply to a scan
 
 A scan's review is its status and finding details only, since decision 5 keeps it away from

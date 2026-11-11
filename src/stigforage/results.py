@@ -101,6 +101,7 @@ class ScanImport:
     unchanged: int = 0
     matched: int = 0
     matched_by_group_id: int = 0
+    revision_differs: int = 0  # matched by V-number although the scan gave a rule id
     conflicts: list[ScanConflict] = field(default_factory=list)
     not_imported: Counter[str] = field(default_factory=Counter)  # by XCCDF result value
     unmatched: list[RuleResult] = field(default_factory=list)  # no rule in the checklist
@@ -386,6 +387,8 @@ def _apply(scan: Scan, stig: Stig, prefer: Prefer) -> ScanImport:
         result = by_stand_in[id(stand_in)]
         if matched_by == "group_id":
             report.matched_by_group_id += 1
+            if result.rule_id_src:  # a real rule id that differs, not a scan that names none
+                report.revision_differs += 1
         status = _STATUS.get(result.result)
         if status is None:
             report.not_imported[result.result] += 1
@@ -432,9 +435,9 @@ def import_results(
     for report, was_compared in zip(result.scans, compared, strict=True):
         # Unknown release, but rule revisions disagree: the best remaining sign of drift.
         # (A known release is already checked; SCAP and manual revisions differ even then.)
-        if not was_compared and report.matched_by_group_id:
+        if not was_compared and report.revision_differs:
             result.warnings.append(
-                f"{report.source}: {report.matched_by_group_id} of {report.matched} matched "
+                f"{report.source}: {report.revision_differs} of {report.matched} matched "
                 "rules have a different rule revision than the checklist; the scan may be for "
                 "another release"
             )

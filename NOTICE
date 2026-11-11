@@ -25,6 +25,18 @@ example-3-layer-overlay-truncated.json were modified by the stigforage maintaine
 dozen controls each; each says so in its "_stigforage_note" key. small_overrides_hdf.json is
 unmodified.
 
+Test fixtures under tests/fixtures/sarif/ are unmodified copies, renamed only:
+- heimdall2-flawfinder.sarif is, in https://github.com/mitre/heimdall2,
+  libs/hdf-converters/sample_jsons/sarif_mapper/sample_input_report/sarif_input.sarif
+  Apache License 2.0, (c) 2025 The MITRE Corporation (see above).
+- trivy-alpine-310.sarif is integration/testdata/alpine-310.sarif.golden from
+  https://github.com/aquasecurity/trivy, Apache License 2.0. Trivy's NOTICE reads:
+  "Trivy. Copyright 2019-2020 Aqua Security Software Ltd. This product includes software
+  developed by Aqua Security (https://aquasec.com)."
+- grype-image.sarif is grype/presenter/sarif/testdata/snapshot/TestSarifPresenter_image.golden
+  from https://github.com/anchore/grype, Apache License 2.0, Copyright (c) Anchore, Inc.
+The Apache License 2.0 text is in LICENSE.
+
 tests/fixtures/schema/SV3_CKLB_1_0_JSON_SCHEMA.json is the DISA CKLB JSON schema, supplied by the
 maintainer. Its redistribution terms have not been verified; it is used only by tests and the
 `--schema` option and can be removed without affecting the library.

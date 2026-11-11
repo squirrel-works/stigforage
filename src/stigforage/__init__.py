@@ -32,6 +32,9 @@ Changelog
        benchmark or host, so scans pair with the checklist STIG holding their V-numbers;
        release from a STIGRef tag or a vNrN profile title; overlay data from the base control.
        Any scan of unknown release warns when matched rule revisions differ (drift).
+       Unit 3: SARIF 2.1.0 (findings.py). `--rule V-NUMBER` names the checklist rule that all
+       SARIF files in a run are evidence for: any finding -> open, none -> status left alone.
+       Findings exclude non-fail kinds, accepted suppressions and absent baseline results.
 """
 
 __version__ = "0.2.2"
