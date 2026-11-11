@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]  # 77+ reads the SPDX license string below
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,17 +8,21 @@ dynamic = ["version"]
 description = "Offline STIG checklist assessment toolkit (working name)."
 readme = "README.md"
 requires-python = ">=3.14"
-license = { text = "Apache-2.0" }
+license = "Apache-2.0"
 dependencies = [
     "structlog>=24.1",
 ]
 
 [project.optional-dependencies]
+# Exact pins so CI and every .venv run the same checks; see ADR 0004. Bump them deliberately at
+# the start of a roadmap stage, in their own commit, with the full suite. The runtime
+# dependency above stays a range: stigforage is also installable as a library.
 dev = [
-    "pytest>=8",
-    "ruff",
-    "black",
-    "mypy",
+    "pytest==9.2.0",
+    "ruff==0.17.4",
+    "black==26.10.1",
+    "mypy==2.4.1",
+    "jsonschema==4.26.0",  # cross-checks schema.py in tests/test_schema.py; never a runtime dep
 ]
 
 [project.scripts]

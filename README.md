@@ -50,8 +50,8 @@ operation was refused (for example OUTPUT would overwrite an input, or `merge` w
 different releases).
 
 ```sh
-python -m venv .venv && . .venv/bin/activate
-pip install -e ".[dev]"
+python3.14 -m venv .venv && . .venv/bin/activate   # Windows: py -3.14 -m venv .venv
+pip install -e ".[dev]"                             # dev tools are pinned; see ADR 0004
 stigforage --help
 stigforage convert U_RHEL_9_STIG_V1R1_Manual-xccdf.xml -o rhel9.cklb          # dry run
 stigforage convert U_RHEL_9_STIG_V1R1_Manual-xccdf.xml -o rhel9.cklb --apply  # write it
