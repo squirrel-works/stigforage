@@ -9,3 +9,6 @@ dist/
 .ruff_cache/
 .coverage
 htmlcov/
+
+# Reference data downloaded for local tests only; never committed (e.g. DISA U_CCI_List.zip).
+tests/fixtures/local/

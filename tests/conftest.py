@@ -7,7 +7,28 @@ from typing import Any
 
 import pytest
 
+from stigforage.cci import CciList, load_cci_list
+
 FIXTURES = Path(__file__).parent / "fixtures"
+
+# DISA reference data is used for local tests only and never committed (maintainer's decision,
+# ADR 0005): tests that need it skip when it is absent, as in CI. tests/fixtures/local/ is
+# gitignored.
+LOCAL = FIXTURES / "local"
+DISA_CCI_ZIP = LOCAL / "U_CCI_List.zip"
+DISA_CCI_URL = "https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/U_CCI_List.zip"
+
+
+@pytest.fixture(scope="session")
+def disa_cci_list() -> CciList:
+    """DISA's real CCI list, or a skip saying how to fetch it for local runs."""
+    if not DISA_CCI_ZIP.is_file():
+        pytest.skip(
+            f"DISA CCI list not present (local-only test data). To run these tests: "
+            f"mkdir -p {LOCAL} && curl -fsSo {DISA_CCI_ZIP} {DISA_CCI_URL}"
+        )
+    return load_cci_list(DISA_CCI_ZIP)
+
 
 # Fields that legitimately differ between independently generated checklists.
 VOLATILE = frozenset({"uuid", "stig_uuid", "STIGUuid", "createdAt", "updatedAt"})
