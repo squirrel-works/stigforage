@@ -321,7 +321,7 @@ def _build(checklist: Checklist) -> tuple[ET.Element, list[str]]:
     return root, warnings
 
 
-_XML_FORBIDDEN = re.compile("[\x00-\x08\x0b\x0c\x0e-\x1f￾￿]")
+_XML_FORBIDDEN = re.compile("[\x00-\x08\x0b\x0c\x0e-\x1f\ufffe\uffff]")
 
 
 def dumps(checklist: Checklist) -> tuple[str, list[str]]:

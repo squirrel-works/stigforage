@@ -9,7 +9,13 @@ from pathlib import Path
 
 from stigforage.model import ChecklistError
 
-__all__ = ["MAX_BYTES", "atomic_write_text", "check_write_target", "read_limited"]
+__all__ = [
+    "MAX_BYTES",
+    "atomic_write_bytes",
+    "atomic_write_text",
+    "check_write_target",
+    "read_limited",
+]
 
 # Real checklists and benchmarks are a few MB. The cap stops a hostile or corrupt file from
 # exhausting memory.
@@ -40,8 +46,8 @@ def check_write_target(path: Path, *, force: bool = False) -> None:
         raise FileNotFoundError(f"directory {path.parent} does not exist")
 
 
-def atomic_write_text(path: Path, payload: str, *, force: bool = False) -> None:
-    """Write `payload` to `path` atomically as UTF-8.
+def atomic_write_bytes(path: Path, payload: bytes, *, force: bool = False) -> None:
+    """Write `payload` to `path` atomically.
 
     Refuses to overwrite an existing file unless `force` is set (see `check_write_target`). The
     write goes to a temp file in the destination directory and is renamed into place, so a crash
@@ -52,7 +58,7 @@ def atomic_write_text(path: Path, payload: str, *, force: bool = False) -> None:
     fd, tmp_name = tempfile.mkstemp(dir=path.parent, prefix=f".{path.name}.", suffix=".tmp")
     tmp = Path(tmp_name)
     try:
-        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as fh:
+        with os.fdopen(fd, "wb") as fh:
             fh.write(payload)
             fh.flush()
             os.fsync(fh.fileno())
@@ -61,3 +67,8 @@ def atomic_write_text(path: Path, payload: str, *, force: bool = False) -> None:
         with contextlib.suppress(OSError):
             tmp.unlink()
         raise
+
+
+def atomic_write_text(path: Path, payload: str, *, force: bool = False) -> None:
+    """Write `payload` to `path` atomically as UTF-8, newlines exactly as given."""
+    atomic_write_bytes(path, payload.encode("utf-8"), force=force)

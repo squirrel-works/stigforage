@@ -43,6 +43,9 @@ Changelog
        which the user supplies; unmapped, unknown and deprecated CCIs are reported.
        Unit 2: `export csv CHECKLIST... -o OUTPUT.csv [--cci-list PATH]` (exports.py):
        one row per rule per STIG per checklist, UTF-8 with BOM, formula cells neutralised.
+       Unit 3: `export poam ... --template EMASS.xlsx -o OUTPUT.xlsx` (exports.py, xlsx.py):
+       fills a copy of the user's eMASS POA&M template, columns found by header, one row per
+       open rule across checklists; stdlib .xlsx template filler.
 """
 
 __version__ = "0.3.3"

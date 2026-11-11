@@ -38,7 +38,7 @@ def _checklist(*rules: Rule, host: str = "h1") -> Checklist:
 
 
 def _read(text: str) -> list[dict[str, str]]:
-    assert text.startswith("﻿")
+    assert text.startswith("\ufeff")
     return list(csv.DictReader(io.StringIO(text[1:], newline="")))
 
 
@@ -119,10 +119,14 @@ def test_without_a_cci_list_the_crosswalk_columns_are_empty() -> None:
 # --- CSV ------------------------------------------------------------------------------------
 
 
+def test_csv_headers_have_no_surrounding_whitespace() -> None:
+    assert [header for header in CSV_COLUMNS if header != header.strip()] == []
+
+
 def test_csv_has_a_bom_crlf_lines_and_reads_back(synthetic_cci_list: CciList) -> None:
     rows, _ = finding_rows([cklb.load(MULTI_A)], synthetic_cci_list)
     text = to_csv(rows)
-    assert text.startswith("﻿Host,STIG,Release,")
+    assert text.startswith("\ufeffHost,STIG,Release,")
     assert "\r\n" in text and "\n" not in text.replace("\r\n", "")
     read = _read(text)
     assert tuple(read[0]) == CSV_COLUMNS

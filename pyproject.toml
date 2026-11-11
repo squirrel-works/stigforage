@@ -23,6 +23,7 @@ dev = [
     "black==26.10.1",
     "mypy==2.4.1",
     "jsonschema==4.26.0",  # cross-checks schema.py in tests/test_schema.py; never a runtime dep
+    "openpyxl==3.1.5",  # cross-checks xlsx.py in tests/test_poam.py; never a runtime dep
 ]
 
 [project.scripts]

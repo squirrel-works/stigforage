@@ -13,13 +13,23 @@ import json
 import re
 import sys
 from collections.abc import Callable, Sequence
+from datetime import date
 from pathlib import Path
 from typing import Any, TextIO, cast
 
 from stigforage import __version__, ckl, cklb, xccdf
-from stigforage.cci import load_cci_list
+from stigforage.cci import CciList, load_cci_list
 from stigforage.diff import ChecklistDiff, RuleDiff, StigDiff, diff_checklists
-from stigforage.exports import CrosswalkSummary, finding_rows, to_csv
+from stigforage.exports import (
+    POAM_STATUSES,
+    CrosswalkSummary,
+    FindingRow,
+    PoamOptions,
+    finding_rows,
+    poam_template,
+    to_csv,
+    to_poam_xlsx,
+)
 from stigforage.findings import (
     FindingsFile,
     is_v_number,
@@ -30,7 +40,12 @@ from stigforage.findings import (
     parse_json,
     scan_for_rule,
 )
-from stigforage.fsio import atomic_write_text, check_write_target, read_limited
+from stigforage.fsio import (
+    atomic_write_bytes,
+    atomic_write_text,
+    check_write_target,
+    read_limited,
+)
 from stigforage.hdf import load_hdf
 from stigforage.log import configure, get_logger
 from stigforage.merge import MergeResult, StigMerge, merge_checklists
@@ -38,6 +53,7 @@ from stigforage.model import Checklist, ChecklistError, ImportResult, Issue, Sta
 from stigforage.results import Scan, ScanImport, import_results, load_xccdf_results
 from stigforage.schema import check_supported, validate_instance
 from stigforage.upgrade import StigUpgrade, UpgradeResult, upgrade_checklist
+from stigforage.xlsx import FIRST_DATE, Template
 
 EXIT_OK = 0
 EXIT_INVALID = 1
@@ -46,11 +62,82 @@ EXIT_UNREADABLE = 2
 _INPUT_HELP = ".cklb, .ckl, XCCDF/SCAP .xml, or a .zip containing benchmarks"
 
 
+def _iso_date(text: str) -> date:
+    """argparse type for --completion-date: a real calendar date, written YYYY-MM-DD."""
+    try:
+        value = date.fromisoformat(text.strip())
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"{text!r} is not a date like 2026-12-31") from exc
+    if value < FIRST_DATE:
+        raise argparse.ArgumentTypeError(
+            f"{text!r} is before {FIRST_DATE.isoformat()}, the earliest date Excel stores reliably"
+        )
+    return value
+
+
 def _v_number(text: str) -> str:
     """argparse type for --rule: a checklist V-number such as V-222612."""
     if not is_v_number(text.strip()):
         raise argparse.ArgumentTypeError(f"{text!r} is not a V-number like V-222612")
     return text.strip()
+
+
+def _add_export_parser(sub: argparse._SubParsersAction[argparse.ArgumentParser]) -> None:
+    """The `export` command (ADR 0005)."""
+    exp = sub.add_parser(
+        "export",
+        help="export checklists for reporting (csv, poam)",
+        description=(
+            "Export one or more CHECKLISTs (one per host) as FORMAT. csv: one row per rule, per "
+            "STIG, per checklist, UTF-8 with a byte-order mark for Excel; cells Excel would run "
+            "as formulas are neutralised. poam: a copy of your blank eMASS POA&M import "
+            "template (--template) filled with one row per open rule across every checklist; "
+            "its columns are found by their headers, so each service branch's template works. "
+            "With --cci-list (DISA's U_CCI_List.zip or .xml), each rule's CCIs are mapped to "
+            "NIST SP 800-53 Revision 5 controls; without it those columns stay empty. Dry-run "
+            "by default: nothing is written unless --apply is given. Inputs are never modified."
+        ),
+    )
+    exp.add_argument("format", choices=("csv", "poam"), metavar="FORMAT", help="csv or poam")
+    exp.add_argument("checklists", nargs="+", type=Path, metavar="CHECKLIST", help=_INPUT_HELP)
+    exp.add_argument(
+        "-o", "--output", required=True, type=Path, help="output path (.csv, or .xlsx for poam)"
+    )
+    exp.add_argument(
+        "--cci-list",
+        type=Path,
+        metavar="PATH",
+        help="DISA's U_CCI_List.zip or U_CCI_List.xml, for the 800-53 Rev 5 columns",
+    )
+    exp.add_argument(
+        "--template",
+        type=Path,
+        metavar="XLSX",
+        help="poam, required: the blank POA&M import template (.xlsx) from eMASS; a filled "
+        "copy is written to OUTPUT and the template is never modified",
+    )
+    exp.add_argument(
+        "--office",
+        default="",
+        help="poam: Office/Org for every item (eMASS asks for: Organization, First Last, "
+        "Phone, Email)",
+    )
+    exp.add_argument(
+        "--completion-date",
+        type=_iso_date,
+        default=None,
+        metavar="YYYY-MM-DD",
+        help="poam: POA&M and milestone Scheduled Completion Date for every Ongoing item",
+    )
+    exp.add_argument(
+        "--poam-status",
+        choices=POAM_STATUSES,
+        default="Ongoing",
+        help="poam: POA&M Status for every item (default: Ongoing); Ongoing items get one "
+        "milestone, Risk Accepted items none, as eMASS requires",
+    )
+    exp.add_argument("--apply", action="store_true", help="actually write the output file")
+    exp.add_argument("--force", action="store_true", help="overwrite an existing output file")
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -206,29 +293,7 @@ def _build_parser() -> argparse.ArgumentParser:
     imp.add_argument("--apply", action="store_true", help="actually write the output file")
     imp.add_argument("--force", action="store_true", help="overwrite an existing output file")
 
-    exp = sub.add_parser(
-        "export",
-        help="export checklists for reporting (csv)",
-        description=(
-            "Export one or more CHECKLISTs (one per host) as FORMAT. csv: one row per rule, per "
-            "STIG, per checklist, UTF-8 with a byte-order mark for Excel; cells Excel would run "
-            "as formulas are neutralised. With --cci-list (DISA's U_CCI_List.zip or .xml), each "
-            "rule's CCIs are mapped to NIST SP 800-53 Revision 5 controls; without it those "
-            "columns stay empty. Dry-run by default: nothing is written unless --apply is "
-            "given. Inputs are never modified."
-        ),
-    )
-    exp.add_argument("format", choices=("csv",), metavar="FORMAT", help="csv")
-    exp.add_argument("checklists", nargs="+", type=Path, metavar="CHECKLIST", help=_INPUT_HELP)
-    exp.add_argument("-o", "--output", required=True, type=Path, help="output path (.csv)")
-    exp.add_argument(
-        "--cci-list",
-        type=Path,
-        metavar="PATH",
-        help="DISA's U_CCI_List.zip or U_CCI_List.xml, for the 800-53 Rev 5 columns",
-    )
-    exp.add_argument("--apply", action="store_true", help="actually write the output file")
-    exp.add_argument("--force", action="store_true", help="overwrite an existing output file")
+    _add_export_parser(sub)
     return parser
 
 
@@ -687,7 +752,14 @@ def _run_import_results(args: argparse.Namespace, out: TextIO) -> int:
     return _write_output(result.checklist, dest, apply=args.apply, force=args.force, out=out)
 
 
-_EXPORT_SUFFIX = {"csv": ".csv"}
+_EXPORT_SUFFIX = {"csv": ".csv", "poam": ".xlsx"}
+# Options that only mean something for one format, with their defaults (ADR 0005 decision 6).
+_POAM_ONLY = (
+    ("template", None),
+    ("office", ""),
+    ("completion_date", None),
+    ("poam_status", "Ongoing"),
+)
 
 
 def _format_crosswalk(summary: CrosswalkSummary, out: TextIO) -> None:
@@ -702,43 +774,116 @@ def _format_crosswalk(summary: CrosswalkSummary, out: TextIO) -> None:
     )
 
 
-def _run_export(args: argparse.Namespace, out: TextIO) -> int:
+def _export_args_ok(args: argparse.Namespace) -> bool:
+    """Log and return False for a wrong output type, a misplaced or missing option, or an
+    output that would overwrite an input."""
     log = get_logger()
     dest: Path = args.output
     suffix = _EXPORT_SUFFIX[args.format]
     if dest.suffix.lower() != suffix:
         log.error("unsupported output type", output=str(dest), expected=suffix)
-        return EXIT_UNREADABLE
-    inputs = [*args.checklists, *([args.cci_list] if args.cci_list else [])]
+        return False
+    misplaced = [
+        "--" + name.replace("_", "-")
+        for name, default in _POAM_ONLY
+        if args.format != "poam" and getattr(args, name) != default
+    ]
+    if misplaced:
+        log.error("these options only apply to the poam format", options=misplaced)
+        return False
+    if args.format == "poam" and args.template is None:
+        log.error(
+            "export poam needs --template: the blank POA&M import template (.xlsx) from eMASS"
+        )
+        return False
+    if args.poam_status == "Risk Accepted" and args.completion_date is not None:
+        log.error(
+            "--completion-date does not apply to Risk Accepted items, which have no milestone"
+        )
+        return False
+    inputs = [*args.checklists, *(p for p in (args.cci_list, args.template) if p is not None)]
     if any(dest.resolve() == src.resolve() for src in inputs):
         log.error("output would overwrite an input", path=str(dest))
+        return False
+    return True
+
+
+def _poam_payload(
+    args: argparse.Namespace, rows: list[FindingRow], template: Template, out: TextIO
+) -> tuple[bytes, int]:
+    """The filled template and its item count; warns about each field eMASS requires that
+    the export leaves empty."""
+    options = PoamOptions(args.office, args.completion_date, args.poam_status)
+    data, poam = to_poam_xlsx(rows, options, template)
+    out.write(
+        f"POA&M: {poam.items} item(s) from {poam.open_rules} open rule(s); "
+        f"{poam.not_reviewed} not-reviewed rule(s) are counted, not listed\n"
+    )
+    for name, items in poam.empty_required:
+        get_logger().warning(
+            "eMASS requires this field: fill it in before importing",
+            field=name,
+            items=items,
+            status=options.status,
+        )
+    return data, poam.items
+
+
+def _export_references(args: argparse.Namespace) -> tuple[Template | None, CciList | None] | None:
+    """The POA&M template and the CCI list, each when given; None (logged) if one is unusable."""
+    log = get_logger()
+    template = cci_list = None
+    what, path = "", None
+    try:
+        if args.format == "poam":
+            what, path = "POA&M template", args.template
+            log.info(f"reading {what}", file=str(path))
+            template = poam_template(read_limited(path), source=str(path))
+        if args.cci_list:
+            what, path = "CCI list", args.cci_list
+            log.info(f"reading {what}", file=str(path))
+            cci_list = load_cci_list(path)
+    except (ChecklistError, OSError) as exc:
+        log.error(f"cannot read {what}", file=str(path), error=str(exc))
+        return None
+    return template, cci_list
+
+
+def _run_export(args: argparse.Namespace, out: TextIO) -> int:
+    log = get_logger()
+    dest: Path = args.output
+    if not _export_args_ok(args):
         return EXIT_UNREADABLE
-    loaded = _load_all(args.checklists)
-    if loaded is None:
+    references = _export_references(args)
+    loaded = _load_all(args.checklists) if references is not None else None
+    if references is None or loaded is None:
         return EXIT_UNREADABLE
-    cci_list = None
-    if args.cci_list:
-        log.info("reading CCI list", file=str(args.cci_list))
-        try:
-            cci_list = load_cci_list(args.cci_list)
-        except (ChecklistError, OSError) as exc:
-            log.error("cannot read CCI list", file=str(args.cci_list), error=str(exc))
-            return EXIT_UNREADABLE
+    template, cci_list = references
     rows, summary = finding_rows(loaded, cci_list)
     _format_crosswalk(summary, out)
-    text = to_csv(rows)
+    if template is not None:
+        try:
+            data, items = _poam_payload(args, rows, template, out)
+        except ChecklistError as exc:
+            log.error("cannot fill POA&M template", file=str(args.template), error=str(exc))
+            return EXIT_UNREADABLE
+        what = f"{items} POA&M item(s) from {len(loaded)} checklist(s)"
+    else:
+        data = to_csv(rows).encode("utf-8")
+        what = f"{len(rows)} row(s) from {len(loaded)} checklist(s)"
     try:
         if args.apply:
             log.info("writing", file=str(dest))
-            atomic_write_text(dest, text, force=args.force)  # runs check_write_target itself
+            atomic_write_bytes(dest, data, force=args.force)  # runs check_write_target itself
         else:
             check_write_target(dest, force=args.force)
     except OSError as exc:
         log.error("cannot write output", file=str(dest), error=str(exc))
         return EXIT_UNREADABLE
-    what = f"{len(rows)} row(s) from {len(loaded)} checklist(s) to {dest}"
     out.write(
-        f"wrote {what}\n" if args.apply else f"dry run: would write {what}; re-run with --apply\n"
+        f"wrote {what} to {dest}\n"
+        if args.apply
+        else f"dry run: would write {what} to {dest}; re-run with --apply\n"
     )
     return EXIT_OK
 

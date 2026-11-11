@@ -24,6 +24,11 @@ Status: accepted by maintainer (2026-11-10).
    cross-check. These are the versions the `.venv` resolved on 2026-11-10. `jsonschema` stays
    out of the runtime dependencies (ADR 0001 point 5); `importorskip` remains, so the suite
    still runs without it.
+   Added during V0.4.4 (ADR 0005 decision 7, maintainer-approved): `openpyxl==3.1.5`, which
+   cross-checks the stdlib `.xlsx` template filler in the same way and is never a runtime
+   dependency.
+   Its last release is from June 2024; that matters less for a test-only reader, and the
+   test skips if it cannot be imported.
 3. Pins change deliberately: at the start of a roadmap stage, in their own commit, with the full
    suite run.
 4. The runtime dependency stays a range (`structlog>=24.1`): stigforage is also installable as a

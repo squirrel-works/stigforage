@@ -46,6 +46,13 @@ replacement for anything. The roadmap below shows what exists and what does not.
   Excel would run as formulas neutralised. `--cci-list` takes DISA's `U_CCI_List.zip` and
   maps each rule's CCIs to NIST SP 800-53 Revision 5 controls, naming any CCI that does not
   map. Dry run unless `--apply`. See ADR 0005.
+- `stigforage export poam CHECKLIST... --template EMASS.xlsx -o OUTPUT.xlsx` fills a copy of
+  your blank eMASS POA&M import template: one row per open rule across every checklist, hosts
+  listed together, CAT I first, with Rev 5 controls from `--cci-list`. Columns are found by
+  their headers, so each service branch's template works. `--office`, `--completion-date` and
+  `--poam-status` (`Ongoing`, the default, or `Risk Accepted`) fill the assessor's fields; the
+  command names each field eMASS requires that is still empty. Not yet opened in Excel or
+  imported into eMASS.
 - `stigforage convert INPUT -o OUTPUT` converts between `.cklb`, `.ckl` and benchmarks. It is a
   dry run unless you pass `--apply`, never modifies INPUT, and refuses to overwrite OUTPUT without
   `--force`. A dry run reports the same refusals and export warnings as `--apply` would.
@@ -106,8 +113,8 @@ standard-library parser that rejects any DTD or entity declaration.
 | V1.x | PySide6 desktop GUI, packaging for Windows, Linux, macOS | planned |
 
 V0.3.3's SARIF importer also covers Trivy, Grype and OSV-Scanner, which all write SARIF.
-V0.4.4 progress: the CCI crosswalk (unit 1) and CSV export (unit 2) are built; POA&M,
-dashboard data and the evidence ZIP are next.
+V0.4.4 progress: the CCI crosswalk (unit 1), CSV export (unit 2) and POA&M export (unit 3)
+are built; dashboard data and the evidence ZIP are next.
 
 ## Principles
 

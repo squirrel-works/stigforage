@@ -30,6 +30,29 @@ def disa_cci_list() -> CciList:
     return load_cci_list(DISA_CCI_ZIP)
 
 
+# Current eMASS POA&M templates, as NSWC Crane's C-PAT publishes them. C-PAT's license is its
+# own and restrictive, so these are local-only too (ADR 0005, unit 3 revision).
+EMASS_DIR = LOCAL / "emass"
+EMASS_URL = "https://raw.githubusercontent.com/NSWC-Crane/C-PAT/main/client/src/assets"
+EMASS_TEMPLATES = (
+    "NAVY_eMASS_TEMPLATE.xlsx",
+    "ARMY_eMASS_TEMPLATE.xlsx",
+    "MARINE_CORPS_eMASS_TEMPLATE.xlsx",
+)
+
+
+@pytest.fixture(params=EMASS_TEMPLATES)
+def emass_template(request: pytest.FixtureRequest) -> Path:
+    """One of the real eMASS templates, or a skip saying how to fetch it for local runs."""
+    path: Path = EMASS_DIR / request.param
+    if not path.is_file():
+        pytest.skip(
+            f"eMASS template not present (local-only test data). To run these tests: "
+            f"mkdir -p {EMASS_DIR} && curl -fsSo {path} {EMASS_URL}/{request.param}"
+        )
+    return path
+
+
 CCI_NS = "http://iase.disa.mil/cci"
 
 
