@@ -67,6 +67,28 @@ Status: decisions 1-10 accepted by maintainer (2026-11-11).
 10. Fixtures: no CCI list is committed (decision 1); the POA&M headers as constants in code,
     credited to STIG Manager in NOTICE.
 
+## Unit 2: CSV (details within decision 5, maintainer-approved after review, 2026-11-11)
+
+- `finding_rows` is the flattening every export shares: one row per rule, per STIG, per
+  checklist, in input order. The POA&M and the dashboard build on it.
+- Columns, with STIG Viewer's labels where one exists: Host, STIG, Release, Vuln ID, Rule ID,
+  STIG ID, Severity, CAT, Status, Rule Title, Comments, Finding Details, CCIs, NIST 800-53 Rev 5
+  Controls, NIST 800-53 Rev 5 References, Rev 5 Crosswalk Notes. The set is fixed: without
+  `--cci-list` the last three stay empty, so a spreadsheet built on the export keeps its shape.
+- Status is written as words (`Not a Finding`). CAT is I/II/III from the severity, empty for
+  `unknown`. Release is `V2R10`, `V?R10` when only the release is known (schema-valid CKLB has
+  no STIG version), else the release info as written.
+- Lists in one cell (CCIs, controls, references, notes) are joined with a semicolon and a
+  space. A CCI listed twice by a rule appears once.
+- The notes name each CCI that does not map cleanly: `CCI-002132: no Rev 5 reference`,
+  `not in the CCI list`, or `deprecated`. The command also prints a crosswalk summary (CCI
+  references mapped, and counts of each problem), or says that no `--cci-list` was given.
+- CRLF line endings, as CSV for Excel expects. Formula neutralising covers OWASP's list: `=`,
+  `+`, `-`, `@`, tab and carriage return. Values such as `-2` gain an apostrophe too; the export
+  has no numeric columns, so nothing is lost.
+- The output must end in `.csv`, may not be an input (the CCI list included), and follows the
+  dry-run and `--force` rules of every other command that writes.
+
 ## Units
 
 1. CCI crosswalk (library; the exports expose it).

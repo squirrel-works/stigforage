@@ -13,42 +13,20 @@ from pathlib import Path
 
 import pytest
 
-from conftest import DISA_CCI_ZIP, FIXTURES
+from conftest import DISA_CCI_ZIP, FIXTURES, SYNTHETIC_CCI_XML
+from conftest import cci_item as _item
+from conftest import cci_xml as _xml
 from stigforage import cklb
 from stigforage.cci import CciList, crosswalk, load_cci_list, loads_cci_list, parse_reference
 from stigforage.model import ChecklistError
 
 MULTI = FIXTURES / "cklb" / "Asset_a-multi-stig.cklb"
 RHEL9 = FIXTURES / "xccdf-results" / "RHEL_9-V2R10-manual-truncated.cklb"
-NS = "http://iase.disa.mil/cci"
-
-
-def _xml(*items: str, root: str = "cci_list") -> bytes:
-    body = "".join(items)
-    return (
-        f'<{root} xmlns="{NS}"><metadata><version>test</version></metadata>'
-        f"<cci_items>{body}</cci_items></{root}>"
-    ).encode()
-
-
-def _item(cci: str, *refs: tuple[str, str], status: str = "draft") -> str:
-    xml_refs = "".join(f'<reference version="{v}" index="{ix}"/>' for v, ix in refs)
-    return f'<cci_item id="{cci}"><status>{status}</status><references>{xml_refs}</references></cci_item>'
-
-
-# The shapes DISA's real list uses (ADR 0005), in a list small enough to read.
-SYNTHETIC = _xml(
-    _item("CCI-000366", ("4", "CM-6 b"), ("5", "CM-6 b")),
-    _item("CCI-000015", ("5", "AC-2 (1)")),
-    _item("CCI-002132", ("4", "AC-2 (4)")),  # Revision 4 only: unmapped for Revision 5
-    _item("CCI-003658", ("5", "SA-11 (6)"), status="deprecated"),
-    _item("CCI-000213", ("5", "AC-3"), ("5", "AC-3 (2)")),  # two references
-)
 
 
 @pytest.fixture
-def cci_list() -> CciList:
-    return loads_cci_list(SYNTHETIC, source="synthetic")
+def cci_list(synthetic_cci_list: CciList) -> CciList:
+    return synthetic_cci_list
 
 
 # --- reading a list -------------------------------------------------------------------------
@@ -68,12 +46,12 @@ def test_only_revision_5_references_are_kept(cci_list: CciList) -> None:
 
 def test_list_loads_from_a_zip_or_bare_xml(tmp_path: Path, cci_list: CciList) -> None:
     xml = tmp_path / "U_CCI_List.xml"
-    xml.write_bytes(SYNTHETIC)
+    xml.write_bytes(SYNTHETIC_CCI_XML)
     packed = tmp_path / "U_CCI_List.zip"
     with zipfile.ZipFile(packed, "w") as zf:
         zf.writestr("README.TXT", "DISA's zip also holds HTML and XSL files")
         zf.writestr("U_CCI_List.html", "<html/>")
-        zf.writestr("U_CCI_List.xml", SYNTHETIC)
+        zf.writestr("U_CCI_List.xml", SYNTHETIC_CCI_XML)
     assert load_cci_list(xml).entries == load_cci_list(packed).entries == cci_list.entries
 
 

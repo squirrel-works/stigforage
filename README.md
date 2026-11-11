@@ -3,8 +3,8 @@
 Free, offline STIG checklist toolkit. Working name. Donationware: free to use, no feature gating,
 no nag screens, no network access.
 
-**Status: pre-release (V0.3.3 accepted).** Not yet usable as a replacement
-for anything. The roadmap below shows what exists and what does not.
+**Status: pre-release (V0.3.3 accepted; V0.4.4 in progress).** Not yet usable as a
+replacement for anything. The roadmap below shows what exists and what does not.
 
 > CKLB output is checked against the DISA schema, not against STIG Viewer 3 itself (which has no
 > macOS build, so it has not been possible to test there).
@@ -41,6 +41,11 @@ for anything. The roadmap below shows what exists and what does not.
   others) and pip-audit or npm audit JSON name no STIG rule, so `--rule V-NUMBER` says which
   rule they are evidence for: any finding makes it `open`, and no findings leave it alone.
   `.json` files are identified by their content. Dry run unless `--apply`. See ADR 0003.
+- `stigforage export csv CHECKLIST... -o OUTPUT.csv` writes one row per rule, per STIG, per
+  checklist (one checklist per host), for Excel: UTF-8 with a byte-order mark, and cells
+  Excel would run as formulas neutralised. `--cci-list` takes DISA's `U_CCI_List.zip` and
+  maps each rule's CCIs to NIST SP 800-53 Revision 5 controls, naming any CCI that does not
+  map. Dry run unless `--apply`. See ADR 0005.
 - `stigforage convert INPUT -o OUTPUT` converts between `.cklb`, `.ckl` and benchmarks. It is a
   dry run unless you pass `--apply`, never modifies INPUT, and refuses to overwrite OUTPUT without
   `--force`. A dry run reports the same refusals and export warnings as `--apply` would.
@@ -96,11 +101,13 @@ standard-library parser that rejects any DTD or entity declaration.
 | V0.1.1 | Core model, CKLB I/O, CKL and XCCDF/SCAP import, `convert` CLI | accepted |
 | V0.2.2 | Carry-forward merge, STIG upgrade wizard, checklist diff | accepted |
 | V0.3.3 | Importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit, npm audit | accepted |
-| V0.4.4 | CSV/POA&M/evidence ZIP export, CCI to 800-53 Rev 5 crosswalk, dashboard data | planned |
+| V0.4.4 | CSV/POA&M/evidence ZIP export, CCI to 800-53 Rev 5 crosswalk, dashboard data | started |
 | V0.5.5 | Refactor and stabilization | planned |
 | V1.x | PySide6 desktop GUI, packaging for Windows, Linux, macOS | planned |
 
 V0.3.3's SARIF importer also covers Trivy, Grype and OSV-Scanner, which all write SARIF.
+V0.4.4 progress: the CCI crosswalk (unit 1) and CSV export (unit 2) are built; POA&M,
+dashboard data and the evidence ZIP are next.
 
 ## Principles
 

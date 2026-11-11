@@ -7,7 +7,7 @@ from typing import Any
 
 import pytest
 
-from stigforage.cci import CciList, load_cci_list
+from stigforage.cci import CciList, load_cci_list, loads_cci_list
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -28,6 +28,43 @@ def disa_cci_list() -> CciList:
             f"mkdir -p {LOCAL} && curl -fsSo {DISA_CCI_ZIP} {DISA_CCI_URL}"
         )
     return load_cci_list(DISA_CCI_ZIP)
+
+
+CCI_NS = "http://iase.disa.mil/cci"
+
+
+def cci_xml(*items: str, root: str = "cci_list") -> bytes:
+    """A CCI list document in DISA's layout, holding the given cci_item elements."""
+    body = "".join(items)
+    return (
+        f'<{root} xmlns="{CCI_NS}"><metadata><version>test</version></metadata>'
+        f"<cci_items>{body}</cci_items></{root}>"
+    ).encode()
+
+
+def cci_item(cci: str, *refs: tuple[str, str], status: str = "draft") -> str:
+    """One cci_item with (version, index) references."""
+    xml_refs = "".join(f'<reference version="{v}" index="{ix}"/>' for v, ix in refs)
+    return (
+        f'<cci_item id="{cci}"><status>{status}</status>'
+        f"<references>{xml_refs}</references></cci_item>"
+    )
+
+
+# The shapes DISA's real list uses (ADR 0005), in a list small enough to read. CCI-000366 and
+# CCI-000213 are real CCIs used by the fixture checklists, with their real Revision 5 mappings.
+SYNTHETIC_CCI_XML = cci_xml(
+    cci_item("CCI-000366", ("4", "CM-6 b"), ("5", "CM-6 b")),
+    cci_item("CCI-000015", ("5", "AC-2 (1)")),
+    cci_item("CCI-002132", ("4", "AC-2 (4)")),  # Revision 4 only: unmapped for Revision 5
+    cci_item("CCI-003658", ("5", "SA-11 (6)"), status="deprecated"),
+    cci_item("CCI-000213", ("5", "AC-3"), ("5", "AC-3 (2)")),  # two references
+)
+
+
+@pytest.fixture
+def synthetic_cci_list() -> CciList:
+    return loads_cci_list(SYNTHETIC_CCI_XML, source="synthetic")
 
 
 # Fields that legitimately differ between independently generated checklists.

@@ -17,7 +17,9 @@ from pathlib import Path
 from typing import Any, TextIO, cast
 
 from stigforage import __version__, ckl, cklb, xccdf
+from stigforage.cci import load_cci_list
 from stigforage.diff import ChecklistDiff, RuleDiff, StigDiff, diff_checklists
+from stigforage.exports import CrosswalkSummary, finding_rows, to_csv
 from stigforage.findings import (
     FindingsFile,
     is_v_number,
@@ -203,6 +205,30 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     imp.add_argument("--apply", action="store_true", help="actually write the output file")
     imp.add_argument("--force", action="store_true", help="overwrite an existing output file")
+
+    exp = sub.add_parser(
+        "export",
+        help="export checklists for reporting (csv)",
+        description=(
+            "Export one or more CHECKLISTs (one per host) as FORMAT. csv: one row per rule, per "
+            "STIG, per checklist, UTF-8 with a byte-order mark for Excel; cells Excel would run "
+            "as formulas are neutralised. With --cci-list (DISA's U_CCI_List.zip or .xml), each "
+            "rule's CCIs are mapped to NIST SP 800-53 Revision 5 controls; without it those "
+            "columns stay empty. Dry-run by default: nothing is written unless --apply is "
+            "given. Inputs are never modified."
+        ),
+    )
+    exp.add_argument("format", choices=("csv",), metavar="FORMAT", help="csv")
+    exp.add_argument("checklists", nargs="+", type=Path, metavar="CHECKLIST", help=_INPUT_HELP)
+    exp.add_argument("-o", "--output", required=True, type=Path, help="output path (.csv)")
+    exp.add_argument(
+        "--cci-list",
+        type=Path,
+        metavar="PATH",
+        help="DISA's U_CCI_List.zip or U_CCI_List.xml, for the 800-53 Rev 5 columns",
+    )
+    exp.add_argument("--apply", action="store_true", help="actually write the output file")
+    exp.add_argument("--force", action="store_true", help="overwrite an existing output file")
     return parser
 
 
@@ -661,6 +687,62 @@ def _run_import_results(args: argparse.Namespace, out: TextIO) -> int:
     return _write_output(result.checklist, dest, apply=args.apply, force=args.force, out=out)
 
 
+_EXPORT_SUFFIX = {"csv": ".csv"}
+
+
+def _format_crosswalk(summary: CrosswalkSummary, out: TextIO) -> None:
+    if not summary.applied:
+        out.write("no --cci-list given: the NIST 800-53 Rev 5 columns are left empty\n")
+        return
+    out.write(
+        f"Rev 5 crosswalk (CCI list {summary.cci_list_version or 'of unknown version'}): "
+        f"{summary.mapped} of {summary.cci_refs} CCI references mapped; "
+        f"no Rev 5 reference: {len(summary.unmapped)} CCI(s), not in the list: "
+        f"{len(summary.unknown)}, deprecated: {len(summary.deprecated)}\n"
+    )
+
+
+def _run_export(args: argparse.Namespace, out: TextIO) -> int:
+    log = get_logger()
+    dest: Path = args.output
+    suffix = _EXPORT_SUFFIX[args.format]
+    if dest.suffix.lower() != suffix:
+        log.error("unsupported output type", output=str(dest), expected=suffix)
+        return EXIT_UNREADABLE
+    inputs = [*args.checklists, *([args.cci_list] if args.cci_list else [])]
+    if any(dest.resolve() == src.resolve() for src in inputs):
+        log.error("output would overwrite an input", path=str(dest))
+        return EXIT_UNREADABLE
+    loaded = _load_all(args.checklists)
+    if loaded is None:
+        return EXIT_UNREADABLE
+    cci_list = None
+    if args.cci_list:
+        log.info("reading CCI list", file=str(args.cci_list))
+        try:
+            cci_list = load_cci_list(args.cci_list)
+        except (ChecklistError, OSError) as exc:
+            log.error("cannot read CCI list", file=str(args.cci_list), error=str(exc))
+            return EXIT_UNREADABLE
+    rows, summary = finding_rows(loaded, cci_list)
+    _format_crosswalk(summary, out)
+    text = to_csv(rows)
+    try:
+        if args.apply:
+            log.info("writing", file=str(dest))
+            atomic_write_text(dest, text, force=args.force)  # runs check_write_target itself
+        else:
+            check_write_target(dest, force=args.force)
+    except OSError as exc:
+        log.error("cannot write output", file=str(dest), error=str(exc))
+        return EXIT_UNREADABLE
+    what = f"{len(rows)} row(s) from {len(loaded)} checklist(s) to {dest}"
+    out.write(
+        f"wrote {what}\n" if args.apply else f"dry run: would write {what}; re-run with --apply\n"
+    )
+    return EXIT_OK
+
+
 def _run_inspect(args: argparse.Namespace, out: TextIO) -> int:
     log = get_logger()
     files: list[Path] = args.files
@@ -723,17 +805,17 @@ def run(argv: Sequence[str] | None = None, *, out: TextIO | None = None) -> int:
     args = _build_parser().parse_args(argv)
     configure(-1 if args.quiet else 1 if args.verbose else 0)
     get_logger().info("starting", command=args.command)
-    if args.command == "convert":
-        return _run_convert(args, out)
-    if args.command == "diff":
-        return _run_diff(args, out)
-    if args.command == "merge":
-        return _run_merge(args, out)
-    if args.command == "upgrade":
-        return _run_upgrade(args, out)
-    if args.command == "import-results":
-        return _run_import_results(args, out)
-    return _run_inspect(args, out)
+    handler = {
+        "convert": _run_convert,
+        "diff": _run_diff,
+        "merge": _run_merge,
+        "upgrade": _run_upgrade,
+        "import-results": _run_import_results,
+        "export": _run_export,
+    }.get(
+        args.command, _run_inspect
+    )  # info and validate share _run_inspect
+    return handler(args, out)
 
 
 def main() -> int:

@@ -38,6 +38,11 @@ Changelog
        Unit 4: pip-audit and npm audit (report v2) JSON, through the same --rule mechanism;
        duplicates merged, unaudited and transitively affected packages named. `.json`
        results files are identified by content (HDF, SARIF, pip-audit, npm audit).
+0.4.4  (roadmap stage 4, in progress)
+       Unit 1: CCI to NIST SP 800-53 Rev 5 crosswalk (cci.py) from DISA's U_CCI_List,
+       which the user supplies; unmapped, unknown and deprecated CCIs are reported.
+       Unit 2: `export csv CHECKLIST... -o OUTPUT.csv [--cci-list PATH]` (exports.py):
+       one row per rule per STIG per checklist, UTF-8 with BOM, formula cells neutralised.
 """
 
 __version__ = "0.3.3"
