@@ -3,7 +3,7 @@
 Free, offline STIG checklist toolkit. Working name. Donationware: free to use, no feature gating,
 no nag screens, no network access.
 
-**Status: pre-release (V0.3.3 complete, pending acceptance).** Not yet usable as a replacement
+**Status: pre-release (V0.3.3 accepted).** Not yet usable as a replacement
 for anything. The roadmap below shows what exists and what does not.
 
 > CKLB output is checked against the DISA schema, not against STIG Viewer 3 itself (which has no
@@ -95,13 +95,12 @@ standard-library parser that rejects any DTD or entity declaration.
 | --- | --- | --- |
 | V0.1.1 | Core model, CKLB I/O, CKL and XCCDF/SCAP import, `convert` CLI | accepted |
 | V0.2.2 | Carry-forward merge, STIG upgrade wizard, checklist diff | accepted |
-| V0.3.3 | Importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit, npm audit | pending acceptance |
+| V0.3.3 | Importers: SCC/XCCDF/ARF, InSpec HDF, SARIF, pip-audit, npm audit | accepted |
 | V0.4.4 | CSV/POA&M/evidence ZIP export, CCI to 800-53 Rev 5 crosswalk, dashboard data | planned |
 | V0.5.5 | Refactor and stabilization | planned |
 | V1.x | PySide6 desktop GUI, packaging for Windows, Linux, macOS | planned |
 
-V0.3.3 is complete and awaits the maintainer's acceptance. Its SARIF importer also covers Trivy,
-Grype and OSV-Scanner, which all write SARIF.
+V0.3.3's SARIF importer also covers Trivy, Grype and OSV-Scanner, which all write SARIF.
 
 ## Principles
 
